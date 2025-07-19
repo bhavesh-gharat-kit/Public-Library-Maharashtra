@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Modal } from "@/components";
+import { TestOptionsModal } from "@/components";
 
 export default function Page() {
   const [selectedMonth, setSelectedMonth] = useState("Jun");
@@ -121,7 +121,7 @@ export default function Page() {
       </main>
 
       {/* Modal */}
-      {showModal && <Modal onClose={() => setShowModal(false)} />}
+      {showModal && <TestOptionsModal onClose={() => setShowModal(false)} playLink="#" practiceLink="#" testLink="#" studyLink="#" />}
     </>
   );
 }

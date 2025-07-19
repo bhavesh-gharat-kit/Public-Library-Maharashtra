@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Footer } from '@/components';
 import 'aos/dist/aos.css';
+import { FaArrowRight, FaBook, FaLightbulb, FaChalkboardTeacher } from 'react-icons/fa';
+import Link from 'next/link';
 
 const tests = [
   {
@@ -54,7 +56,7 @@ function FlipCard({ test, delay }) {
 
   return (
     <div
-      className="relative [perspective:1000px] h-72 w-full cursor-pointer"
+      className="relative [perspective:1000px] h-80 w-full cursor-pointer"
       data-aos={test.aos}
       data-aos-delay={delay}
       onClick={() => setFlipped(!flipped)}
@@ -65,26 +67,26 @@ function FlipCard({ test, delay }) {
         }`}
       >
         {/* Front Side */}
-        <div className="absolute w-full h-full bg-white rounded-xl shadow-md flex flex-col justify-start items-center gap-3 p-4 backface-hidden">
+        <div className="absolute w-full h-full bg-white rounded-xl shadow-lg flex flex-col justify-center items-center p-4 gap-4 backface-hidden border border-gray-200">
           <img
             src={test.logo}
             alt={test.title}
-            className="w-full h-[70%] object-contain rounded-md"
+            className="w-20 h-20 object-contain"
             loading="lazy"
           />
-          <h3 className="text-md font-semibold mt-2">{test.title}</h3>
-          <span className="text-gray-400 text-xs">Tap to view</span>
+          <h3 className="text-lg font-bold text-purple-700">{test.title}</h3>
+          <span className="text-gray-400 text-sm">Tap to flip</span>
         </div>
 
         {/* Back Side */}
-        <div className="absolute w-full h-full bg-purple-600 text-white rounded-xl flex flex-col justify-center items-center text-center px-4 py-6 rotate-y-180 backface-hidden">
-          <p className="text-sm mb-4">{test.desc}</p>
-          <a
+        <div className="absolute w-full h-full bg-purple-600 text-white rounded-xl flex flex-col justify-center items-center text-center px-6 py-4 rotate-y-180 backface-hidden">
+          <p className="text-sm leading-relaxed">{test.desc}</p>
+          <Link
             href={test.link}
-            className="bg-white text-purple-700 px-4 py-2 text-sm font-medium rounded hover:bg-gray-200 transition"
+            className="mt-4 inline-flex items-center gap-2 bg-white text-purple-700 px-4 py-2 text-sm font-semibold rounded-full hover:bg-gray-100 transition"
           >
-            Start Test →
-          </a>
+            Start Test <FaArrowRight />
+          </Link>
         </div>
       </div>
     </div>
@@ -93,10 +95,9 @@ function FlipCard({ test, delay }) {
 
 export default function MockTests() {
   useEffect(() => {
-    // Dynamically import AOS only on client to avoid SSR issues
     import('aos').then((AOS) => {
       AOS.init({
-        duration: 600,
+        duration: 700,
         easing: 'ease-in-out',
         once: false,
       });
@@ -106,13 +107,21 @@ export default function MockTests() {
   return (
     <>
       <Header />
-      <main className="py-10 bg-gradient-to-br from-white to-gray-50 min-h-screen">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center text-purple-700 underline decoration-4 animate-pulse mb-10">
-            🧠 Best Mock Tests
-          </h2>
+      <main className="py-16 bg-gradient-to-b from-white to-gray-100 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Heading */}
+          <div className="text-center mb-12" data-aos="fade-down">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-purple-700 mb-3 flex justify-center items-center gap-3">
+              <FaLightbulb className="text-yellow-400" />
+              Best Mock Tests
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base">
+              Choose from a wide variety of practice tests designed for excellence.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {tests.map((test, i) => (
               <FlipCard key={i} test={test} delay={i * 100} />
             ))}

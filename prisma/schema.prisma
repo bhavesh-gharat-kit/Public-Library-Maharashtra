@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  superadmin
+  user
+}
+
+model User {
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  name      String
+  email     String   @unique
+  contactNo String?
+  password  String
+  role      Role     @default(user)
+  createdAt DateTime @default(now())
+
+  @@map("users")
+}
+
+model DailyInspiration {
+  id     Int    @id @default(autoincrement()) @db.UnsignedInt
+  quote  String
+  author String
+
+  createdAt DateTime @default(now())
+
+  @@map("daily_inspiration") // Custom table name
+}
+
+enum BookContentType {
+  openAccess
+  premium
+}
+
+model Book {
+  id                Int      @id @default(autoincrement()) @db.UnsignedInt
+  yearOfPublication Int
+  publisher         String
+  author            String
+  medium            String
+  issn              String
+  syllabus          String
+  subject           String
+  title             String
+  description       String?
+  createdAt         DateTime @default(now())
+
+  contentType BookContentType @default(openAccess)
+
+  iBook IBook? @relation("BookToIBook")
+
+  @@map("books") // Custom table name
+}
+
+model IBook {
+  id              Int      @id @default(autoincrement()) @db.UnsignedInt
+  bookId          Int      @unique @db.UnsignedInt
+  book            Book     @relation("BookToIBook", fields: [bookId], references: [id])
+  summary         String   @db.Text
+  notes           String   @db.Text
+  revisionNotes   String   @db.Text
+  commonMistakes  String   @db.Text
+  studyTricks     String   @db.Text
+  definitions     String   @db.Text
+  suggestedVideos String   @db.Text
+  createdAt       DateTime @default(now())
+
+  @@map("i_books") // Custom table name
+}
+
+model ExamCategory {
+  id        Int        @id @default(autoincrement()) @db.UnsignedInt
+  slug      String?    @unique
+  name      String
+  mockTests MockTest[]
+  createdAt DateTime   @default(now())
+
+  @@map("exam_categories") // Custom table name
+}
+
+model MockTest {
+  id             Int          @id @default(autoincrement()) @db.UnsignedInt
+  title          String
+  testType       TestType
+  examCategoryId Int          @db.UnsignedInt
+  examCategory   ExamCategory @relation(fields: [examCategoryId], references: [id])
+  questions      Question[]
+
+  createdAt DateTime @default(now())
+
+  @@map("mock_tests") // Custom table name
+}
+
+model Question {
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  question    String   @db.Text
+  explanation String   @db.Text
+  mockTestId  Int      @db.UnsignedInt
+  mockTest    MockTest @relation(fields: [mockTestId], references: [id])
+  options     Option[]
+  answer      Answer?
+
+  @@map("mock_tests_questions") // Custom table name
+}
+
+model Option {
+  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+  text       String
+  questionId Int      @db.UnsignedInt
+  question   Question @relation(fields: [questionId], references: [id])
+  Answer     Answer[]
+
+  @@map("mock_tests_options") // Custom table name
+}
+
+model Answer {
+  id          Int      @id @default(autoincrement()) @db.UnsignedInt
+  questionId  Int      @db.UnsignedInt
+  optionId    Int      @db.UnsignedInt
+  explanation String   @db.Text
+  question    Question @relation(fields: [questionId], references: [id])
+  option      Option   @relation(fields: [optionId], references: [id])
+
+  @@unique([questionId])
+  @@map("mock_tests_answers") // Custom table name
+}
+
+enum TestType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}

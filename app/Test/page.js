@@ -9,7 +9,7 @@ export default function page() {
   const [selectedOption, setSelectedOption] = useState("all");
   return (
     <>
-      <Header />
+      
       {/* Overlay */}
       <div className="fixed inset-0 bg-white bg-opacity-80 z-40" />
 
