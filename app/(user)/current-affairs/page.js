@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 import { Header, Footer, TestOptionsModal } from "@/components";
 import {
   FaBrain,
@@ -9,7 +9,7 @@ import {
   FaChevronRight,
   FaClock,
 } from "react-icons/fa";
-import { MONTHS } from "@/lib/constatns";
+import { MONTHS } from "@/lib/constants";
 import { formatDate, formatMonthYear } from "@/lib/helperFunctions";
 
 export default function Page() {

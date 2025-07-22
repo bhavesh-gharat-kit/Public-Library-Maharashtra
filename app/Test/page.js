@@ -3,7 +3,7 @@
 import { Footer, Header } from "@/components";
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 
 export default function page() {
   const [selectedOption, setSelectedOption] = useState("all");

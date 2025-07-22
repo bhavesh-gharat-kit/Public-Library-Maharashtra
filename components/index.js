@@ -10,3 +10,4 @@ export { default as "Monthly" } from "./Monthly";
 export { default as "Year" } from "./Year";
 export { default as "IBookGPT" } from "./IBookGPT";
 export { default as "CountdownScreen" } from "./CountdownScreen";
+export { default as "FullScreenLoader" } from "./FullScreenLoader";

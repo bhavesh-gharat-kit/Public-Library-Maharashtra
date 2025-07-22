@@ -21,7 +21,7 @@ const PlayTestPage = () => {
   // Called when user clicks 'Start' in modal
   const handleStart = async (settings) => {
     try {
-      const res = await axios.post(`/api/tests/${testSlug}/fetch`, settings);
+      const res = await axios.post(`/api/user/tests/${testSlug}/${testId}/fetch`, settings);
       setTestData(res.data);
       setAnswers(new Array(res.data.questions.length).fill(null));
       setShowCountdown(true);

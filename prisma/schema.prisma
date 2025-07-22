@@ -93,47 +93,47 @@ model ExamCategory {
 }
 
 model MockTest {
-  id             Int          @id @default(autoincrement()) @db.UnsignedInt
+  id             Int                @id @default(autoincrement()) @db.UnsignedInt
   title          String
   testType       TestType
-  examCategoryId Int          @db.UnsignedInt
-  examCategory   ExamCategory @relation(fields: [examCategoryId], references: [id])
-  questions      Question[]
+  examCategoryId Int                @db.UnsignedInt
+  examCategory   ExamCategory       @relation(fields: [examCategoryId], references: [id])
+  questions      MockTestQuestion[]
 
-  createdAt DateTime @default(now())
+  date      DateTime? @db.Date
+  createdAt DateTime  @default(now())
 
   @@map("mock_tests") // Custom table name
 }
 
-model Question {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  question    String   @db.Text
-  explanation String   @db.Text
-  mockTestId  Int      @db.UnsignedInt
-  mockTest    MockTest @relation(fields: [mockTestId], references: [id])
-  options     Option[]
-  answer      Answer?
+model MockTestQuestion {
+  id          Int              @id @default(autoincrement()) @db.UnsignedInt
+  question    String           @db.Text
+  explanation String           @db.Text
+  mockTestId  Int              @db.UnsignedInt
+  mockTest    MockTest         @relation(fields: [mockTestId], references: [id])
+  options     MockTestOption[]
+  answer      MockTestAnswer?
 
   @@map("mock_tests_questions") // Custom table name
 }
 
-model Option {
-  id         Int      @id @default(autoincrement()) @db.UnsignedInt
+model MockTestOption {
+  id         Int              @id @default(autoincrement()) @db.UnsignedInt
   text       String
-  questionId Int      @db.UnsignedInt
-  question   Question @relation(fields: [questionId], references: [id])
-  Answer     Answer[]
+  questionId Int              @db.UnsignedInt
+  question   MockTestQuestion @relation(fields: [questionId], references: [id])
 
   @@map("mock_tests_options") // Custom table name
 }
 
-model Answer {
-  id          Int      @id @default(autoincrement()) @db.UnsignedInt
-  questionId  Int      @db.UnsignedInt
-  optionId    Int      @db.UnsignedInt
-  explanation String   @db.Text
-  question    Question @relation(fields: [questionId], references: [id])
-  option      Option   @relation(fields: [optionId], references: [id])
+model MockTestAnswer {
+  id          Int              @id @default(autoincrement()) @db.UnsignedInt
+  questionId  Int              @db.UnsignedInt
+  optionId    Int              @db.UnsignedInt
+  explanation String           @db.Text
+  question    MockTestQuestion @relation(fields: [questionId], references: [id])
+  option      MockTestOption   @relation(fields: [optionId], references: [id])
 
   @@unique([questionId])
   @@map("mock_tests_answers") // Custom table name

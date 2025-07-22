@@ -1,4 +1,4 @@
-import { MONTHS } from '@/lib/constatns';
+import { MONTHS } from '@/lib/constants';
 import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 

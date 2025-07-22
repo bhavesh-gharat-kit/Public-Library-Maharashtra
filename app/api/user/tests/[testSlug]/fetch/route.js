@@ -1,8 +1,58 @@
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+
+export async function GET(request, context) {
+  try {
+    const { testSlug } = await context.params;
+
+    if (!testSlug) {
+      console.error("❌ testSlug is missing in route params");
+      return NextResponse.json(
+        { message: "Missing testSlug" },
+        { status: 400 }
+      );
+    }
+
+    const examCategory = await prisma.ExamCategory.findFirst({
+      where: { slug: testSlug },
+    });
+
+    if (!examCategory) {
+      return NextResponse.json({ message: "No test found" }, { status: 404 });
+    }
+
+    const monthYears = await prisma.$queryRaw`
+    SELECT DISTINCT 
+      YEAR(createdAt) AS year,
+      MONTH(createdAt) - 1 AS month  -- 0-indexed for JS
+    FROM mock_tests
+    WHERE examCategoryId = ${examCategory.id} 
+    ORDER BY year DESC, month ASC;
+  `;
+
+    const monthData = monthYears.reduce((acc, { year, month }) => {
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(month);
+      return acc;
+    }, {});
+
+    console.log(monthData)
+
+    return NextResponse.json({
+      testData: { examCategory, monthsData: monthData },
+    });
+  } catch (error) {
+    console.error("❌ Internal server error in fetch route:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error", error: error.message },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request, context) {
   try {
-    const {testSlug} = await context.params;
+    const { testSlug } = await context.params;
 
     if (!testSlug) {
       console.error("❌ testSlug is missing in route params");

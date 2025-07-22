@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 import { Header, Footer } from "@/components";
 
 export default function Page() {
@@ -13,25 +13,25 @@ export default function Page() {
     {
       title: "AFCAT, Defense, Agniveer",
       description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "./CA",
+      link: "/take-test/afcat-defense-agniveer",
       aos: "fade-up",
     },
     {
       title: "Banking",
       description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "./CMA",
+      link: "/take-test/banking",
       aos: "fade-down",
     },
     {
       title: "MPSC & State Commission",
       description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "./CS",
+      link: "/take-test/mpsc-state-commission",
       aos: "flip-up",
     },
     {
       title: "Railway",
       description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "./CS",
+      link: "/take-test/railway",
       aos: "Slide-down",
     },
   ];

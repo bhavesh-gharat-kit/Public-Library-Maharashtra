@@ -2,7 +2,21 @@
 
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+import {
+  FaBookOpen,
+  FaPencilAlt,
+  FaNewspaper,
+  FaBook,
+  FaGraduationCap,
+  FaBriefcase,
+  FaPalette,
+  FaChild,
+  FaFlask,
+  FaLandmark,
+  FaHeartbeat,
+  FaVideo,
+  FaUniversity,
+} from "react-icons/fa";
 import Link from "next/link";
 
 // Reusable Card Component
@@ -14,7 +28,7 @@ function ResourceCard({ resource, delay = 0 }) {
       data-aos-delay={delay}
     >
       <div className={`text-3xl mb-4 ${resource.color}`}>
-        <i className={resource.icon}></i>
+        <resource.icon className={`${resource.color}`} />
       </div>
       <h3 className="text-lg font-bold mb-2">{resource.title}</h3>
       <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
@@ -36,7 +50,7 @@ export default function ResourcesPage() {
   const resources = [
     {
       title: "Ebooks",
-      icon: "fas fa-book-open",
+      icon: FaBookOpen,
       color: "text-blue-600",
       description: "Generic | Academic | Competitive Exams",
       link: "/e-books",
@@ -44,7 +58,7 @@ export default function ResourcesPage() {
     },
     {
       title: "Test Series",
-      icon: "fas fa-pencil-alt",
+      icon: FaPencilAlt,
       color: "text-red-600",
       description: "NEET | JEE | UPSC | SSC | Banking | Railways",
       link: "/mock-tests",
@@ -52,24 +66,24 @@ export default function ResourcesPage() {
     },
     {
       title: "Current Affairs",
-      icon: "fas fa-newspaper",
+      icon: FaNewspaper,
       color: "text-green-600",
       description: "UPSC | SSC | Defence | State PSCs",
-      link: "/current-affairs",
+      link: "/take-test/current-affairs",
       animation: "fade-left",
     },
     {
       title: "Education",
-      icon: "fas fa-book",
+      icon: FaBook,
       color: "text-blue-600",
       description:
-        "Higher Education | Educational Videos | School Curriculum | Study Materials & No... & more",
+        "Higher Education | Educational Videos | School Curriculum | Study Materials & more",
       link: "/education",
       animation: "fade-up",
     },
     {
       title: "Entrance Exams",
-      icon: "fas fa-graduation-cap",
+      icon: FaGraduationCap,
       color: "text-red-500",
       description:
         "Government Jobs | Management | Engineering | Medical & more",
@@ -78,7 +92,7 @@ export default function ResourcesPage() {
     },
     {
       title: "Skills & Career Development",
-      icon: "fas fa-briefcase",
+      icon: FaBriefcase,
       color: "text-green-600",
       description: "Job Related | Language Learning | IT & Software & more",
       link: "/skills-career",
@@ -86,7 +100,7 @@ export default function ResourcesPage() {
     },
     {
       title: "Hobbies & Interests",
-      icon: "fas fa-palette",
+      icon: FaPalette,
       color: "text-yellow-500",
       description: "Art & Craft | Cooking | Gardening | Photography & more",
       link: "/hobbies-interests",
@@ -94,61 +108,61 @@ export default function ResourcesPage() {
     },
     {
       title: "Children's Section",
-      icon: "fas fa-child",
+      icon: FaChild,
       color: "text-orange-500",
       description:
-        "Learning Videos (Alphabet, Numbers, Colors) | Fun Science Experiments | Children... & more",
+        "Learning Videos (Alphabet, Numbers, Colors) | Fun Science Experiments | Children & more",
       link: "/children",
       animation: "fade-up",
     },
     {
       title: "Science & Technology",
-      icon: "fas fa-flask",
+      icon: FaFlask,
       color: "text-purple-600",
       description:
-        "Technology News | Innovation & Discoveries | Science Documentaries | Online Cour... & more",
+        "Technology News | Innovation & Discoveries | Science Documentaries | Online Courses & more",
       link: "/science-technology",
       animation: "fade-up",
     },
     {
       title: "Literature & Novels",
-      icon: "fas fa-book-open",
+      icon: FaBookOpen,
       color: "text-blue-600",
       description:
-        "Poetry | Non-Fiction | Online Libraries & E-books | Book Reviews & Recommendatio... & more",
+        "Poetry | Non-Fiction | Online Libraries & E-books | Book Reviews & Recommendations & more",
       link: "/literature-novels",
       animation: "fade-up",
     },
     {
       title: "History & Culture",
-      icon: "fas fa-landmark",
+      icon: FaLandmark,
       color: "text-pink-600",
       description:
-        "World History | Historical Sites & Museums (Virtual Tours) | Biographies | Cultu... & more",
+        "World History | Historical Sites & Museums (Virtual Tours) | Biographies | Culture & more",
       link: "/history-culture",
       animation: "fade-up",
     },
     {
       title: "News & Media",
-      icon: "fas fa-newspaper",
+      icon: FaNewspaper,
       color: "text-blue-700",
       description:
-        "News Portals & Websites | TV News Channels (Live Streaming) | Podcasts & Radio |... & more",
+        "News Portals & Websites | TV News Channels (Live Streaming) | Podcasts & Radio & more",
       link: "/news-media",
       animation: "fade-up",
     },
     {
       title: "Health & Wellness",
-      icon: "fas fa-heartbeat",
+      icon: FaHeartbeat,
       color: "text-green-500",
       description:
-        "Fitness Programs | Yoga & Meditation | Mental Health Resources | Nutrition & Die... & more",
+        "Fitness Programs | Yoga & Meditation | Mental Health Resources | Nutrition & Diet & more",
       link: "/health-wellness",
       animation: "fade-up",
     },
     {
       title: "Additional Resources",
-      icon: "fas fa-book",
+      icon: FaBook,
       color: "text-cyan-600",
       description: "Marathi Books | External Digital Library & more",
       link: "/additional-resources",
@@ -156,7 +170,7 @@ export default function ResourcesPage() {
     },
     {
       title: "Job Training Videos",
-      icon: "fas fa-video",
+      icon: FaVideo,
       color: "text-yellow-500",
       description: "Skills Training Videos & more",
       link: "/job-training-videos",
@@ -164,28 +178,28 @@ export default function ResourcesPage() {
     },
     {
       title: "Primary",
-      icon: "fas fa-briefcase",
+      icon: FaBriefcase,
       color: "text-green-600",
       description:
-        "Creativity & Performing Arts | Fun & Edutainment | Health & Well-being | Environ... & more",
+        "Creativity & Performing Arts | Fun & Edutainment | Health & Well-being | Environment & more",
       link: "/primary",
       animation: "fade-up",
     },
     {
       title: "Secondary",
-      icon: "fas fa-university",
+      icon: FaUniversity,
       color: "text-pink-600",
       description:
-        "Academic Learning | Digital Literacy & Tech Skills | Life Skills & Personal Deve... & more",
+        "Academic Learning | Digital Literacy & Tech Skills | Life Skills & Personal Development & more",
       link: "/secondary",
       animation: "fade-up",
     },
     {
       title: "High School",
-      icon: "fas fa-graduation-cap",
+      icon: FaGraduationCap,
       color: "text-red-500",
       description:
-        "Fun & Edutainment | Language & Communication | Environment & Social Responsibili... & more",
+        "Fun & Edutainment | Language & Communication | Environment & Social Responsibility & more",
       link: "/high-school",
       animation: "fade-up",
     },

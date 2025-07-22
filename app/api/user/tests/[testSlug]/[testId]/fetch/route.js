@@ -1,0 +1,85 @@
+import { NextResponse } from "next/server";
+
+export async function POST(request, context) {
+  try {
+    const { testSlug, testId } = await context.params;
+    let body = await request.json;
+
+    if (!testSlug || !testId) {
+      console.error("❌ testSlug/testId is missing in route params");
+      return NextResponse.json(
+        { message: "Missing testSlug" },
+        { status: 400 }
+      );
+    }
+
+    // Destructure user settings with fallback
+    const {
+      language = "en",
+      timer = "60secs",
+      gameSound = false,
+      questionMode = "full",
+      questionCount,
+      questionRange,
+    } = body || {};
+
+    // Debug logs (safe to remove in prod)
+    console.log("✅ Received testSlug:", testSlug);
+    console.log("🧾 User settings:", {
+      language,
+      timer,
+      gameSound,
+      questionMode,
+      questionCount,
+      questionRange,
+    });
+
+    const data = await prisma.MockTest.findFirst({
+      include: { questions: { include: { options: true, answer: true } } },
+      where: { id: Number(testId) },
+    });
+
+    if (!data) {
+      return NextResponse.json({ message: "No test found" }, { status: 400 });
+    }
+    console.log(JSON.stringify(data));
+
+    // Select questions based on mode
+    let selectedQuestions = [...data.questions];
+
+    if (questionMode === "limited") {
+      if (questionCount) {
+        selectedQuestions = selectedQuestions.slice(0, questionCount);
+      } else if (questionRange?.from && questionRange?.to) {
+        selectedQuestions = selectedQuestions.slice(
+          questionRange.from - 1,
+          questionRange.to
+        );
+      }
+    }
+
+    console.log({
+      testSlug,
+      language,
+      timer,
+      gameSound,
+      questions: selectedQuestions,
+      testData: { ...data, questions: undefined },
+    });
+
+    return NextResponse.json({
+      testSlug,
+      language,
+      timer,
+      gameSound,
+      questions: selectedQuestions,
+      testData: { ...data, questions: undefined },
+    });
+  } catch (error) {
+    console.error("❌ Internal server error in fetch route:", error);
+    return NextResponse.json(
+      { message: "Internal Server Error", error: error.message },
+      { status: 500 }
+    );
+  }
+}

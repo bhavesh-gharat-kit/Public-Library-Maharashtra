@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css";
+
 import { Header, Footer } from "@/components";
 import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";

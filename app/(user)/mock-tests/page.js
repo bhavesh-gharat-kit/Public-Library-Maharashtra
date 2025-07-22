@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Header, Footer } from "@/components";
-import "aos/dist/aos.css";
+
 import {
   FaArrowRight,
   FaBook,
@@ -30,7 +30,7 @@ const tests = [
     title: "Competitive Exams",
     desc: "UPSC, SSC, Railways & more.",
     logo: "/assets/img/competitive.jpg",
-    link: "/mock-tests/upsc-ssc-railways",
+    link: "/mock-tests/competetive-exams",
     aos: "zoom-out",
   },
   {
