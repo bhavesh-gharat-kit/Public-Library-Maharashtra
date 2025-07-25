@@ -23,17 +23,6 @@ export async function POST(request, context) {
       questionRange,
     } = body || {};
 
-    // Debug logs (safe to remove in prod)
-    console.log("✅ Received testSlug:", testSlug);
-    console.log("🧾 User settings:", {
-      language,
-      timer,
-      gameSound,
-      questionMode,
-      questionCount,
-      questionRange,
-    });
-
     const data = await prisma.MockTest.findFirst({
       include: { questions: { include: { options: true, answer: true } } },
       where: { id: Number(testId) },
@@ -42,7 +31,6 @@ export async function POST(request, context) {
     if (!data) {
       return NextResponse.json({ message: "No test found" }, { status: 400 });
     }
-    console.log(JSON.stringify(data));
 
     // Select questions based on mode
     let selectedQuestions = [...data.questions];
@@ -57,15 +45,6 @@ export async function POST(request, context) {
         );
       }
     }
-
-    console.log({
-      testSlug,
-      language,
-      timer,
-      gameSound,
-      questions: selectedQuestions,
-      testData: { ...data, questions: undefined },
-    });
 
     return NextResponse.json({
       testSlug,

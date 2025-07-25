@@ -10,18 +10,25 @@ const PlayTestPage = () => {
   const { "test-slug": testSlug, "test-id": testId } = useParams();
 
   const [showSettings, setShowSettings] = useState(true);
+  const [settings, setSettings] = useState(undefined);
   const [showCountdown, setShowCountdown] = useState(false);
+  const [startAudio, setStartAudio] = useState(null);
   const [testData, setTestData] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
-  const wasTimeout = remainingTime === 0 && !answers.includes(null);
+  const wasTimeout = remainingTime === 0 && !completed;
 
   // Called when user clicks 'Start' in modal
   const handleStart = async (settings) => {
+    setSettings(settings);
+
     try {
-      const res = await axios.post(`/api/user/tests/${testSlug}/${testId}/fetch`, settings);
+      const res = await axios.post(
+        `/api/user/tests/${testSlug}/${testId}/fetch`,
+        settings
+      );
       setTestData(res.data);
       setAnswers(new Array(res.data.questions.length).fill(null));
       setShowCountdown(true);
@@ -30,6 +37,16 @@ const PlayTestPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (completed || showCountdown === false) {
+      // Pause sound if playing
+      if (startAudio) {
+        startAudio.pause();
+        startAudio.currentTime = 0; // Reset to beginning
+      }
+    }
+  }, [completed, showCountdown]);
+
   // Start test after countdown completes
   const startTestAfterCountdown = () => {
     setShowCountdown(false);
@@ -37,6 +54,13 @@ const PlayTestPage = () => {
 
   const handleAnswer = (optionIndex) => {
     if (answers[currentQuestionIndex] !== null) return;
+
+    if (settings?.gameSound) {
+      const audio = new Audio("/assets/audio/bg-music.mp3");
+      audio.play().catch((err) => {
+        console.warn("Sound playback failed:", err);
+      }); 
+    }
 
     const updatedAnswers = [...answers];
     updatedAnswers[currentQuestionIndex] = optionIndex;
@@ -50,12 +74,21 @@ const PlayTestPage = () => {
   };
 
   useEffect(() => {
-    if (!testData || showCountdown) return;
+    if (!testData || showCountdown || completed) return;
+
+    if (settings?.gameSound) {
+      const audio = new Audio("/assets/audio/bg-music.mp3");
+      audio.play().catch((err) => {
+        console.warn("Sound playback failed:", err);
+      });
+      setStartAudio(audio);
+    }
 
     const totalSeconds = parseInt(testData.timer.match(/\d+/)?.[0] || "0", 10);
     setRemainingTime(totalSeconds);
 
     const interval = setInterval(() => {
+      if (completed) return clearInterval(interval);
       setRemainingTime((prev) => {
         if (prev === 1) {
           clearInterval(interval);
@@ -67,7 +100,7 @@ const PlayTestPage = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [testData, showCountdown]);
+  }, [testData, showCountdown, completed]);
 
   if (showSettings) {
     return (
@@ -101,7 +134,8 @@ const PlayTestPage = () => {
           <ul className="space-y-6">
             {testData.questions.map((q, idx) => {
               const userAnswer = answers[idx];
-              const isCorrect = userAnswer === q.correctAnswer;
+              const isCorrect =
+                q.options[userAnswer]?.id === q.answer?.optionId;
               const isUnanswered = userAnswer === null;
 
               return (
@@ -133,7 +167,7 @@ const PlayTestPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                     {q.options.map((opt, optIdx) => {
                       const isSelected = userAnswer === optIdx;
-                      const isRight = q.correctAnswer === optIdx;
+                      const isRight = opt.id === q.answer?.optionId;
 
                       return (
                         <div
@@ -146,7 +180,7 @@ const PlayTestPage = () => {
                               : "border-gray-200"
                           }`}
                         >
-                          {opt}
+                          {opt.text}
                           {isRight && (
                             <span className="ml-2 text-green-600 font-semibold">
                               ✓
@@ -221,7 +255,7 @@ const PlayTestPage = () => {
                         : "hover:bg-gray-100 border-gray-300"
                     }`}
                 >
-                  {opt}
+                  {opt.text}
                 </button>
               </li>
             ))}

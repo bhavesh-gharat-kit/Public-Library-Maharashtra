@@ -19,7 +19,6 @@ export default function Page() {
   const { "test-slug": testSlug } = useParams();
 
   const [testData, setTestData] = useState(null);
-  const [monthlyTests, setMonthlyTests] = useState([]); // Assuming actual tests data per month
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedMonthData, setSelectedMonthData] = useState([]);
   const [selectedTestId, setSelectedTestId] = useState(null);
@@ -39,7 +38,7 @@ export default function Page() {
         console.log(res.data?.testData);
       } catch (error) {
         toast.error("Error while loading data!");
-        // router.back();
+        router.back();
       } finally {
         setLoading(false);
       }
@@ -53,7 +52,8 @@ export default function Page() {
     const formattedMY = `${mm}-${year}`;
     setSelectedMonth(formattedMY);
 
-    try { 
+    try {
+      setLoading(true);
       const res = await axios.get(
         `/api/user/tests/${testSlug}/fetch/${formattedMY}`
       );
@@ -61,6 +61,9 @@ export default function Page() {
     } catch (error) {
       toast.error("Failed to load tests for selected month");
       setSelectedMonthData([]);
+      router.back();
+    } finally {
+      setLoading(false);
     }
 
     scrollToTop();

@@ -4,28 +4,17 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGamepad,
-  faChalkboardTeacher,
-  faFileAlt,
-  faBookOpen,
+  faRocket,
+  faStar,
+  faBolt,
+  faSmileWink,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Modal({
-  onClose,
-  playLink,
-  practiceLink,
-  testLink,
-  studyLink,
-}) {
-  const modes = [
-    { label: "play", link: playLink, icon: faGamepad },
-    { label: "practice", link: practiceLink, icon: faChalkboardTeacher },
-    { label: "test", link: testLink, icon: faFileAlt },
-    { label: "study", link: studyLink, icon: faBookOpen },
-  ];
+export default function Modal({ onClose, playLink }) {
   return (
     <>
       {/* 🔲 Black overlay */}
-      <div className="fixed inset-0 bg-black bg-opacity-80 z-40"></div>
+      <div className="fixed inset-0 bg-black/50 bg-opacity-80 z-40"></div>
 
       {/* ⬜ White Modal */}
       <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -38,27 +27,43 @@ export default function Modal({
             ✕
           </button>
 
-          {/* 📌 Modal Heading */}
-          <h2 className="text-2xl font-bold text-center mb-6">Choose Mode</h2>
+          {/* 🕹️ Header */}
+          <h2 className="text-3xl font-extrabold text-center mb-4">
+            Get Ready to Play!
+          </h2>
+          <p className="text-center text-gray-600 mb-6 text-sm">
+            Boost your skills while having fun <FontAwesomeIcon icon={faSmileWink} />
+          </p>
 
-          {/* 🎮 Action Buttons */}
+          {/* 🎮 Play Button */}
           <div className="flex flex-col gap-4">
-            {modes.map(({ label, link, icon }, idx) => (
-              <Link
-                key={idx}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full"
-              >
-                <button className="w-full border font-bold border-black text-black py-2 rounded-md hover:text-red-400 hover:bg-black  transition duration-300">
-                  <span className="capitalize flex items-center justify-center gap-2">
-                    {label}
-                    <FontAwesomeIcon icon={icon} className="text-lg" />
-                  </span>
-                </button>
-              </Link>
-            ))}
+            <Link
+              href={playLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full"
+            >
+              <button className="w-full bg-black text-white font-bold py-3 rounded-md hover:bg-red-600 transition duration-300 flex items-center justify-center gap-3 text-lg">
+                <FontAwesomeIcon icon={faGamepad} className="text-xl" />
+                Start Playing
+              </button>
+            </Link>
+          </div>
+
+          {/* 🎉 Decorative Icons Section */}
+          <div className="mt-8 flex justify-around text-gray-400 text-sm">
+            <div className="flex flex-col items-center">
+              <FontAwesomeIcon icon={faRocket} className="text-xl mb-1" />
+              <span>Challenge</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <FontAwesomeIcon icon={faStar} className="text-xl mb-1" />
+              <span>Fun</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <FontAwesomeIcon icon={faBolt} className="text-xl mb-1" />
+              <span>Speed</span>
+            </div>
           </div>
         </div>
       </div>

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 
-
 export default function TestSettingsModal({
   onCancel,
   setShowSettings,
@@ -13,8 +12,6 @@ export default function TestSettingsModal({
   const [language, setLanguage] = useState("english");
   const [timer, setTimer] = useState("15secs");
   const [questionCount, setQuestionCount] = useState("");
-  const [rangeFrom, setRangeFrom] = useState("");
-  const [rangeTo, setRangeTo] = useState("");
 
   useEffect(() => {
     AOS.init({ once: true, duration: 100, easing: "ease-in-out" });
@@ -27,11 +24,6 @@ export default function TestSettingsModal({
     if (selectedOption === "limited") {
       if (questionCount) {
         count = Number(questionCount);
-      } else if (rangeFrom && rangeTo) {
-        finalRange = {
-          from: Number(rangeFrom),
-          to: Number(rangeTo),
-        };
       }
     }
 
@@ -158,25 +150,6 @@ export default function TestSettingsModal({
                     onChange={(e) => setQuestionCount(e.target.value)}
                     className="w-full border border-gray-300 rounded px-3 py-2"
                     placeholder="e.g. 5, 10, 15"
-                  />
-                </div>
-
-                <p className="text-sm text-gray-600 text-center">OR</p>
-
-                <div className="flex gap-2">
-                  <input
-                    type="number"
-                    placeholder="From"
-                    value={rangeFrom}
-                    onChange={(e) => setRangeFrom(e.target.value)}
-                    className="w-1/2 border border-gray-300 rounded px-3 py-2"
-                  />
-                  <input
-                    type="number"
-                    placeholder="To"
-                    value={rangeTo}
-                    onChange={(e) => setRangeTo(e.target.value)}
-                    className="w-1/2 border border-gray-300 rounded px-3 py-2"
                   />
                 </div>
               </div>
