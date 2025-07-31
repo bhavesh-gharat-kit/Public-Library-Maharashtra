@@ -1,33 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFilter, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { FiCheckSquare, FiXCircle } from "react-icons/fi";
 
-const getIconForTitle = (title) => {
-  if (title.toLowerCase().includes("year")) return "📅";
-  if (title.toLowerCase().includes("language")) return "🗣️";
-  if (title.toLowerCase().includes("subject")) return "📚";
-  if (title.toLowerCase().includes("publisher")) return "🏢";
-  if (title.toLowerCase().includes("author")) return "✍️";
-  if (title.toLowerCase().includes("isbn")) return "🔢";
-  if (title.toLowerCase().includes("type")) return "🔓";
-  if (title.toLowerCase().includes("content")) return "📁";
-  return "📝";
-};
-
-export default function FilterSidebar({ filters = [], onApply, onClear }) {
-  const [selectedFilters, setSelectedFilters] = useState({});
+export default function FilterSidebar({
+  filters = {},
+  appliedFilters = {},
+  setAppliedFilters,
+  onApply,
+  onClear,
+}) {
   const [isOpen, setIsOpen] = useState(false); // for mobile toggle
-
-  const handleOptionChange = (title, option) => {
-    setSelectedFilters((prev) => {
-      const current = prev[title] || [];
-      const updated = current.includes(option)
-        ? current.filter((item) => item !== option)
-        : [...current, option];
-      return { ...prev, [title]: updated };
-    });
-  };
 
   const handleApply = () => {
     onApply && onApply(selectedFilters);
@@ -39,8 +22,27 @@ export default function FilterSidebar({ filters = [], onApply, onClear }) {
     onClear && onClear();
   };
 
+  const handleUpdateFilters = (event, category, value) => {
+    setAppliedFilters((prev) => {
+      const current = prev[category] || [];
+
+      const updated = event.target.checked
+        ? [...current, value] // add
+        : current.filter((v) => v !== value); // remove
+
+      return {
+        ...prev,
+        [category]: updated,
+      };
+    });
+  };
+
+  useEffect(() => {
+    console.log(appliedFilters);
+  }, [appliedFilters]);
+
   return (
-    <div className="w-full md:w-80">
+    <div className="w-fit md:w-80">
       {/* Mobile Toggle */}
       <div className="md:hidden mb-4">
         <button
@@ -55,43 +57,123 @@ export default function FilterSidebar({ filters = [], onApply, onClear }) {
       </div>
 
       {/* Filter Panel */}
-      <div className={`${isOpen ? "block" : "hidden"} md:block transition-all duration-300 ease-in-out`}>
-        <aside className="bg-white border border-gray-200 shadow-lg rounded-xl p-5 space-y-6 md:sticky md:top-24">
+      <div
+        className={`${
+          isOpen ? "block" : "hidden"
+        } md:block transition-all duration-300 ease-in-out`}
+      >
+        <aside className="bg-white max-h-screen overflow-y-auto scrollbar-sm border border-gray-200 shadow-lg rounded-xl p-5 space-y-6 md:sticky md:top-24">
           <div className="pb-3 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-indigo-600">📚 Filter Books</h2>
+            <h2 className="text-lg font-bold text-indigo-600">
+              📚 Filter Books
+            </h2>
           </div>
 
-          {filters.length ? (
-            filters.map(({ title, options }) => (
-              <div
-                key={title}
-                className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all"
-              >
-                <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <span>{getIconForTitle(title)}</span>
-                  {title}
-                </h3>
-                <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
-                  {options.map((option) => (
-                    <li key={option} className="w-[48%] flex items-center  gap-2 text-sm text-gray-700">
-                      <input
-                        type="checkbox"
-                        id={`${title}-${option}`}
-                        checked={selectedFilters[title]?.includes(option) || false}
-                        onChange={() => handleOptionChange(title, option)}
-                        className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
-                      />
-                      <label htmlFor={`${title}-${option}`} className="cursor-pointer">
-                        {option}
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500 text-sm">No filters available.</p>
-          )}
+          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>📅</span>
+              Year of Publication
+            </h3>
+            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.yearOfPublication?.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.yearOfPublication?.includes(item)
+                        ? true
+                        : false
+                    }
+                    onChange={(e) =>
+                      handleUpdateFilters(e, "yearOfPublication", item)
+                    }
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>📅</span>
+              Languages
+            </h3>
+            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.languages?.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.languages?.includes(item) ? true : false
+                    }
+                    onChange={(e) => handleUpdateFilters(e, "languages", item)}
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>📅</span>
+              Publishers
+            </h3>
+            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.publishers?.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.publishers?.includes(item) ? true : false
+                    }
+                    onChange={(e) => handleUpdateFilters(e, "publishers", item)}
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>📅</span>
+              Content Types
+            </h3>
+            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.contentTypes?.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.contentTypes?.includes(item) ? true : false
+                    }
+                    onChange={(e) =>
+                      handleUpdateFilters(e, "contentTypes", item)
+                    }
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           {/* Buttons */}
           <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
@@ -108,6 +190,7 @@ export default function FilterSidebar({ filters = [], onApply, onClear }) {
               <FiXCircle className="text-lg" /> Clear All
             </button>
           </div>
+
         </aside>
       </div>
     </div>

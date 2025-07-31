@@ -7,6 +7,16 @@ import bcrypt from "bcrypt";
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
 
+  jwt: {
+    maxAge: 60 * 60, // 1 hour (in seconds)
+  },
+
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60, // 1 hour (in seconds)
+    updateAge: 15 * 60, // refresh JWT every 15 minutes if user is active
+  },
+
   session: {
     strategy: "jwt", // Use "jwt" strategy to avoid DB-stored sessions
   },
@@ -15,22 +25,22 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
+        userId: { label: "User ID", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (!credentials?.userId || !credentials?.password) {
           throw new Error(
-            encodeURIComponent("Email and password are required")
+            encodeURIComponent("User ID and password are required")
           );
         }
 
         const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
+          where: { userId: credentials.userId },
         });
 
         if (!user) {
-          throw new Error(encodeURIComponent("No user found with this email"));
+          throw new Error(encodeURIComponent("No user found with this user id"));
         }
 
         const isValid = await bcrypt.compare(
@@ -44,7 +54,7 @@ export const authOptions = {
         return {
           id: user.id,
           name: user.name,
-          email: user.email,
+          userId: user.userId,
           role: user.role,
         };
       },

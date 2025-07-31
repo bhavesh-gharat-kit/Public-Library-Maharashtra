@@ -1,138 +1,1546 @@
 "use client";
-import React, { useEffect } from "react";
-import AOS from "aos";
- 
-import {Header, Footer} from "@/components";
 
-export default function Page() {
-  useEffect(() => {
-    AOS.init({
-      once: false,
-      duration: 500,
-      easing: "ease-in-out",
-      offset: 100,
-    });
-  }, []);
+import React from "react";
+import { FaBlog, FaNewspaper, FaPodcast } from "react-icons/fa";
+import { ExternalResourceCard } from "@/components";
 
-  const allResources = [
-    {
-      title: "Digital Marketing in Hindi",
-      videoUrl: "https://www.youtube.com/watch?v=zdi5hEDNmzY",
-      file: "/books/English-Balbharti.pdf",
-      desc: "A beginner-friendly video course in Hindi explaining the fundamentals of digital marketing, including SEO, social media, content strategy, and more — perfect for students, entrepreneurs, and freelancers.",
-      aos: "fade-up",
-    },
-    {
-      title: "The Complete Android App Developer Course",
-      videoUrl: "https://www.youtube.com/watch?v=NLvaOL6Cm48",
-      file: "/books/solar-cells.pdf",
-      desc: "Kickstart your career in app development! Learn to build powerful Android apps using Java and Android Studio in this hands-on course for beginners.",
-      aos: "zoom-in",
-    },
-    {
-      title: "Film Production",
-      videoUrl: "https://www.youtube.com/watch?v=puF9CkvmJt0",
-      file: "/books/power-quality.pdf",
-      desc: "Lights, camera, ACTION! 🎥 Get a behind-the-scenes look at how films are made from idea to final cut — explained in a super engaging format.",
-      aos: "slide-up",
-    },
-    {
-      title: "Introduction to Anthropology",
-      videoUrl: "https://www.youtube.com/watch?v=LYUzIf12qac",
-      file: "/books/biotech.pdf",
-      desc: "Why do humans live the way we do? Dive into anthropology to explore evolution, culture, rituals, and everything that makes us US",
-      aos: "flip-up",
-    },
-    {
-      title: "Biotechnology: Fundamentals",
-      videoUrl: "https://www.youtube.com/watch?v=RrTCjp2015M",
-      file: "/books/biodiversity.pdf",
-      desc: "Learn how DNA, cells, and science shape the future! This beginner-friendly course breaks down biotech basics and their use in medicine, farming, and innovation.",
-      aos: "fade-down",
-    },
-    {
-      title: "Modern and Contemporary American Poetry",
-      videoUrl: "https://www.youtube.com/watch?v=PUok9h6uvO0",
-      file: "/books/biochemistry.pdf",
-      desc: "Take a journey through American poetry, from modernist classics to bold contemporary voices. A must-watch for lit lovers and curious minds alike.",
-      aos: "zoom-out",
-    },
-  ];
 
-  const getYouTubeID = (url) => {
-    const match = url.match(/(?:\?v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
-    return match ? match[1] : null;
-  };
+const resources = [
+  {
+    title: "Online Newspapers (English, Hindi, Regional Languages)",
+    items: [
+      {
+        id: 167,
+        name: "News Deets",
+        url: "https://newsdeets.com/",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 166,
+        name: "Webdunia Hindi",
+        url: "https://hindi.webdunia.com/",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 165,
+        name: "Jai Anndata",
+        url: "https://jaianndata.com/",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 164,
+        name: "Times of Malwa News Portal",
+        url: "https://www.timesofmalwa.in/",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 163,
+        name: "Bhasker Live",
+        url: "https://bhaskarlive.in/",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 162,
+        name: "IBG News",
+        url: "https://ibgnews.com/",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 161,
+        name: "Meghalaya Guardian",
+        url: "https://meghalayaguardian.releasemyad.com/epaper/",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 160,
+        name: "Arunachal Times",
+        url: "https://arunachaltimes.in",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 159,
+        name: "Eastern Mirror",
+        url: "https://easternmirrornagaland.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 157,
+        name: "Morung Express",
+        url: "https://morungexpress.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 156,
+        name: "Nagaland Post",
+        url: "https://www.nagalandpost.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 155,
+        name: "The Shillong Times",
+        url: "https://theshillongtimes.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 154,
+        name: "The Morning Standard",
+        url: "https://www.newindianexpress.com/nation",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 153,
+        name: "Star of Mysore",
+        url: "https://starofmysore.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 152,
+        name: "Deccan Chronicle",
+        url: "https://www.deccanchronicle.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 151,
+        name: "Arunachal Front",
+        url: "https://arunachalfront.info",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 150,
+        name: "Sikkim Express",
+        url: "https://www.sikkimexpress.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 149,
+        name: "Nagaland Page",
+        url: "https://nagalandpage.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 148,
+        name: "Shillong Times",
+        url: "https://theshillongtimes.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 147,
+        name: "Meghalaya Times",
+        url: "https://www.meghalayatimes.info",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 146,
+        name: "Himalayan Mirror",
+        url: "https://www.himalayanmirror.net",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 145,
+        name: "Sangbad Pratidin",
+        url: "https://sangbadpratidin.in",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 144,
+        name: "Ganashakti",
+        url: "https://ganashakti.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 143,
+        name: "Purbanchal Prahari",
+        url: "https://purvanchalprahari.releasemyad.com/epaper",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 142,
+        name: "Uttarbanga Sambad",
+        url: "https://www.uttarbangasambad.in",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 141,
+        name: "Dainik Assam",
+        url: "https://www.dainikassam.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 140,
+        name: "Asomiya Pratidin",
+        url: "https://www.asomiyapratidin.in/",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 139,
+        name: "Dainik Sambad",
+        url: "https://dainiksambad.net/",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 138,
+        name: "Aajkaal",
+        url: "https://www.aajkaal.in",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 137,
+        name: "Bartaman",
+        url: "https://bartamanpatrika.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 136,
+        name: "Sambad",
+        url: "https://www.sambad.in",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 135,
+        name: "Samaja",
+        url: "https://www.samajaepaper.in",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 134,
+        name: "Prameya",
+        url: "https://www.prameyanews.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 133,
+        name: "Dharitri",
+        url: "https://www.dharitri.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 132,
+        name: "Surya",
+        url: "https://www.suryaa.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 131,
+        name: "Andhra Jyothi",
+        url: "https://www.andhrajyothy.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 130,
+        name: "Sakshi",
+        url: "https://www.sakshi.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 129,
+        name: "Eenadu",
+        url: "https://www.eenadu.net",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 128,
+        name: "Madhyamam",
+        url: "https://www.madhyamam.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 127,
+        name: "Mathrubhumi",
+        url: "https://www.mathrubhumi.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 126,
+        name: "Malayala Manorama",
+        url: "https://www.manoramaonline.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 125,
+        name: "Kerala Kaumudi",
+        url: "https://www.keralakaumudi.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 124,
+        name: "Udayavani",
+        url: "https://www.udayavani.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 123,
+        name: "Vijay Karnataka",
+        url: "https://vijaykarnataka.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 122,
+        name: "Kannada Prabha",
+        url: "https://www.kannadaprabha.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 121,
+        name: "Samyukta Karnataka",
+        url: "https://www.samyukthakarnataka.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 120,
+        name: "Gujarat Samachar",
+        url: "https://www.gujaratsamachar.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 119,
+        name: "Divya Bhaskar",
+        url: "https://www.divyabhaskar.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 118,
+        name: "Sandesh",
+        url: "https://www.sandesh.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 117,
+        name: "Rajasthan Patrika",
+        url: "https://www.patrika.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 116,
+        name: "Prabhat Khabar",
+        url: "https://www.prabhatkhabar.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 115,
+        name: "Nai Dunia",
+        url: "https://www.naidunia.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 114,
+        name: "Jansatta",
+        url: "https://www.jansatta.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 113,
+        name: "Prahaar",
+        url: "https://prahaar.in",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 112,
+        name: "Agrowon",
+        url: "https://www.agrowon.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 111,
+        name: "Sanatan Prabhat",
+        url: "https://www.sanatanprabhat.org",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 110,
+        name: "Marathi Lok",
+        url: "https://www.loksatta.com/",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 109,
+        name: "Lokprabha",
+        url: "https://elokprabha.epapers.in/index.php?edition=Mpage&date=2024-06-10&page=1",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 108,
+        name: "Pune Mirror",
+        url: "https://punemirror.indiatimes.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 107,
+        name: "Navshakti",
+        url: "https://epaper.freepressjournal.in/t/8348",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 106,
+        name: "Kesari",
+        url: "https://www.dailykesari.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 105,
+        name: "Sakaal Times",
+        url: "https://epaper.esakal.com/smartepaper/UI/?logged_in=false",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 104,
+        name: "Saamana",
+        url: "https://www.saamana.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 103,
+        name: "Tarun Bharat",
+        url: "https://www.tarunbharat.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 102,
+        name: "Maharashtra Times",
+        url: "https://maharashtratimes.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 101,
+        name: "Deshdoot",
+        url: "https://www.deshdoot.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 100,
+        name: "Pudhari",
+        url: "https://www.pudhari.news",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 99,
+        name: "Sakal",
+        url: "https://www.esakal.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 98,
+        name: "Loksatta",
+        url: "https://www.loksatta.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 97,
+        name: "Lokmat",
+        url: "https://www.lokmat.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 96,
+        name: "Haryana Samay",
+        url: "https://www.tribuneindia.com/news/state/haryana",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 95,
+        name: "Punjab Kesari",
+        url: "https://www.punjabkesari.in",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 94,
+        name: "Navbharat Times",
+        url: "https://navbharattimes.indiatimes.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 93,
+        name: "Dainik Jagran",
+        url: "https://www.jagran.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 92,
+        name: "Amar Ujala",
+        url: "https://www.amarujala.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 91,
+        name: "Dainik Bhaskar",
+        url: "https://www.bhaskar.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 90,
+        name: "Orissa Post",
+        url: "https://www.orissapost.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 89,
+        name: "Assam Tribune",
+        url: "https://www.assamtribune.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 88,
+        name: "Arunachal Times",
+        url: "https://arunachaltimes.in",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 87,
+        name: "Nagaland Post",
+        url: "https://www.nagalandpost.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 86,
+        name: "Kashmir Times",
+        url: "https://www.kashmirtimes.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 85,
+        name: "Greater Kashmir",
+        url: "https://www.greaterkashmir.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 84,
+        name: "The Sentinel",
+        url: "https://www.sentinelassam.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 83,
+        name: "The Siasat Daily",
+        url: "https://www.siasat.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 82,
+        name: "Deccan Chronicle",
+        url: "https://www.deccanchronicle.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 81,
+        name: "Free Press Journal",
+        url: "https://www.freepressjournal.in",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 80,
+        name: "Mint",
+        url: "https://www.livemint.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 79,
+        name: "The Hitavada",
+        url: "https://www.thehitavada.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 78,
+        name: "The Hans India",
+        url: "https://www.thehansindia.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 77,
+        name: "The Asian Age",
+        url: "https://www.asianage.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 76,
+        name: "The New Indian Express",
+        url: "https://www.newindianexpress.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 75,
+        name: "The Statesman",
+        url: "https://www.thestatesman.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 74,
+        name: "The Pioneer",
+        url: "https://www.dailypioneer.com",
+        icon: FaNewspaper,
+        color: "#28a745",
 
+      },
+      {
+        id: 73,
+        name: "DNA India",
+        url: "https://www.dnaindia.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 72,
+        name: "Mid-Day",
+        url: "https://www.mid-day.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 71,
+        name: "Financial Express",
+        url: "https://www.financialexpress.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+      {
+        id: 70,
+        name: "Business Standard",
+        url: "https://www.business-standard.com",
+        icon: FaNewspaper,
+        color: "#17a2b8",
+      },
+      {
+        id: 69,
+        name: "The Tribune",
+        url: "https://www.tribuneindia.com",
+        icon: FaNewspaper,
+        color: "#e83e8c",
+      },
+      {
+        id: 68,
+        name: "Deccan Herald",
+        url: "https://www.deccanherald.com",
+        icon: FaNewspaper,
+        color: "#343a40",
+      },
+      {
+        id: 67,
+        name: "The Telegraph",
+        url: "https://www.telegraphindia.com",
+        icon: FaNewspaper,
+        color: "#20c997",
+      },
+      {
+        id: 66,
+        name: "The Economic Times",
+        url: "https://economictimes.indiatimes.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
+        id: 65,
+        name: "The Indian Express",
+        url: "https://indianexpress.com",
+        icon: FaNewspaper,
+        color: "#dc3545",
+      },
+      {
+        id: 64,
+        name: "Hindustan Times",
+        url: "https://www.hindustantimes.com",
+        icon: FaNewspaper,
+        color: "#28a745",
+      },
+      {
+        id: 63,
+        name: "The Hindu",
+        url: "https://www.thehindu.com",
+        icon: FaNewspaper,
+        color: "#ffc107",
+      },
+      {
+        id: 62,
+        name: "The Times of India",
+        url: "https://timesofindia.indiatimes.com",
+        icon: FaNewspaper,
+        color: "#fd7e14",
+      },
+      {
+        id: 52,
+        name: "The Times of India",
+        url: "https://timesofindia.indiatimes.com",
+        icon: FaNewspaper,
+        color: "#6f42c1",
+      },
+    ],
+  },
+  {
+    title: "News Portals & Websites",
+    items: [
+      {
+        id: 54,
+        name: "Google News",
+        url: "https://news.google.com",
+        color: "#007bff",
+        icon: FaNewspaper,
+      },
+    ],
+  },
+  {
+    title: "Magazines (Current Affairs, Economy, Politics)",
+    items: [
+      {
+        id: 292,
+        icon: FaNewspaper,
+        name: "Society Interiors",
+        url: "https://societyinteriorsdesign.com/",
+        color: "#007bff",
+      },
+      {
+        id: 291,
+        icon: FaNewspaper,
+        name: "Inside Outside",
+        url: "https://insideoutdoor.com/",
+        color: "#dc3545",
+      },
+      {
+        id: 290,
+        icon: FaNewspaper,
+        name: "GoodHomes India",
+        url: "https://www.goodhomes.co.in/magazine",
+        color: "#28a745",
+      },
+      {
+        id: 289,
+        icon: FaNewspaper,
+        name: "Elle Decor India",
+        url: "https://www.elledecor.in",
+        color: "#ffc107",
+      },
+      {
+        id: 288,
+        icon: FaNewspaper,
+        name: "Design Today",
+        url: "https://www.businesstoday.in",
+        color: "#fd7e14",
+      },
+      {
+        id: 287,
+        icon: FaNewspaper,
+        name: "Architect and Interiors India",
+        url: "https://www.architectandinteriorsindia.com",
+        color: "#6f42c1",
+      },
+      {
+        id: 286,
+        name: "Adorn",
+        icon: FaNewspaper,
+        url: "https://www.adornmag.in",
+        color: "#17a2b8",
+      },
+      {
+        id: 285,
+        name: "Marie Claire India",
+        icon: FaNewspaper,
+        url: "https://www.marieclairesalon.in/",
+        color: "#e83e8c",
+      },
+      {
+        id: 284,
+        icon: FaNewspaper,
+        name: "Grazia India",
+        url: "https://www.grazia.co.in",
+        color: "#343a40",
+      },
+      {
+        id: 283,
+        icon: FaNewspaper,
+        name: "Harper's Bazaar India",
+        url: "https://www.harpersbazaar.com/india",
+        color: "#20c997",
+      },
+      {
+        id: 282,
+        icon: FaNewspaper,
+        name: "Travel+Leisure India & South Asia",
+        url: "https://www.travelandleisureindia.in",
+        color: "#007bff",
+      },
+      {
+        id: 281,
+        icon: FaNewspaper,
+        name: "National Geographic Traveller India",
+        url: "https://www.nationalgeographic.com",
+        color: "#dc3545",
+      },
+      {
+        id: 280,
+        icon: FaNewspaper,
+        name: "Discover India",
+        url: "https://www.discover-india.in/",
+        color: "#28a745",
+      },
+      {
+        id: 279,
+        icon: FaNewspaper,
+        name: "Lonely Planet India",
+        url: "https://www.lonelyplanet.in",
+        color: "#ffc107",
+      },
+      {
+        id: 278,
+        icon: FaNewspaper,
+        name: "Outlook Traveller",
+        url: "https://www.outlookindia.com/outlooktraveller",
+        color: "#fd7e14",
+      },
+      {
+        id: 277,
+        icon: FaNewspaper,
+        name: "The Week Smart Life",
+        url: "https://www.theweek.in",
+        color: "#6f42c1",
+      },
+      {
+        id: 276,
+        name: "Education Times",
+        icon: FaNewspaper,
+        url: "https://www.educationtimes.com",
+        color: "#17a2b8",
+      },
+      {
+        id: 275,
+        name: "Careers360",
+        icon: FaNewspaper,
+        url: "https://www.careers360.com",
+        color: "#e83e8c",
+      },
+      {
+        id: 274,
+        name: "University News",
+        icon: FaNewspaper,
+        url: "https://www.aiu.ac.in",
+        color: "#343a40",
+      },
+      {
+        id: 273,
+        name: "Education World",
+        icon: FaNewspaper,
+        url: "https://www.educationworld.in",
+        color: "#20c997",
+      },
+      {
+        id: 272,
+        name: "People Matters",
+        icon: FaNewspaper,
+        url: "https://www.peoplematters.in",
+        color: "#007bff",
+      },
+      {
+        id: 271,
+        name: "Human Capital",
+        icon: FaNewspaper,
+        url: "https://www.magazinesubscriptions.in/Human-Capital.html",
+        color: "#dc3545",
+      },
+      {
+        id: 270,
+        name: "Indian Management",
+        icon: FaNewspaper,
+        url: "https://www.allindia.com",
+        color: "#28a745",
+      },
+      {
+        id: 269,
+        name: "Pitch",
+        icon: FaNewspaper,
+        url: "https://www.pitchonnet.com",
+        color: "#ffc107",
+      },
+      {
+        id: 268,
+        name: "Marketing Mastermind",
+        icon: FaNewspaper,
+        url: "https://www.businessworld.in",
+        color: "#fd7e14",
+      },
+      {
+        id: 267,
+        name: "Indian Journal of Marketing",
+        icon: FaNewspaper,
+        url: "https://www.indianjournalofmarketing.com",
+        color: "#6f42c1",
+      },
+      {
+        id: 266,
+        name: "Chemical Today",
+        icon: FaNewspaper,
+        url: "https://chemicaltoday.in/",
+        color: "#17a2b8",
+      },
+      {
+        id: 265,
+        name: "PharmaBiz",
+        icon: FaNewspaper,
+        url: "https://www.pharmabiz.com",
+        color: "#e83e8c",
+      },
+      {
+        id: 264,
+        name: "BioSpectrum India",
+        icon: FaNewspaper,
+        url: "https://www.biospectrumindia.com",
+        color: "#343a40",
+      },
+      {
+        id: 263,
+        name: "YourStory",
+        icon: FaNewspaper,
+        url: "https://yourstory.com",
+        color: "#20c997",
+      },
+      {
+        id: 262,
+        name: "Inc42",
+        icon: FaNewspaper,
+        url: "https://inc42.com",
+        color: "#007bff",
+      },
+      {
+        id: 261,
+        name: "Small Enterprise India",
+        icon: FaNewspaper,
+        url: "https://www.smallenterpriseindia.com",
+        color: "#dc3545",
+      },
+      {
+        id: 260,
+        name: "Entrepreneur India",
+        icon: FaNewspaper,
+        url: "https://www.entrepreneur.com",
+        color: "#28a745",
+      },
+      {
+        id: 259,
+        name: "Startup City",
+        icon: FaNewspaper,
+        url: "https://www.startupcity.com/",
+        color: "#ffc107",
+      },
+      {
+        id: 258,
+        name: "Siliconindia",
+        icon: FaNewspaper,
+        url: "https://www.siliconindia.com",
+        color: "#fd7e14",
+      },
+      {
+        id: 257,
+        name: "Voice&Data",
+        icon: FaNewspaper,
+        url: "https://www.voicendata.com",
+        color: "#6f42c1",
+      },
+      {
+        id: 256,
+        name: "Express Computer",
+        icon: FaNewspaper,
+        url: "https://www.expresscomputer.in",
+        color: "#17a2b8",
+      },
+      {
+        id: 255,
+        name: "Electronics Bazaar",
+        icon: FaNewspaper,
+        url: "https://www.electronicsb2b.com",
+        color: "#e83e8c",
+      },
+      {
+        id: 254,
+        name: "Dataquest",
+        icon: FaNewspaper,
+        url: "https://www.dqindia.com",
+        color: "#343a40",
+      },
+      {
+        id: 253,
+        name: "Business India",
+        icon: FaNewspaper,
+        url: "https://www.businessindia.co",
+        color: "#20c997",
+      },
+      {
+        id: 252,
+        name: "Science Reporter",
+        icon: FaNewspaper,
+        url: "https://sciencereporter.niscpr.res.in/",
+        color: "#007bff",
+      },
+      {
+        id: 251,
+        name: "Civil Services Times",
+        icon: FaNewspaper,
+        url: "https://www.civilservicestimes.com",
+        color: "#dc3545",
+      },
+      {
+        id: 250,
+        icon: FaNewspaper,
+        name: "Pratiyogita Darpan",
+        url: "https://www.pdgroup.in",
+        color: "#28a745",
+      },
+      {
+        id: 249,
+        icon: FaNewspaper,
+        name: "Competition Success Review",
+        url: "http://competitionreview.in",
+        color: "#ffc107",
+      },
+      {
+        id: 248,
+        icon: FaNewspaper,
+        name: "Autocar Professional",
+        url: "https://www.autocarpro.in",
+        color: "#fd7e14",
+      },
+      {
+        id: 247,
+        icon: FaNewspaper,
+        name: "Alive",
+        url: "https://www.alive.com/",
+        color: "#6f42c1",
+      },
+      {
+        id: 246,
+        icon: FaNewspaper,
+        name: "Down To Earth",
+        url: "https://www.downtoearth.org.in",
+        color: "#17a2b8",
+      },
+      {
+        id: 245,
+        icon: FaNewspaper,
+        name: "Kurukshetra",
+        url: "https://www.publicationsdivision.nic.in/journals/index.php?route=page/kurukshetra",
+        color: "#e83e8c",
+      },
+      {
+        id: 244,
+        icon: FaNewspaper,
+        name: "Yojana",
+        url: "http://yojana.gov.in",
+        color: "#343a40",
+      },
+      {
+        id: 243,
+        icon: FaNewspaper,
+        name: "Swachh India",
+        url: "https://swachhindia.ndtv.com",
+        color: "#20c997",
+      },
+      {
+        id: 242,
+        icon: FaNewspaper,
+        name: "The Sunday Indian",
+        url: "https://iipm.edu/the-sunday-indian/",
+        color: "#007bff",
+      },
+      {
+        id: 241,
+        icon: FaNewspaper,
+        name: "Bureaucracy Today",
+        url: "https://bureaucrat.news/",
+        color: "#dc3545",
+      },
+      {
+        id: 240,
+        icon: FaNewspaper,
+        name: "India Legal",
+        url: "https://www.indialegallive.com",
+        color: "#28a745",
+      },
+      {
+        id: 239,
+        icon: FaNewspaper,
+        name: "Reader's Digest Asia",
+        url: "https://www.readersdigest.asia",
+        color: "#ffc107",
+      },
+      {
+        id: 238,
+        icon: FaNewspaper,
+        name: "Rolling Stone India",
+        url: "https://rollingstoneindia.com",
+        color: "#fd7e14",
+      },
+      {
+        id: 237,
+        icon: FaNewspaper,
+        name: "Time Out India",
+        url: "https://www.timeout.com/india",
+        color: "#6f42c1",
+      },
+      {
+        id: 236,
+        icon: FaNewspaper,
+        name: "BBC TopGear India",
+        url: "https://topgearmag.in",
+        color: "#17a2b8",
+      },
+      {
+        id: 235,
+        icon: FaNewspaper,
+        name: "Travel+Leisure India",
+        url: "https://travelandleisureindia.in",
+        color: "#e83e8c",
+      },
+      {
+        id: 234,
+        icon: FaNewspaper,
+        name: "Overseas Indian",
+        url: "https://overseasindian.in",
+        color: "#343a40",
+      },
+      {
+        id: 233,
+        icon: FaNewspaper,
+        name: "Chip",
+        url: "https://www.chip-india.com/",
+        color: "#20c997",
+      },
+      {
+        id: 232,
+        icon: FaNewspaper,
+        name: "Electronics For You",
+        url: "https://www.electronicsforu.com",
+        color: "#007bff",
+      },
+      {
+        id: 231,
+        icon: FaNewspaper,
+        name: "PCQuest",
+        url: "https://www.pcquest.com",
+        color: "#dc3545",
+      },
+      {
+        id: 230,
+        icon: FaNewspaper,
+        name: "India Today Spice",
+        url: "https://www.indiatoday.in/spice",
+        color: "#28a745",
+      },
+      {
+        id: 229,
+        icon: FaNewspaper,
+        name: "The Caravan",
+        url: "https://caravanmagazine.in",
+      },
+      {
+        id: 228,
+        icon: FaNewspaper,
+        name: "Swarajya",
+        url: "https://swarajyamag.com",
+      },
+      {
+        id: 227,
+        icon: FaNewspaper,
+        name: "Open",
+        url: "https://openthemagazine.com",
+      },
+      {
+        id: 226,
+        icon: FaNewspaper,
+        name: "Popular Mechanics India",
+        url: "https://www.popularmechanics.com/",
+      },
+      {
+        id: 225,
+        icon: FaNewspaper,
+        name: "Smart Photography",
+        url: "https://www.smartphotography.in",
+      },
+      {
+        id: 224,
+        icon: FaNewspaper,
+        name: "Better Photography",
+        url: "https://www.betterphotography.com/",
+      },
+      {
+        id: 223,
+        icon: FaNewspaper,
+        name: "Reader's Digest India",
+        url: "https://www.readersdigest.in",
+      },
+      {
+        id: 222,
+        icon: FaNewspaper,
+        name: "Outlook Money",
+        url: "https://www.outlookmoney.com",
+      },
+      {
+        id: 221,
+        icon: FaNewspaper,
+        name: "Wisden India",
+        url: "https://www.wisden.com/",
+      },
+      {
+        id: 220,
+        icon: FaNewspaper,
+        name: "Sportstar",
+        url: "https://sportstar.thehindu.com",
+      },
+      {
+        id: 219,
+        icon: FaNewspaper,
+        name: "Overdrive",
+        url: "https://overdrive.in",
+      },
+      {
+        id: 218,
+        icon: FaNewspaper,
+        name: "Autocar India",
+        url: "https://www.autocarindia.com",
+      },
+      {
+        id: 217,
+        icon: FaNewspaper,
+        name: "Car India",
+        url: "https://www.carindia.in",
+      },
+      {
+        id: 216,
+        icon: FaNewspaper,
+        name: "Tehelka",
+        url: "https://tehelka.com/",
+      },
+      {
+        id: 215,
+        icon: FaNewspaper,
+        name: "Digit",
+        url: "https://www.digit.in",
+      },
+      {
+        id: 214,
+        icon: FaNewspaper,
+        name: "Businessworld",
+        url: "https://www.businessworld.in",
+      },
+      {
+        id: 213,
+        icon: FaNewspaper,
+        name: "Fortune India",
+        url: "https://www.fortuneindia.com",
+      },
+      {
+        id: 212,
+        icon: FaNewspaper,
+        name: "National Geographic India",
+        url: "https://www.nationalgeographic.com",
+      },
+      {
+        id: 211,
+        icon: FaNewspaper,
+        name: "Men's Health India",
+        url: "https://www.menshealthindia.com",
+      },
+      {
+        id: 210,
+        icon: FaNewspaper,
+        name: "Cosmopolitan India",
+        url: "https://www.cosmopolitan.in",
+      },
+      {
+        id: 209,
+        icon: FaNewspaper,
+        name: "Verve",
+        url: "https://www.vervemagazine.in",
+      },
+      {
+        id: 208,
+        icon: FaNewspaper,
+        name: "Vogue India",
+        url: "https://www.vogue.in",
+        color: "#fd7e14",
+      },
+      {
+        id: 207,
+        icon: FaNewspaper,
+        name: "Savvy",
+        url: "https://www.magzter.com/IN/MAGNA-PUBLISHING-CO-LTD/Savvy-India/Celebrity/All-Issues?srsltid=AfmBOoq5AkylshSfMyQj1TK9JUzNsgasBT9P-t1bwzX2plXdPYV5pXxZ",
+        color: "#6f42c1",
+      },
+      {
+        id: 206,
+        icon: FaNewspaper,
+        name: "Man's World",
+        url: "https://www.mansworldindia.com",
+        color: "#17a2b8",
+      },
+      {
+        id: 205,
+        icon: FaNewspaper,
+        name: "Elle India",
+        url: "https://www.elle.in",
+        color: "#e83e8c",
+      },
+      {
+        id: 204,
+        icon: FaNewspaper,
+        name: "GQ India",
+        url: "https://www.gqindia.com",
+        color: "#343a40",
+      },
+      {
+        id: 203,
+        icon: FaNewspaper,
+        name: "Reader's Digest",
+        url: "https://www.readersdigest.in",
+        color: "#20c997",
+      },
+      {
+        id: 202,
+        icon: FaNewspaper,
+        name: "India Today Woman",
+        url: "https://www.indiatoday.in/woman",
+        color: "#007bff",
+      },
+      {
+        id: 201,
+        icon: FaNewspaper,
+        name: "Filmfare",
+        url: "https://www.filmfare.com",
+        color: "#dc3545",
+      },
+      {
+        id: 200,
+        icon: FaNewspaper,
+        name: "Femina",
+        url: "https://www.femina.in",
+        color: "#28a745",
+      },
+      {
+        id: 199,
+        icon: FaNewspaper,
+        name: "Forbes India",
+        url: "https://www.forbesindia.com",
+        color: "#ffc107",
+      },
+      {
+        id: 198,
+        icon: FaNewspaper,
+        name: "Business Today",
+        url: "https://www.businesstoday.in",
+        color: "#fd7e14",
+      },
+      {
+        id: 197,
+        icon: FaNewspaper,
+        name: "Frontline",
+        url: "https://frontline.thehindu.com",
+        color: "#6f42c1",
+      },
+      {
+        id: 196,
+        icon: FaNewspaper,
+        name: "The Week",
+        url: "https://www.theweek.in",
+        color: "#17a2b8",
+      },
+      {
+        id: 195,
+        icon: FaNewspaper,
+        name: "Outlook",
+        url: "https://www.outlookindia.com",
+        color: "#e83e8c",
+      },
+      {
+        id: 194,
+        icon: FaNewspaper,
+        name: "India Today",
+        url: "https://www.indiatoday.in",
+        color: "#343a40",
+      },
+      {
+        id: 193,
+        icon: FaNewspaper,
+        name: "Agro One",
+        url: "https://agroone1.com/",
+        color: "#20c997",
+      },
+      {
+        id: 192,
+        icon: FaNewspaper,
+        name: "Saamana",
+        url: "https://www.saamana.com",
+        color: "#007bff",
+      },
+      {
+        id: 191,
+        icon: FaNewspaper,
+        name: "Maharashtra Ahead",
+        url: "https://dgipr.maharashtra.gov.in/maharashtra-ahead",
+        color: "#dc3545",
+      },
+      {
+        id: 190,
+        icon: FaNewspaper,
+        name: "Saptahik Sakal",
+        url: "https://www.saptahiksakal.com",
+        color: "#28a745",
+      },
+      {
+        id: 189,
+        icon: FaNewspaper,
+        name: "Lokprabha",
+        url: "https://www.loksatta.com/lokprabha/LokPrabha/",
+        color: "#ffc107",
+      },
+      {
+        id: 55,
+        icon: FaNewspaper,
+        name: "India Today",
+        url: "https://www.indiatoday.in",
+        color: "#fd7e14",
+      },
+    ],
+  },
+  {
+    title: "Blogs & Opinion Pieces",
+    items: [
+      {
+        id: 57,
+        icon: FaPodcast,
+        name: "The Wire",
+        url: "https://thewire.in",
+        color: "#007bff",
+      },
+    ],
+  },
+  {
+    title: "TV News Channels (Live Streaming)",
+    items: [
+      {
+        id: 53,
+        icon: FaBlog,
+        name: "NDTV",
+        url: "https://www.ndtv.com",
+        color: "#007bff",
+      },
+    ],
+  },
+];
+
+function NewsAndMedia() {
   return (
-    <>
-      
-      <main className="bg-gray-50 py-12 px-4 md:px-10 lg:px-20">
-        <div className="max-w-[1440px] mx-auto">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-10 text-center">
-           Job Training Videos
-          </h1>
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      {/* HEADER PART */}
+      <h1 className="text-3xl font-bold text-center my-6">
+        News & Media
+      </h1>
+      {/* <div className="text-right mb-6">
+        <a
+          href="/bookmark/index"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          View Bookmarks
+        </a>
+      </div> */}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allResources.map((item, index) => {
-              const videoId = getYouTubeID(item.videoUrl);
-              const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-300 flex flex-col min-h-[240px]"
-                  data-aos={item.aos}
-                  data-aos-delay={index * 100}
-                >
-                  {/* Thumbnail */}
-                  <div
-                    className="h-52 w-full cursor-pointer"
-                    onClick={() => window.open(item.videoUrl, "_blank")}
-                  >
-                    <img
-                      src={thumbnailUrl}
-                      alt={item.title}
-                      className="w-full h-full object-cover rounded-t-2xl"
-                    />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 px-5 py-4 flex flex-col justify-between gap-2">
-                    <h3 className="text-base font-semibold text-gray-900">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 line-clamp-3">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="px-5 pb-5 mt-auto flex gap-3">
-                    <a
-                      href={item.videoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-1/2 text-center text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-800 border border-indigo-800 rounded-md py-2 transition-all duration-300"
-                    >
-                      Watch →
-                    </a>
-                    <a
-                      href={item.file}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-1/2 text-center text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-800 border border-indigo-800 rounded-md py-2 transition-all duration-300"
-                    >
-                      Bookmark 📌
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
+      {resources.map((section) => (
+        <div key={section.title} className="mb-10">
+          <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {section.items.map((item, index) => (
+              <ExternalResourceCard item={item} key={index} />
+            ))}
           </div>
         </div>
-      </main>
-      
-    </>
+      ))}
+
+
+    </div>
   );
 }
+
+export default NewsAndMedia;
