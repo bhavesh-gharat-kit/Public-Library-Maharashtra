@@ -1,6 +1,7 @@
 // middleware.js
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { isIPAllowed } from "@/lib/ipChecker";
 
 const secret = process.env.NEXTAUTH_SECRET;
 
@@ -16,25 +17,10 @@ export async function middleware(request) {
     pathname.startsWith("/admin") || pathname.startsWith("/api/admin");
 
   if (!skipIpCheck) {
-    console.log(pathname)
     const ip = getClientIp(request);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/ip-check`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ip }),
-      }
-    );
 
-    if (!res.ok) {
-      console.error("IP check failed:", res.status);
-      return NextResponse.redirect(new URL("/403", request.url));
-    }
-
-    const data = await res.json();
-
-    if (!data.allowed) {
+    const allowed = await isIPAllowed(ip);
+    if (!allowed) {
       return NextResponse.redirect(new URL("/403", request.url));
     }
   }
@@ -78,7 +64,13 @@ function getClientIp(request) {
 // ✅ Authenticate user from JWT token via NextAuth
 async function authenticate(request) {
   const pathname = request.nextUrl.pathname;
-  const token = await getToken({ req: request, secret });
+  let token ;
+  try {
+    token = await getToken({ req: request, secret });
+  } catch (err) {
+    console.error("JWT parse failed in Edge runtime:", err);
+    return new Response(JSON.stringify({ message: "Token error" }), { status: 401 });
+  }
 
   if (!token) {
     // Redirect non-API routes to /403
@@ -125,3 +117,5 @@ async function authorize(request, allowedRoles = []) {
 
   return user;
 }
+
+export const runtime = 'experimental-edge';
