@@ -11,6 +11,7 @@ const page = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loggingIn, setLoggingIn] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -24,13 +25,15 @@ const page = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoggingIn(true);
     const res = await signIn("credentials", {
       redirect: true,
       userId,
       password,
       callbackUrl: "/home",
     });
+
+    setLoggingIn(false);
 
     // no need to manually check res.error here since error will be handled via redirect URL
   };
@@ -92,10 +95,11 @@ const page = () => {
           </div>
 
           <button
+            disabled={loggingIn}
             type="submit"
             className="w-full py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
           >
-            Sign In
+            {loggingIn?"Signing in":"Sign In"}
           </button>
         </form>
 

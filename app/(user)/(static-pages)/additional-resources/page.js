@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { ResourceCard } from "@/components";
-import { FaChartLine } from "react-icons/fa";
+import { FaBook, FaBookOpen, FaBookReader, FaChalkboardTeacher, FaFileAlt, FaGlobe, FaGraduationCap, FaTools, FaUserTie } from "react-icons/fa";
+
 
 const data = [
   {
@@ -11,42 +12,42 @@ const data = [
         id: 583,
         name: "Arvind Gupta Toys",
         url: "https://www.arvindguptatoys.com/",
-        icon: FaChartLine,
+        icon: FaTools,
         color: "#007bff",
       },
       {
         id: 581,
         name: "Edubridge",
         url: "https://www.edubridgeindia.com/",
-        icon: FaChartLine,
+        icon: FaGraduationCap,
         color: "#dc3545",
       },
       {
         id: 580,
         name: "EDX",
-        url: "https://www.edx.org/?utm_source=affiliate&utm_medium=Ecom%20EWAY&utm_campaign=Online%20Tracking%20Link_&utm_content=ONLINE_TRACKING_LINK&irgwc=1&irclickid=QfdW-E1nAxyKTyg3Cr0WIVJKUkCzLY17TQzYXY0",
-        icon: FaChartLine,
+        url: "https://www.edx.org/",
+        icon: FaGlobe,
         color: "#28a745",
       },
       {
         id: 579,
         name: "Vidwan",
         url: "https://vidwan.inflibnet.ac.in/",
-        icon: FaChartLine,
+        icon: FaUserTie,
         color: "#ffc107",
       },
       {
         id: 578,
         name: "Swayam",
         url: "https://swayam.gov.in/",
-        icon: FaChartLine,
+        icon: FaChalkboardTeacher,
         color: "#fd7e14",
       },
       {
         id: 450,
         name: "National Digital Library of India",
-        icon: FaChartLine,
         url: "https://ndl.iitkgp.ac.in/",
+        icon: FaBookReader,
         color: "#6f42c1",
       },
     ],
@@ -58,21 +59,21 @@ const data = [
         id: 582,
         name: "Mahanmk Question Papers",
         url: "https://mahanmk.com/question-papers/",
-        icon: FaChartLine,
+        icon: FaFileAlt,
         color: "#007bff",
       },
       {
         id: 449,
         name: "Rajya Marathi Vikas Samstha",
         url: "https://rmvs.marathi.gov.in/books",
-        icon: FaChartLine,
+        icon: FaBookOpen,
         color: "#dc3545",
       },
       {
         id: 448,
         name: "Marathi Books",
-        url: "https://sahitya.marathi.gov.in/%e0%a4%87-%e0%a4%ac%e0%a5%81%e0%a4%95-%e0%a4%a1%e0%a4%be%e0%a4%8a%e0%a4%a8%e0%a4%b2%e0%a5%8b%e0%a4%a1/",
-        icon: FaChartLine,
+        url: "https://sahitya.marathi.gov.in/...",
+        icon: FaBook,
         color: "#28a745",
       },
     ],
@@ -88,16 +89,13 @@ const AdditionalResourcesPage = () => {
           Additional Resources
         </h1>
 
-        {data.map((section) => (
-          <div key={section.section} className="mb-10 ">
+        {data.map((section, index) => (
+          <div key={index} className="mb-10 ">
             <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.resources.map(({ icon, color, name, url }, index) => (
+              {section.resources.map((item, index) => (
                 <ResourceCard
-                  icon={icon}
-                  color={color}
-                  name={name}
-                  url={url}
+                  item={item}
                   key={index}
                 />
               ))}
