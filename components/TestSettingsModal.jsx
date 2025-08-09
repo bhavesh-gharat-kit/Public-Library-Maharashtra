@@ -10,7 +10,7 @@ export default function TestSettingsModal({
   const [selectedOption, setSelectedOption] = useState("all");
   const [gameSound, setGameSound] = useState(true);
   const [language, setLanguage] = useState("english");
-  const [timer, setTimer] = useState("15secs");
+  const [timer, setTimer] = useState("60secs");
   const [questionCount, setQuestionCount] = useState("");
 
   useEffect(() => {
@@ -61,9 +61,10 @@ export default function TestSettingsModal({
                   onChange={(e) => setTimer(e.target.value)}
                   className="ml-2 border border-gray-300 rounded px-2 py-1 text-sm"
                 >
-                  <option value="15secs">15 secs</option>
-                  <option value="30secs">30 secs</option>
                   <option value="60secs">60 secs</option>
+                  <option value="120secs">2 min</option>
+                  <option value="300secs">5 min</option>
+                  <option value="900secs">15 min</option>
                 </select>
               </label>
 

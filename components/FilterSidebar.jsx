@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaFilter, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaFilter, FaChevronDown, FaChevronUp, FaBook, FaCalendar, FaBookOpen } from "react-icons/fa";
 import { FiCheckSquare, FiXCircle } from "react-icons/fi";
 
 export default function FilterSidebar({
@@ -37,12 +37,8 @@ export default function FilterSidebar({
     });
   };
 
-  useEffect(() => {
-    console.log(appliedFilters);
-  }, [appliedFilters]);
-
   return (
-    <div className="w-fit md:w-80">
+    <div className="w-full md:w-fit">
       {/* Mobile Toggle */}
       <div className="md:hidden mb-4">
         <button
@@ -62,16 +58,17 @@ export default function FilterSidebar({
           isOpen ? "block" : "hidden"
         } md:block transition-all duration-300 ease-in-out`}
       >
-        <aside className="bg-white max-h-screen overflow-y-auto scrollbar-sm border border-gray-200 shadow-lg rounded-xl p-5 space-y-6 md:sticky md:top-24">
+        <aside className="bg-white border border-gray-200 shadow-lg rounded-lg p-5 space-y-6">
           <div className="pb-3 border-b border-gray-200">
-            <h2 className="text-lg font-bold text-indigo-600">
-              📚 Filter Books
+            <h2 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
+            <span><FaBook/></span>
+               Filter Books
             </h2>
           </div>
 
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span>📅</span>
+              <span><FaCalendar/></span>
               Year of Publication
             </h3>
             <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -125,7 +122,7 @@ export default function FilterSidebar({
 
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span>📅</span>
+              <span><FaBookOpen/></span>
               Publishers
             </h3>
             <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -150,7 +147,7 @@ export default function FilterSidebar({
 
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span>📅</span>
+              <span><FaFilter/></span>
               Content Types
             </h3>
             <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">

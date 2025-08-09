@@ -11,8 +11,7 @@ export default function Footer() {
         <ul className="flex justify-center flex-wrap gap-6 mb-4">
           <li>
             <Link
-              href="https://nlbdkc.noeticindia.com/nationallibraryvandre/page/privacy?pageId=75"
-              target="_blank"
+              href="#"
               className="text-sm text-gray-600 hover:text-gray-900 hover:underline transition"
             >
               Privacy Policy
@@ -20,8 +19,7 @@ export default function Footer() {
           </li>
           <li>
             <Link
-              href="https://nlbdkc.noeticindia.com/nationallibraryvandre/page/terms?pageId=76"
-              target="_blank"
+              href="#"
               className="text-sm text-gray-600 hover:text-gray-900 hover:underline transition"
             >
               Terms &amp; Conditions

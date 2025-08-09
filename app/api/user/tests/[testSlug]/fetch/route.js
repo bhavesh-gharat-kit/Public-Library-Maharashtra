@@ -36,8 +36,6 @@ export async function GET(request, context) {
       return acc;
     }, {});
 
-    console.log(monthData)
-
     return NextResponse.json({
       testData: { examCategory, monthsData: monthData },
     });
@@ -82,17 +80,6 @@ export async function POST(request, context) {
       questionCount,
       questionRange,
     } = body || {};
-
-    // Debug logs (safe to remove in prod)
-    console.log("✅ Received testSlug:", testSlug);
-    console.log("🧾 User settings:", {
-      language,
-      timer,
-      gameSound,
-      questionMode,
-      questionCount,
-      questionRange,
-    });
 
     // Dummy full question bank (simulate as DB)
     const allQuestions = [
@@ -209,11 +196,7 @@ export async function POST(request, context) {
         );
       }
     }
-
-    // Final debug log
-    console.log(
-      `📦 Returning ${selectedQuestions.length} questions for test: ${testSlug}`
-    );
+    
 
     return NextResponse.json({
       testSlug,

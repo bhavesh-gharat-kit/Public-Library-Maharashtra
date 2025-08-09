@@ -1,7 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CountdownScreen, TestSettingsModal } from "@/components";
+import {
+  CountdownScreen,
+  FullScreenLoader,
+  TestSettingsModal,
+} from "@/components";
 import { useRouter, useParams } from "next/navigation";
 import { axios } from "@/utils";
 
@@ -18,10 +22,12 @@ const PlayTestPage = () => {
   const [answers, setAnswers] = useState([]);
   const [completed, setCompleted] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
+  const [loading, setLoading] = useState(false);
   const wasTimeout = remainingTime === 0 && !completed;
 
   // Called when user clicks 'Start' in modal
   const handleStart = async (settings) => {
+    setLoading(true);
     setSettings(settings);
 
     try {
@@ -34,6 +40,8 @@ const PlayTestPage = () => {
       setShowCountdown(true);
     } catch (error) {
       console.error("Failed to load test data", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,7 +67,7 @@ const PlayTestPage = () => {
       const audio = new Audio("/assets/audio/bg-music.mp3");
       audio.play().catch((err) => {
         console.warn("Sound playback failed:", err);
-      }); 
+      });
     }
 
     const updatedAnswers = [...answers];
@@ -101,6 +109,8 @@ const PlayTestPage = () => {
 
     return () => clearInterval(interval);
   }, [testData, showCountdown, completed]);
+
+  if (loading) return <FullScreenLoader />;
 
   if (showSettings) {
     return (

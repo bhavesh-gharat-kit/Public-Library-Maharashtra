@@ -1,3 +1,4 @@
+import { handleCopy } from "@/lib/helperFunctions";
 import {
   FaCircle,
   FaPrint,
@@ -5,9 +6,17 @@ import {
   FaThumbsDown,
   FaThumbsUp,
   FaUser,
+  FaLightbulb,
+  FaBook,
+  FaStickyNote,
+  FaExclamationCircle,
+  FaMagic,
+  FaPenNib,
+  FaVideo,
+  FaPaperPlane,
 } from "react-icons/fa";
 
-export function FeedbackButtons() {
+export function FeedbackButtons({ handleCopy }) {
   return (
     <div className="flex gap-2 mt-2 text-gray-500">
       <FaThumbsUp
@@ -20,6 +29,7 @@ export function FeedbackButtons() {
       />
       <FaPrint
         title="Copy"
+        onClick={handleCopy}
         className="cursor-pointer ml-auto hover:text-indigo-600"
       />
     </div>
@@ -68,7 +78,7 @@ export function TypingLoader() {
 export function Message({ msg }) {
   return (
     <div
-      className={`flex items-start gap-2 ${
+      className={`flex items-start gap-2 break-words hyphens-auto ${
         msg.type === "user" ? "justify-end" : ""
       }`}
     >
@@ -93,7 +103,100 @@ export function Message({ msg }) {
         }`}
       >
         {msg.text}
-        {msg.type === "ai" && <FeedbackButtons />}
+        {msg.type === "ai" && (
+          <FeedbackButtons handleCopy={() => handleCopy(msg.text)} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function UserInput({ input, setInput }) {
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const newMessages = [...messages, { type: "user", text: input }];
+    setMessages(newMessages);
+    setInput("");
+    setAILoading(true);
+
+    const res = await fetch("/api/ibookgpt", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userMessage: input,
+        tool: selectedTool,
+        bookId,
+      }),
+    });
+
+    const data = await res.json();
+    setMessages([...newMessages, { type: "ai", text: data.reply }]);
+    setLoading(false);
+  };
+
+  return (
+    <div className="flex items-center gap-2 border rounded px-3 py-2 bg-gray-50">
+      <input
+        type="text"
+        className="flex-1 outline-none bg-transparent"
+        placeholder="Ask any question about the chapter..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
+      <button className="text-purple-600 hover:text-purple-800">
+        <FaPaperPlane />
+      </button>
+    </div>
+  );
+}
+
+export function StudyTools({ setSelectedTool }) {
+  const tools = [
+    { icon: <FaBook />, label: "Chapter Summary", name: "summary" },
+
+    { icon: <FaStickyNote />, label: "Revision Notes", name: "revisionNotes" },
+    {
+      icon: <FaExclamationCircle />,
+      label: "Common Mistakes",
+      name: "commonMistakes",
+    },
+
+    { icon: <FaVideo />, label: "Suggested Videos", name: "suggestedVideos" },
+    { icon: <FaMagic />, label: "Study Tricks", name: "studyTricks" },
+
+    {
+      icon: <FaPenNib />,
+      label: "Definitions / Concepts",
+      name: "definitions",
+    },
+    {
+      icon: <FaStickyNote />,
+      label: "Important Notes for Exams",
+      name: "notes",
+    },
+  ];
+  return (
+    <div className="mb-6">
+      <h2 className="flex items-center gap-2 text-lg font-bold mb-4">
+        <FaLightbulb className="text-yellow-500 text-xl" />
+        Study Tools
+      </h2>
+
+      <div className="flex flex-wrap gap-3">
+        {tools.map((item, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedTool(item)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm border border-gray-200 
+                       bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 
+                       transition duration-300 ease-in-out text-sm font-medium text-gray-800
+                       hover:shadow-lg hover:scale-[1.01]"
+          >
+            <span className="">{item.icon}</span>
+            {item.label}
+          </button>
+        ))}
       </div>
     </div>
   );

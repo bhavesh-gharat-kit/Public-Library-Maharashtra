@@ -1,7 +1,78 @@
 "use client";
 import React from "react";
-import { faAppleWhole, faBalanceScale, faBolt, faBoxesPacking, faBrain, faBuilding, faBullhorn, faBullseye, faCar, faCarrot, faChalkboardTeacher, faChartBar, faChartLine, faChartPie, faCity, faClinicMedical, faClipboardCheck, faClipboardList, faCloud, faCode, faCoins, faConciergeBell, faCow, faDatabase, faDrawPolygon, faFish, faFutbol, faGavel, faGem, faGlobeAsia, faGlobeEurope, faHandshake, faHeartbeat, faHelmetSafety, faLanguage, faLaptopCode, faLaptopHouse, faLeaf, faLightbulb, faMicrochip, faMicroscope, faNewspaper, faPalette, faPaw, faPenNib, faPeopleGroup, faPlane, faProjectDiagram, faRobot, faRocket, faSeedling, faServer, faShareAlt, faShieldAlt, faShirt, faShoppingCart, faSuitcaseRolling, faSun, faTasks, faTemperatureHigh, faTools, faTruck, faUniversity, faUsersCog, faUserSecret, faUserTie, faUtensils, faVial, faWater, faWind } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ResourceCardFortAwesome } from "@/components";
+import {
+  faAppleWhole,
+  faBalanceScale,
+  faBolt,
+  faBoxesPacking,
+  faBrain,
+  faBuilding,
+  faBullhorn,
+  faBullseye,
+  faCar,
+  faCarrot,
+  faChalkboardTeacher,
+  faChartBar,
+  faChartLine,
+  faChartPie,
+  faCity,
+  faClinicMedical,
+  faClipboardCheck,
+  faClipboardList,
+  faCloud,
+  faCode,
+  faCoins,
+  faConciergeBell,
+  faCow,
+  faDatabase,
+  faDrawPolygon,
+  faFish,
+  faFutbol,
+  faGavel,
+  faGem,
+  faGlobeAsia,
+  faGlobeEurope,
+  faHandshake,
+  faHeartbeat,
+  faHelmetSafety,
+  faLanguage,
+  faLaptopCode,
+  faLaptopHouse,
+  faLeaf,
+  faLightbulb,
+  faMicrochip,
+  faMicroscope,
+  faNewspaper,
+  faPalette,
+  faPaw,
+  faPenNib,
+  faPeopleGroup,
+  faPlane,
+  faProjectDiagram,
+  faRobot,
+  faRocket,
+  faSeedling,
+  faServer,
+  faShareAlt,
+  faShieldAlt,
+  faShirt,
+  faShoppingCart,
+  faSuitcaseRolling,
+  faSun,
+  faTasks,
+  faTemperatureHigh,
+  faTools,
+  faTruck,
+  faUniversity,
+  faUsersCog,
+  faUserSecret,
+  faUserTie,
+  faUtensils,
+  faVial,
+  faWater,
+  faWind,
+} from "@fortawesome/free-solid-svg-icons";
 
 const skillData = [
   {
@@ -786,52 +857,18 @@ const SkillsLearningPage = () => {
     <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-6">Skills & Learning</h1>
 
-      {/* <div className="text-right mb-6">
-        <a
-          href="/bookmark/index"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          View Bookmarks
-        </a>
-      </div> */}
-
       {skillData.map((section) => (
         <div key={section.title} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {section.items.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg shadow-md p-6 text-center"
-              >
-                <FontAwesomeIcon
-                  icon={item.icon}
-                  size="3x"
-                  style={{ color: item.color }}
-                />
-                <h5 className="text-lg font-medium mt-4 text-blue-600">
-                  {item.name}
-                </h5>
-                <div className="flex justify-center gap-3 mt-4">
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                    rel="noreferrer"
-                  >
-                    View
-                  </a>
-                  <button
-                    onClick={() => alert(`Bookmark added for ${item.name}`)}
-                    className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                  >
-                    Bookmark
-                  </button>
-                </div>
-                {/* Optional placeholder divs for bookmark message and loader */}
-                <div className="mt-2 hidden text-green-600">Bookmarked!</div>
-                <div className="mt-2 hidden">Loading...</div>
-              </div>
+            {section.items.map(({ icon, color, name, url }, index) => (
+              <ResourceCardFortAwesome
+                key={index}
+                icon={icon}
+                color={color}
+                name={name}
+                url={url}
+              />
             ))}
           </div>
         </div>

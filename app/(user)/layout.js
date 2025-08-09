@@ -6,8 +6,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Footer, Header } from "@/components";
 
 export const metadata = {
-  title: "Admin Dashboard",
-  description: "Admin panel for managing the application",
+  title: "Welcome User",
+  description: "Welcome to public library",
 };
 
 export default async function AdminLayout({ children }) {
@@ -18,8 +18,8 @@ export default async function AdminLayout({ children }) {
     !session ||
     !["user", "admin", "superadmin"].includes(session.user.role)
   ) {
-    // redirect("/login");
-    console.log("Not logged in...");
+    redirect("/login");
+    // console.log("Not logged in...");
   }
 
   return (

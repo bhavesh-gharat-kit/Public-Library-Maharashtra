@@ -15,46 +15,89 @@ const tests = [
   {
     title: "CA CS CMA",
     desc: "Professional exams for commerce students.",
-    logo: "/assets/img/ca.png",
+    logo: "/assets/img/mocktest-logos/cacscma.jpeg",
     link: "/mock-tests/cacscma",
     aos: "fade-up",
   },
   {
     title: "CBSE",
     desc: "Mock tests from class 6th to 12th.",
-    logo: "/assets/img/cbse.png",
+    logo: "/assets/img/mocktest-logos/cbse.png",
     link: "/mock-tests/cbse",
     aos: "flip-up",
   },
   {
     title: "Competitive Exams",
     desc: "UPSC, SSC, Railways & more.",
-    logo: "/assets/img/competitive.jpg",
+    logo: "/assets/img/mocktest-logos/competitive.jpeg",
     link: "/mock-tests/competetive-exams",
     aos: "zoom-out",
   },
   {
+    title: "CTET",
+    desc: "Central Teacher Eligibility Test preparation.",
+    logo: "/assets/img/mocktest-logos/ctet.png",
+    link: "/mock-tests/ctet",
+    aos: "zoom-in",
+  },
+  {
     title: "CUET",
     desc: "UG entrance test practice series.",
-    logo: "/assets/img/cuet.png",
+    logo: "/assets/img/mocktest-logos/cuet.jpeg",
     link: "/mock-tests/cuet",
     aos: "slide-left",
   },
   {
-    title: "Olympiad",
-    desc: "Practice for SOF and other olympiads.",
-    logo: "/assets/img/olympaid.jpg",
-    link: "/mock-tests/olympiad",
-    aos: "fade-down",
+    title: "English Grammar",
+    desc: "Grammar practice for competitive exams.",
+    logo: "/assets/img/mocktest-logos/english.png",
+    link: "/mock-tests/english-grammar",
+    aos: "fade-right",
+  },
+  {
+    title: "IIT JEE",
+    desc: "Engineering entrance exam preparation.",
+    logo: "/assets/img/mocktest-logos/jee.jpeg",
+    link: "/mock-tests/iitjee",
+    aos: "flip-left",
+  },
+  {
+    title: "MPSC",
+    desc: "Maharashtra Public Service Commission preparation.",
+    logo: "/assets/img/mocktest-logos/mpsc.jpeg",
+    link: "/mock-tests/mpsc",
+    aos: "slide-up",
   },
   {
     title: "NEET",
     desc: "Medical entrance mock tests.",
-    logo: "/assets/img/neet.jpg",
+    logo: "/assets/img/mocktest-logos/neet.jpeg",
     link: "/mock-tests/neet",
     aos: "flip-right",
   },
+  {
+    title: "NTSE",
+    desc: "National Talent Search Examination practice.",
+    logo: "/assets/img/mocktest-logos/ntse.jpeg",
+    link: "/mock-tests/ntse",
+    aos: "fade-left",
+  },
+  {
+    title: "Olympiad",
+    desc: "Practice for SOF and other olympiads.",
+    logo: "/assets/img/mocktest-logos/olympiad.png",
+    link: "/mock-tests/olympiad",
+    aos: "fade-down",
+  },
+  {
+    title: "UPSC",
+    desc: "Union Public Service Commission exams.",
+    logo: "/assets/img/mocktest-logos/upsc.jpeg",
+    link: "/mock-tests/upsc",
+    aos: "slide-right",
+  },
 ];
+
 
 function FlipCard({ test, delay }) {
   const [flipped, setFlipped] = useState(false);
@@ -106,7 +149,7 @@ export default function MockTests() {
       AOS.init({
         duration: 700,
         easing: "ease-in-out",
-        once: false,
+        once: true,
       });
     });
   }, []);

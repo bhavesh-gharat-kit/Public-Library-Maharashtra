@@ -3,7 +3,9 @@
 import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const standardVideoResources = [
   {
@@ -16,6 +18,12 @@ const standardVideoResources = [
 ];
 
 const youtubeModalResources = [
+  {
+    id: 584,
+    title: "संवादातून शिक्षण",
+    youtubeId: "fVIKmEViHlI", 
+    thumbnail: "https://i.ytimg.com/vi/fVIKmEViHlI/hqdefault.jpg",
+  },
   {
     id: 555,
     title: "Advanced Certificate in Digital Marketing and Communication",
@@ -650,31 +658,62 @@ const youtubeModalResources = [
 ];
 
 function JobAndInterest() {
+  // const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // HANDLING THE YOUTUBE POP MODAL USING SWEER-ALERT
+  const handleYoutubeModal = (youtubetitle, youtubeId) => {
+    const ytLink = "https://www.youtube.com/embed/" + youtubeId + "?autoplay=1";
+    console.log(ytLink);
+
+    Swal.fire({
+      title: youtubetitle,
+      html: `
+                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                    <iframe 
+                        src=${ytLink}
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen 
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    </iframe>
+                    </div>
+            `,
+      showConfirmButton: false,
+      showCancelButton: false,
+      showCloseButton: true,
+      width: 800,
+      padding: "1rem",
+      backdrop: true,
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       {/* HEADER PART */}
       <h1 className="text-3xl font-bold text-center my-6">
         Job Training Videos
       </h1>
-      {/* <div className="text-right mb-6">
-        <a
-          href="/bookmark/index"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          View Bookmarks
-        </a>
-      </div> */}
 
-      {/* Gardening */}
+      {/* Skills Training Videos */}
       <h2 className="text-3xl font-medium my-6">Skills Training Videos</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {youtubeModalResources.map((resource) => (
           <div
             key={resource.id}
-            className="bg-white shadow-md rounded-lg p-6 text-center"
+            className="bg-white shadow-md rounded-lg p-6 text-center transition-all hover:shadow-xl"
           >
-            <div>
-              <img src={resource.thumbnail} alt={resource.title} />
+            <div
+              className="cursor-pointer overflow-hidden transition-all duration-300"
+              // HANDLING THE YT POP-UP MODAL
+              onClick={() =>
+                handleYoutubeModal(resource.title, resource.youtubeId)
+              }
+            >
+              <img
+                className="hover:scale-105 transition-all"
+                src={resource.thumbnail}
+                alt={resource.title}
+              />
             </div>
             <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
             <div className="flex justify-center gap-3 mt-4">
@@ -682,16 +721,14 @@ function JobAndInterest() {
                 href={resource.url}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer"
+                // HANDLING THE YT POP-UP MODAL
+                onClick={() =>
+                  handleYoutubeModal(resource.title, resource.youtubeId)
+                }
               >
                 View
               </a>
-              <button
-                onClick={() => handleBookmark(resource.id, resource.title)}
-                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-              >
-                Bookmark
-              </button>
             </div>
           </div>
         ))}

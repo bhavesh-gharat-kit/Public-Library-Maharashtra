@@ -29,7 +29,7 @@ const page = () => {
       redirect: true,
       userId,
       password,
-      callbackUrl: "/admin",
+      callbackUrl: "/home",
     });
 
     // no need to manually check res.error here since error will be handled via redirect URL

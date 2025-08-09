@@ -18,7 +18,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
-export default function PDFViewer({ fileUrl, className = "" }) {
+export default function PDFViewer({ pdfUrl, className = "" }) {
   const [fileExists, setFileExists] = useState(false);
   const [checked, setChecked] = useState(false);
 
@@ -59,8 +59,8 @@ export default function PDFViewer({ fileUrl, className = "" }) {
       }
     }
 
-    checkFileExists(fileUrl);
-  }, [fileUrl]);
+    checkFileExists(pdfUrl);
+  }, [pdfUrl]);
 
   return (
     <div
@@ -112,7 +112,7 @@ export default function PDFViewer({ fileUrl, className = "" }) {
           {checked ? (
             fileExists ? (
               <Document
-                file={fileUrl}
+                file={pdfUrl}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading="Loading PDF..."
               >
@@ -126,7 +126,7 @@ export default function PDFViewer({ fileUrl, className = "" }) {
               </Document>
             ) : (
               <div className="text-center text-red-500 text-lg font-medium">
-                ❌ File not found: <code>{fileUrl}</code>
+                ❌ File not found: <code>{pdfUrl}</code>
               </div>
             )
           ) : (

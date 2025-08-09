@@ -11,10 +11,19 @@ export async function GET(req) {
     const publishers = searchParams.get("publishers");
     const authors = searchParams.get("authors");
     const contentTypes = searchParams.get("contentTypes");
+    const search = searchParams.get("search");
 
     const parseArray = (val) => (val ? val.split(",") : undefined);
 
     const where = {
+      ...(search && {
+        OR: [
+          { title: { contains: search } },
+          { author: { contains: search } },
+          { issn: { contains: search } },
+          { publisher: { contains: search } },
+        ],
+      }),
       ...(yearOfPublication && {
         yearOfPublication: {
           in: parseArray(yearOfPublication).map((strYear) => Number(strYear)),
@@ -42,7 +51,11 @@ export async function GET(req) {
       orderBy: { createdAt: "desc" },
     });
 
-    return NextResponse.json({ success: true, data: books });
+    const totalBooks = await prisma.Book.count({
+      where,
+    });
+
+    return NextResponse.json({ success: true, data: books, totalBooks });
   } catch (err) {
     console.error("Error fetching books:", err);
     return NextResponse.json(

@@ -1,964 +1,752 @@
-"use client"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-
+"use client";
+import React from "react";
+import { ResourceCardFortAwesome } from "@/components";
 import {
-    faStarOfLife,
-    faBriefcaseMedical,
-    faFaceSmile,
-    faHeart,
-    faHeadSideMask,
-    faUtensils,
-    faHandsBubbles,
-    faBowlFood,
-    faPersonWalking,
-    faDumbbell,
-     faEarthAmericas,
-    faKiwiBird,
-    faDove,
-    faHorseHead,
-    faPuzzlePiece,
-    faChildDress,
-    faChild,
-    faChalkboardUser,
-    faShieldCat,
-    faCow,
-    faChildReaching,
-    faStore,
-    faMasksTheater,
-    faSchool,
-    faBuildingColumns,
-    faPaintbrush,
-    faDroplet,
-    faPalette,
-    faMusic,
-    faIcons,
-    faGuitar,
-    faDemocrat,
-    faNewspaper,
-    faLaptopFile,
-    faGlobe,
-    faComputer,
-    faMicrophone,
-    faPenToSquare,
-    faPen,
-    faBookOpenReader,
-    faFileVideo,
-    faVideo,
-    faLinesLeaning,
-    faBookOpen,
-    faBookAtlas,
-    faAppleWhole,
-    faAtom,
-    faMicroscope,
-    faBook,
-    faBookBible,
-    faBookTanakh,
-    faBookJournalWhills,
-    faHandsHoldingChild,
-    faRecycle,
-    faCat,
-    faOtter,
-    faHippo,
-    faHorse,
-    faLeaf,
-    faMountainCity,
-    faMountainSun,
-    faPlantWilt,
-    faTree
+  faStarOfLife,
+  faBriefcaseMedical,
+  faFaceSmile,
+  faHeart,
+  faHeadSideMask,
+  faUtensils,
+  faHandsBubbles,
+  faBowlFood,
+  faPersonWalking,
+  faDumbbell,
+  faEarthAmericas,
+  faKiwiBird,
+  faDove,
+  faHorseHead,
+  faPuzzlePiece,
+  faChildDress,
+  faChild,
+  faChalkboardUser,
+  faShieldCat,
+  faCow,
+  faChildReaching,
+  faStore,
+  faMasksTheater,
+  faSchool,
+  faBuildingColumns,
+  faPaintbrush,
+  faDroplet,
+  faPalette,
+  faMusic,
+  faIcons,
+  faGuitar,
+  faDemocrat,
+  faNewspaper,
+  faLaptopFile,
+  faGlobe,
+  faComputer,
+  faMicrophone,
+  faPenToSquare,
+  faPen,
+  faBookOpenReader,
+  faFileVideo,
+  faVideo,
+  faLinesLeaning,
+  faBookOpen,
+  faBookAtlas,
+  faAppleWhole,
+  faAtom,
+  faMicroscope,
+  faBook,
+  faBookBible,
+  faBookTanakh,
+  faBookJournalWhills,
+  faHandsHoldingChild,
+  faRecycle,
+  faCat,
+  faOtter,
+  faHippo,
+  faHorse,
+  faLeaf,
+  faMountainCity,
+  faMountainSun,
+  faPlantWilt,
+  faTree,
 } from "@fortawesome/free-solid-svg-icons";
-import { faWindowRestore } from '@fortawesome/free-regular-svg-icons';
+import { faWindowRestore } from "@fortawesome/free-regular-svg-icons";
 
-const healthAndWellbeingResources = [
-     {
+
+const data = [
+  {
+    title: "Health & Well-being",
+    resources: [
+      {
         id: 3717,
-        title: "Basic First Aid Awareness",
-        link: "Basic First Aid Awareness",
+        name: "Basic First Aid Awareness",
+        url: "Basic First Aid Awareness",
         color: "#007bff",
-        icon: faStarOfLife
-    },
-    {
+        icon: faStarOfLife,
+      },
+      {
         id: 3716,
-        title: "Basic First Aid Awareness",
-        link: "https://kidsage.in/10-ways-to-teach-children-about-basic-first-aid/",
+        name: "Basic First Aid Awareness",
+        url: "https://kidsage.in/10-ways-to-teach-children-about-basic-first-aid/",
         color: "#dc3545",
-        icon: faBriefcaseMedical
-    },
-    {
+        icon: faBriefcaseMedical,
+      },
+      {
         id: 3715,
-        title: "Emotional Well-being & Kindness",
-        link: "https://ripplekindness.org/mindfulness-enhances-kindness-wellbeing-in-kids/",
+        name: "Emotional Well-being & Kindness",
+        url: "https://ripplekindness.org/mindfulness-enhances-kindness-wellbeing-in-kids/",
         color: "#28a745",
-        icon: faFaceSmile
-    },
-    {
+        icon: faFaceSmile,
+      },
+      {
         id: 3714,
-        title: "Emotional Well-being & Kindness",
-        link: "Emotional Well-being & Kindness",
+        name: "Emotional Well-being & Kindness",
+        url: "Emotional Well-being & Kindness",
         color: "#ffc107",
-        icon: faHeart
-    },
-    {
+        icon: faHeart,
+      },
+      {
         id: 3711,
-        title: "Emotional Well-being & Kindness",
-        link: "https://www.premier-education.com/news/5-ways-to-encourage-emotional-wellbeing-for-children/",
+        name: "Emotional Well-being & Kindness",
+        url: "https://www.premier-education.com/news/5-ways-to-encourage-emotional-wellbeing-for-children/",
         color: "#fd7e14",
-        icon: faHeadSideMask
-    },
-    {
+        icon: faHeadSideMask,
+      },
+      {
         id: 3704,
-        title: "Healthy Eating & Hygiene Habits",
-        link: "https://health.clevelandclinic.org/healthy-eating-for-kids",
+        name: "Healthy Eating & Hygiene Habits",
+        url: "https://health.clevelandclinic.org/healthy-eating-for-kids",
         color: "#6f42c1",
-        icon: faUtensils
-    },
-    {
+        icon: faUtensils,
+      },
+      {
         id: 3701,
-        title: "Healthy Eating & Hygiene Habits",
-        link: "https://www.healthdirect.gov.au/personal-hygiene-for-children",
+        name: "Healthy Eating & Hygiene Habits",
+        url: "https://www.healthdirect.gov.au/personal-hygiene-for-children",
         color: "#17a2b8",
-        icon: faHandsBubbles
-    },
-    {
+        icon: faHandsBubbles,
+      },
+      {
         id: 3700,
-        title: "Healthy Eating & Hygiene Habits",
-        link: "https://kidshealth.org/en/parents/habits.html",
+        name: "Healthy Eating & Hygiene Habits",
+        url: "https://kidshealth.org/en/parents/habits.html",
         color: "#e83e8c",
-        icon: faBowlFood
-    },
-    {
+        icon: faBowlFood,
+      },
+      {
         id: 3697,
-        title: "Fun Exercises & Yoga for Kids",
-        link: "https://www.arhantayoga.org/blog/yoga-poses-for-kids/",
+        name: "Fun Exercises & Yoga for Kids",
+        url: "https://www.arhantayoga.org/blog/yoga-poses-for-kids/",
         color: "#343a40",
-        icon: faPersonWalking
-    },
-    {
+        icon: faPersonWalking,
+      },
+      {
         id: 3696,
-        title: "Fun Exercises & Yoga for Kids",
-        link: "https://www.kidsyogastories.com/kids-yoga-poses/",
+        name: "Fun Exercises & Yoga for Kids",
+        url: "https://www.kidsyogastories.com/kids-yoga-poses/",
         color: "#20c997",
-        icon: faDumbbell
-    },
-    {
+        icon: faDumbbell,
+      },
+      {
         id: 3695,
-        title: "Fun Exercises & Yoga for Kids",
-        link: "https://kumarahyoga.com/5-active-kids-yoga-games-to-have-fun-in-a-group/?srsltid=AfmBOorsfrwQBY9rW09ykz14udEUe5HsdT6nCb-zvRMdUa9z9Xg_65KN",
+        name: "Fun Exercises & Yoga for Kids",
+        url: "https://kumarahyoga.com/5-active-kids-yoga-games-to-have-fun-in-a-group/?srsltid=AfmBOorsfrwQBY9rW09ykz14udEUe5HsdT6nCb-zvRMdUa9z9Xg_65KN",
         color: "#007bff",
-        icon: faPersonWalking
-    }
-]
-
-const funAndEdutainmentResources = [
-    {
+        icon: faPersonWalking,
+      },
+    ],
+  },
+  {
+    title: "Fun & Edutainment",
+    resources: [
+      {
         id: 3766,
-        title: "Virtual Travel for Kids",
-        link: "https://thehaphazardtraveler.com/virtual-travel-for-kids-field-trips-museums-zoos/",
+        name: "Virtual Travel for Kids",
+        url: "https://thehaphazardtraveler.com/virtual-travel-for-kids-field-trips-museums-zoos/",
         color: "#007bff",
-        icon: faEarthAmericas
-    },
-    {
+        icon: faEarthAmericas,
+      },
+      {
         id: 3764,
-        title: "Virtual Field Trips to the Zoo",
-        link: "https://www.kaixr.com/post/virtual-field-trips-zoo",
+        name: "Virtual Field Trips to the Zoo",
+        url: "https://www.kaixr.com/post/virtual-field-trips-zoo",
         color: "#dc3545",
-        icon: faKiwiBird
-    },
-    {
+        icon: faKiwiBird,
+      },
+      {
         id: 3762,
-        title: "Children’s Museums, Aquariums, and Zoos to Virtually Explore",
-        link: "https://coast2coastwithkids.com/10-childrens-museums-aquariums-and-zoos-to-virtually-explore/",
+        name: "Children’s Museums, Aquariums, and Zoos to Virtually Explore",
+        url: "https://coast2coastwithkids.com/10-childrens-museums-aquariums-and-zoos-to-virtually-explore/",
         color: "#28a745",
-        icon: faDove
-    },
-    {
+        icon: faDove,
+      },
+      {
         id: 3761,
-        title: "Virtual Zoo & Museum Tours",
-        link: "https://louisvilleeast.macaronikid.com/articles/5e750eb26c3c622e02538c7c/free-virtual-tours-animal-cams-and-virtual-field-trips",
+        name: "Virtual Zoo & Museum Tours",
+        url: "https://louisvilleeast.macaronikid.com/articles/5e750eb26c3c622e02538c7c/free-virtual-tours-animal-cams-and-virtual-field-trips",
         color: "#ffc107",
-        icon: faHorseHead
-    },
-    {
+        icon: faHorseHead,
+      },
+      {
         id: 3760,
-        title: "Puzzle Games",
-        link: "https://www.digipuzzle.net/education/winter/index.htm#google_vignette",
+        name: "Puzzle Games",
+        url: "https://www.digipuzzle.net/education/winter/index.htm#google_vignette",
         color: "#fd7e14",
-        icon: faPuzzlePiece
-    },
-    {
+        icon: faPuzzlePiece,
+      },
+      {
         id: 3756,
-        title: "Riddles for Kids",
-        link: "https://whosmarted.com/riddles-for-kids/",
+        name: "Riddles for Kids",
+        url: "https://whosmarted.com/riddles-for-kids/",
         color: "#6f42c1",
-        icon: faChildDress
-    },
-    {
+        icon: faChildDress,
+      },
+      {
         id: 3755,
-        title: "Fun and Challenging Riddles for Kids",
-        link: "https://www.pocoyo.com/play/riddles",
+        name: "Fun and Challenging Riddles for Kids",
+        url: "https://www.pocoyo.com/play/riddles",
         color: "#17a2b8",
-        icon: faChild
-    },
-    {
+        icon: faChild,
+      },
+      {
         id: 3754,
-        title: "Fun What Am I Riddles for Kids",
-        link: "https://www.splashlearn.com/blog/what-am-i-riddles-for-kids-with-answers/",
+        name: "Fun What Am I Riddles for Kids",
+        url: "https://www.splashlearn.com/blog/what-am-i-riddles-for-kids-with-answers/",
         color: "#e83e8c",
-        icon: faChalkboardUser
-    },
-    {
+        icon: faChalkboardUser,
+      },
+      {
         id: 3752,
-        title: "Puzzle Games & Riddles",
-        link: "https://www.prodigygame.com/main-en/blog/riddles-for-kids/",
+        name: "Puzzle Games & Riddles",
+        url: "https://www.prodigygame.com/main-en/blog/riddles-for-kids/",
         color: "#343a40",
-        icon: faPuzzlePiece
-    },
-    {
+        icon: faPuzzlePiece,
+      },
+      {
         id: 3751,
-        title: "Best Educational Cartoons That Make Learning Fun for Kids",
-        link: "https://www.anideos.com/best-educational-cartoons",
+        name: "Best Educational Cartoons That Make Learning Fun for Kids",
+        url: "https://www.anideos.com/best-educational-cartoons",
         color: "#20c997",
-        icon: faShieldCat
-    },
-    {
+        icon: faShieldCat,
+      },
+      {
         id: 3750,
-        title: "Educational Cartoons & Animated Shows",
-        link: "https://www.splashlearn.com/blog/best-educational-cartoons-for-kids/",
+        name: "Educational Cartoons & Animated Shows",
+        url: "https://www.splashlearn.com/blog/best-educational-cartoons-for-kids/",
         color: "#007bff",
-        icon: faCow
-    },
-    {
+        icon: faCow,
+      },
+      {
         id: 3747,
-        title: "Digital Storytelling Tools for Students",
-        link: "https://khiredkids.com/digital-storytelling-tools-for-students/",
+        name: "Digital Storytelling Tools for Students",
+        url: "https://khiredkids.com/digital-storytelling-tools-for-students/",
         color: "#dc3545",
-        icon: faChildReaching
-    },
-    {
+        icon: faChildReaching,
+      },
+      {
         id: 3746,
-        title: "Best Digital Storytelling Sites and Apps",
-        link: "https://www.teachthought.com/technology/digital-storytelling-apps-and-websites/",
+        name: "Best Digital Storytelling Sites and Apps",
+        url: "https://www.teachthought.com/technology/digital-storytelling-apps-and-websites/",
         color: "#28a745",
-        icon: faWindowRestore
-    },
-    {
+        icon: faWindowRestore,
+      },
+      {
         id: 3743,
-        title: "Interactive Storytelling Apps",
-        link: "https://www.commonsensemedia.org/lists/storytelling-apps",
+        name: "Interactive Storytelling Apps",
+        url: "https://www.commonsensemedia.org/lists/storytelling-apps",
         color: "#ffc107",
-        icon: faStore
-    }
-];
-
-const creativityAndPerformingArtsResources = [
-    {
+        icon: faStore,
+      },
+    ],
+  },
+  {
+    title: "Creativity & Performing Arts",
+    resources: [
+      {
         id: 3745,
-        title: "Free, fun drama games",
-        link: "https://www.britishcouncil.in/blog/free-fun-drama-games-help-your-child-learn-english",
+        name: "Free, fun drama games",
+        url: "https://www.britishcouncil.in/blog/free-fun-drama-games-help-your-child-learn-english",
         color: "#007bff",
-        icon: faMasksTheater
-    },
-    {
+        icon: faMasksTheater,
+      },
+      {
         id: 3744,
-        title: "Drama Activities",
-        link: "https://www.playfulhomeducation.com/post/how-to-do-drama-activities-with-kids-at-home-indian-themes-and-story-ideas",
+        name: "Drama Activities",
+        url: "https://www.playfulhomeducation.com/post/how-to-do-drama-activities-with-kids-at-home-indian-themes-and-story-ideas",
         color: "#dc3545",
-        icon: faSchool
-    },
-    {
+        icon: faSchool,
+      },
+      {
         id: 3741,
-        title: "Puppetry & Drama",
-        link: "https://www.youtube.com/@SanMarcosPublicLibrary",
+        name: "Puppetry & Drama",
+        url: "https://www.youtube.com/@SanMarcosPublicLibrary",
         color: "#28a745",
-        icon: faBuildingColumns
-    },
-    {
+        icon: faBuildingColumns,
+      },
+      {
         id: 3738,
-        title: "Coloring Games",
-        link: "https://www.crazygames.com/t/coloring",
+        name: "Coloring Games",
+        url: "https://www.crazygames.com/t/coloring",
         color: "#ffc107",
-        icon: faPaintbrush
-    },
-    {
+        icon: faPaintbrush,
+      },
+      {
         id: 3736,
-        title: "Online coloring pages for kids",
-        link: "https://www.coloringpages-forkids.com/",
+        name: "Online coloring pages for kids",
+        url: "https://www.coloringpages-forkids.com/",
         color: "#fd7e14",
-        icon: faDroplet
-    },
-    {
+        icon: faDroplet,
+      },
+      {
         id: 3734,
-        title: "Drawing & Coloring Activities",
-        link: "https://www.roomrecess.com/pages/ColoringPagesForKids.html",
+        name: "Drawing & Coloring Activities",
+        url: "https://www.roomrecess.com/pages/ColoringPagesForKids.html",
         color: "#6f42c1",
-        icon: faPalette
-    },
-    {
+        icon: faPalette,
+      },
+      {
         id: 3730,
-        title: "Dance for Kids India",
-        link: "https://www.youtube.com/playlist?list=PLMAiskWkAi93cMONWWNcqKqcvk-e3JZdi",
+        name: "Dance for Kids India",
+        url: "https://www.youtube.com/playlist?list=PLMAiskWkAi93cMONWWNcqKqcvk-e3JZdi",
         color: "#17a2b8",
-        icon: faMusic
-    },
-    {
+        icon: faMusic,
+      },
+      {
         id: 3725,
-        title: "Music & Dance for Kids",
-        link: "https://www.youtube.com/playlist?list=PLg5d1Q7lsu5EotIPJoe-Y0x7u32ivDMDi",
+        name: "Music & Dance for Kids",
+        url: "https://www.youtube.com/playlist?list=PLg5d1Q7lsu5EotIPJoe-Y0x7u32ivDMDi",
         color: "#e83e8c",
-        icon: faIcons
-    },
-    {
+        icon: faIcons,
+      },
+      {
         id: 3724,
-        title: "Indian Children Songs",
-        link: "https://open.spotify.com/playlist/3UJut4tjr8GD7dMZeP1Cs7",
+        name: "Indian Children Songs",
+        url: "https://open.spotify.com/playlist/3UJut4tjr8GD7dMZeP1Cs7",
         color: "#343a40",
-        icon: faGuitar
-    },
-    {
+        icon: faGuitar,
+      },
+      {
         id: 3721,
-        title: "Music & Dance for Kids",
-        link: "https://www.splashlearn.com/blog/the-complete-playlist-of-dance-songs-for-kids-to-get-them-grooving/",
+        name: "Music & Dance for Kids",
+        url: "https://www.splashlearn.com/blog/the-complete-playlist-of-dance-songs-for-kids-to-get-them-grooving/",
         color: "#20c997",
-        icon: faChildReaching
-    },
-    {
+        icon: faChildReaching,
+      },
+      {
         id: 3718,
-        title: "Creativity & Performing Arts",
-        link: "https://parents.highlights.com/31-arts-and-crafts-kids-to-make-home",
+        name: "Creativity & Performing Arts",
+        url: "https://parents.highlights.com/31-arts-and-crafts-kids-to-make-home",
         color: "#007bff",
-        icon: faDemocrat
-    },
-    {
+        icon: faDemocrat,
+      },
+      {
         id: 3698,
-        title: "Creativity & Performing Arts",
-        link: "https://www.pinterest.com/kbkonnected/art-and-crafts-for-kids/",
+        name: "Creativity & Performing Arts",
+        url: "https://www.pinterest.com/kbkonnected/art-and-crafts-for-kids/",
         color: "#dc3545",
-        icon: faNewspaper
-    },
-    {
+        icon: faNewspaper,
+      },
+      {
         id: 3691,
-        title: "Creativity & Performing Arts",
-        link: "https://www.alldayprimary.com/arts-and-crafts",
+        name: "Creativity & Performing Arts",
+        url: "https://www.alldayprimary.com/arts-and-crafts",
         color: "#28a745",
-        icon: faMasksTheater
-    }
-];
-
-const digitalLiteracyResources = [
-    {
+        icon: faMasksTheater,
+      },
+    ],
+  },
+  {
+    title: "Digital Literacy & Tech Skills",
+    resources: [
+      {
         id: 3686,
-        title: "Safe Online Behavior & Digital Etiquette",
-        link: "https://www.kaspersky.com/resource-center/preemptive-safety/what-is-netiquette",
+        name: "Safe Online Behavior & Digital Etiquette",
+        url: "https://www.kaspersky.com/resource-center/preemptive-safety/what-is-netiquette",
         color: "#007bff",
-        icon: faBuildingColumns
-    },
-    {
+        icon: faBuildingColumns,
+      },
+      {
         id: 3685,
-        title: "Safe Online Behavior & Digital Etiquette",
-        link: "https://www.talktoangel.com/blog/digital-etiquette#:~:text=Protect%20others'%20privacy%20and%20security.&text=Avoid%20sharing%20sensitive%20or%20confidential,protect%20your%20own%20digital%20identity.",
+        name: "Safe Online Behavior & Digital Etiquette",
+        url: "https://www.talktoangel.com/blog/digital-etiquette#:~:text=Protect%20others'%20privacy%20and%20security.&text=Avoid%20sharing%20sensitive%20or%20confidential,protect%20your%20own%20digital%20identity.",
         color: "#dc3545",
-        icon: faLaptopFile
-    },
-    {
+        icon: faLaptopFile,
+      },
+      {
         id: 3683,
-        title: "Basic Coding (Block-based, Scratch)",
-        link: "https://tinker.ly/scratch-programming-what-are-code-blocks/",
+        name: "Basic Coding (Block-based, Scratch)",
+        url: "https://tinker.ly/scratch-programming-what-are-code-blocks/",
         color: "#28a745",
-        icon: faSchool
-    },
-    {
+        icon: faSchool,
+      },
+      {
         id: 3682,
-        title: "Basic Coding (Block-based, Scratch)",
-        link: "https://www.geeksforgeeks.org/basics-of-scratch-programming/",
+        name: "Basic Coding (Block-based, Scratch)",
+        url: "https://www.geeksforgeeks.org/basics-of-scratch-programming/",
         color: "#ffc107",
-        icon: faSchool
-    },
-    {
+        icon: faSchool,
+      },
+      {
         id: 3680,
-        title: "Basic Coding (Block-based, Scratch)",
-        link: "https://subjectguides.york.ac.uk/coding/scratch#:~:text=Scratch%20is%20a%20block%20based,or%20a%20sound%20to%20play.",
+        name: "Basic Coding (Block-based, Scratch)",
+        url: "https://subjectguides.york.ac.uk/coding/scratch#:~:text=Scratch%20is%20a%20block%20based,or%20a%20sound%20to%20play.",
         color: "#fd7e14",
-        icon: faBuildingColumns
-    },
-    {
+        icon: faBuildingColumns,
+      },
+      {
         id: 3678,
-        title: "Introduction to Computers & Internet Safety",
-        link: "https://islingtonchildcare.proceduresonline.com/chapters/p_computer_safety.html",
+        name: "Introduction to Computers & Internet Safety",
+        url: "https://islingtonchildcare.proceduresonline.com/chapters/p_computer_safety.html",
         color: "#6f42c1",
-        icon: faGlobe
-    },
-    {
+        icon: faGlobe,
+      },
+      {
         id: 3677,
-        title: "Introduction to Computers & Internet Safety",
-        link: "https://www.vedantu.com/computer-science/introduction-to-computer",
+        name: "Introduction to Computers & Internet Safety",
+        url: "https://www.vedantu.com/computer-science/introduction-to-computer",
         color: "#17a2b8",
-        icon: faComputer
-    },
-    {
+        icon: faComputer,
+      },
+      {
         id: 3676,
-        title: "Introduction to Computers & Internet Safety",
-        link: "https://peda.net/kenya/ass/subjects2/computer-studies/form-1/itc2",
+        name: "Introduction to Computers & Internet Safety",
+        url: "https://peda.net/kenya/ass/subjects2/computer-studies/form-1/itc2",
         color: "#e83e8c",
-        icon: faComputer
-    },
-    {
+        icon: faComputer,
+      },
+      {
         id: 3672,
-        title: "Introduction to Computers & Internet Safety",
-        link: "https://edu.gcfglobal.org/en/internetsafety/introduction-to-internet-safety/1/",
+        name: "Introduction to Computers & Internet Safety",
+        url: "https://edu.gcfglobal.org/en/internetsafety/introduction-to-internet-safety/1/",
         color: "#343a40",
-        icon: faComputer
-    }
-];
-
-const languageCommunicationResources = [
-    {
+        icon: faComputer,
+      },
+    ],
+  },
+  {
+    title: "Language & Communication",
+    resources: [
+      {
         id: 3763,
-        title: "Tips to Improve Public Speaking Skills in Children",
-        link: "https://tist.school/blog/tips-improve-public-speaking-skills-children",
+        name: "Tips to Improve Public Speaking Skills in Children",
+        url: "https://tist.school/blog/tips-improve-public-speaking-skills-children",
         color: "#007bff",
-        icon: faMicrophone
-    },
-    {
+        icon: faMicrophone,
+      },
+      {
         id: 3759,
-        title: "Public Speaking Topics and Ideas for Students",
-        link: "https://globalindianschool.org/my/blog-details/list-of-public-speaking-topics-and-ideas-for-students/",
+        name: "Public Speaking Topics and Ideas for Students",
+        url: "https://globalindianschool.org/my/blog-details/list-of-public-speaking-topics-and-ideas-for-students/",
         color: "#dc3545",
-        icon: faMicrophone
-    },
-    {
+        icon: faMicrophone,
+      },
+      {
         id: 3753,
-        title: "Public Speaking for Kids: 30 Topic Ideas for 30 Days",
-        link: "https://speechblubs.com/blog/public-speaking-for-kids/",
+        name: "Public Speaking for Kids: 30 Topic Ideas for 30 Days",
+        url: "https://speechblubs.com/blog/public-speaking-for-kids/",
         color: "#28a745",
-        icon: faMicrophone
-    },
-    {
+        icon: faMicrophone,
+      },
+      {
         id: 3749,
-        title: "Super Simple Rhymes",
-        link: "https://supersimple.com/super-simple-songs/",
+        name: "Super Simple Rhymes",
+        url: "https://supersimple.com/super-simple-songs/",
         color: "#ffc107",
-        icon: faChildReaching
-    },
-    {
+        icon: faChildReaching,
+      },
+      {
         id: 3742,
-        title: "Famous Rhyming Poems",
-        link: "https://www.momjunction.com/articles/rhyming-poems-for-kids_001049871/",
+        name: "Famous Rhyming Poems",
+        url: "https://www.momjunction.com/articles/rhyming-poems-for-kids_001049871/",
         color: "#fd7e14",
-        icon: faChildReaching
-    },
-    {
+        icon: faChildReaching,
+      },
+      {
         id: 3740,
-        title: "Short Poems For Kids",
-        link: "https://www.planetspark.in/blogs/english-poems-for-kids",
+        name: "Short Poems For Kids",
+        url: "https://www.planetspark.in/blogs/english-poems-for-kids",
         color: "#6f42c1",
-        icon: faChildReaching
-    },
-    {
+        icon: faChildReaching,
+      },
+      {
         id: 3727,
-        title: "25 Creative Writing Prompts for Kids",
-        link: "https://www.nightzookeeper.com/blog/articles/25-creative-writing-prompts-for-kids-to-get-imaginations-flowing",
+        name: "25 Creative Writing Prompts for Kids",
+        url: "https://www.nightzookeeper.com/blog/articles/25-creative-writing-prompts-for-kids-to-get-imaginations-flowing",
         color: "#17a2b8",
-        icon: faPenToSquare
-    },
-    {
+        icon: faPenToSquare,
+      },
+      {
         id: 3713,
-        title: "52 Creative Drawing Prompts for Kids",
-        link: "https://www.funsensoryplay.com/52-creative-drawing-prompts-for-kids/?srsltid=AfmBOooocVSNFRuDQwpyPhxjzEXT5ik8qIeJa3T0Gp37pCXmnrFaYLo5",
+        name: "52 Creative Drawing Prompts for Kids",
+        url: "https://www.funsensoryplay.com/52-creative-drawing-prompts-for-kids/?srsltid=AfmBOooocVSNFRuDQwpyPhxjzEXT5ik8qIeJa3T0Gp37pCXmnrFaYLo5",
         color: "#e83e8c",
-        icon: faPen
-    },
-    {
+        icon: faPen,
+      },
+      {
         id: 3712,
-        title: "Creative Writing & Drawing",
-        link: "https://www.edutopia.org/blog/thoughtful-creative-writing-through-art-denise-cassano",
+        name: "Creative Writing & Drawing",
+        url: "https://www.edutopia.org/blog/thoughtful-creative-writing-through-art-denise-cassano",
         color: "#343a40",
-        icon: faPen
-    },
-    {
+        icon: faPen,
+      },
+      {
         id: 3703,
-        title: "Reading Aloud & Storytelling",
-        link: "https://www.tulikabooks.com/early-readers/read-aloud-stories-english.html",
+        name: "Reading Aloud & Storytelling",
+        url: "https://www.tulikabooks.com/early-readers/read-aloud-stories-english.html",
         color: "#20c997",
-        icon: faBookOpenReader
-    },
-    {
+        icon: faBookOpenReader,
+      },
+      {
         id: 3702,
-        title: "Reading Aloud & Storytelling",
-        link: "https://www.twinkl.co.in/blog/fourteen-fabulous-stories-read-aloud",
+        name: "Reading Aloud & Storytelling",
+        url: "https://www.twinkl.co.in/blog/fourteen-fabulous-stories-read-aloud",
         color: "#007bff",
-        icon: faBookOpenReader
-    },
-    {
+        icon: faBookOpenReader,
+      },
+      {
         id: 3699,
-        title: "Reading Aloud & Storytelling",
-        link: "https://www.readingrockets.org/topics/reading-aloud",
+        name: "Reading Aloud & Storytelling",
+        url: "https://www.readingrockets.org/topics/reading-aloud",
         color: "#dc3545",
-        icon: faBookOpenReader
-    }
-];
-
-const academicLearningResources = [
-    {
+        icon: faBookOpenReader,
+      },
+    ],
+  },
+  {
+    title: "Academic Learning",
+    resources: [
+      {
         id: 3690,
-        title: "Animated Learning Videos",
-        link: "https://www.fiverr.com/categories/video-animation/animation-for-kids",
+        name: "Animated Learning Videos",
+        url: "https://www.fiverr.com/categories/video-animation/animation-for-kids",
         color: "#007bff",
-        icon: faFileVideo
-    },
-    {
+        icon: faFileVideo,
+      },
+      {
         id: 3689,
-        title: "Animated Learning Videos",
-        link: "https://flearningstudio.com/top-animated-educational-videos/",
+        name: "Animated Learning Videos",
+        url: "https://flearningstudio.com/top-animated-educational-videos/",
         color: "#dc3545",
-        icon: faVideo
-    },
-    {
+        icon: faVideo,
+      },
+      {
         id: 3688,
-        title: "Learning English & Phonics",
-        link: "https://www.kizphonics.com/",
+        name: "Learning English & Phonics",
+        url: "https://www.kizphonics.com/",
         color: "#28a745",
-        icon: faLinesLeaning
-    },
-    {
+        icon: faLinesLeaning,
+      },
+      {
         id: 3687,
-        title: "Language & Communication ● Reading Aloud & Storytelling",
-        link: "https://www.splashlearn.com/blog/how-to-teach-phonics-to-kids/",
+        name: "Language & Communication ● Reading Aloud & Storytelling",
+        url: "https://www.splashlearn.com/blog/how-to-teach-phonics-to-kids/",
         color: "#ffc107",
-        icon: faChalkboardUser
-    },
-    {
+        icon: faChalkboardUser,
+      },
+      {
         id: 3684,
-        title: "Learning English & Phonics",
-        link: "https://www.socratica.org/courses/the-alphabet-a-z?gad_source=1&gclid=CjwKCAiAzba9BhBhEiwA7glbamCbFsOEgRmn5nlA5GG9oyVaxesPS_2_E2NTXPXEpMUDaX3R4-1yIRoCPIgQAvD_BwE",
+        name: "Learning English & Phonics",
+        url: "https://www.socratica.org/courses/the-alphabet-a-z?gad_source=1&gclid=CjwKCAiAzba9BhBhEiwA7glbamCbFsOEgRmn5nlA5GG9oyVaxesPS_2_E2NTXPXEpMUDaX3R4-1yIRoCPIgQAvD_BwE",
         color: "#fd7e14",
-        icon: faBookOpen
-    },
-    {
+        icon: faBookOpen,
+      },
+      {
         id: 3681,
-        title: "Learning English & Phonics",
-        link: "https://advancedlearning.com.sg/the-best-8-phonics-learning-method-for-primary-school-kids/",
+        name: "Learning English & Phonics",
+        url: "https://advancedlearning.com.sg/the-best-8-phonics-learning-method-for-primary-school-kids/",
         color: "#6f42c1",
-        icon: faBookOpenReader
-    },
-    {
+        icon: faBookOpenReader,
+      },
+      {
         id: 3679,
-        title: "Introduction to Social Studies & Indian Culture",
-        link: "https://www.twinkl.co.in/teaching-wiki/social-studies",
+        name: "Introduction to Social Studies & Indian Culture",
+        url: "https://www.twinkl.co.in/teaching-wiki/social-studies",
         color: "#17a2b8",
-        icon: faBookAtlas
-    },
-    {
+        icon: faBookAtlas,
+      },
+      {
         id: 3675,
-        title: "Science Experiments for Kids",
-        link: "https://www.splashlearn.com/blog/kids-science-experiments-to-make-learning-engaging/",
+        name: "Science Experiments for Kids",
+        url: "https://www.splashlearn.com/blog/kids-science-experiments-to-make-learning-engaging/",
         color: "#e83e8c",
-        icon: faAppleWhole
-    },
-    {
+        icon: faAppleWhole,
+      },
+      {
         id: 3674,
-        title: "Science Experiments for Kids",
-        link: "https://www.goodhousekeeping.com/life/parenting/g32176446/science-experiments-for-kids/",
+        name: "Science Experiments for Kids",
+        url: "https://www.goodhousekeeping.com/life/parenting/g32176446/science-experiments-for-kids/",
         color: "#343a40",
-        icon: faAtom
-    },
-    {
+        icon: faAtom,
+      },
+      {
         id: 3673,
-        title: "Science Experiments for Kids",
-        link: "https://www.sciencefun.org/kidszone/experiments/top-science-experiments-for-kids/",
+        name: "Science Experiments for Kids",
+        url: "https://www.sciencefun.org/kidszone/experiments/top-science-experiments-for-kids/",
         color: "#20c997",
-        icon: faMicroscope
-    },
-    {
+        icon: faMicroscope,
+      },
+      {
         id: 3671,
-        title: "Picture Books",
-        link: "https://www.storyberries.com/category/picture-books/",
+        name: "Picture Books",
+        url: "https://www.storyberries.com/category/picture-books/",
         color: "#007bff",
-        icon: faBook
-    },
-    {
+        icon: faBook,
+      },
+      {
         id: 3670,
-        title: "Fun with Numbers & Basic Math",
-        link: "https://www.mathplayground.com/math-games.html",
+        name: "Fun with Numbers & Basic Math",
+        url: "https://www.mathplayground.com/math-games.html",
         color: "#dc3545",
-        icon: faBook
-    },
-    {
+        icon: faBook,
+      },
+      {
         id: 3669,
-        title: "Fun with Numbers & Basic Math",
-        link: "https://www.mathsisfun.com/",
+        name: "Fun with Numbers & Basic Math",
+        url: "https://www.mathsisfun.com/",
         color: "#28a745",
-        icon: faBookBible
-    },
-    {
+        icon: faBookBible,
+      },
+      {
         id: 3668,
-        title: "Fun with Numbers & Basic Math",
-        link: "https://www.mathgames.com/",
+        name: "Fun with Numbers & Basic Math",
+        url: "https://www.mathgames.com/",
         color: "#ffc107",
-        icon: faBookBible
-    },
-    {
+        icon: faBookBible,
+      },
+      {
         id: 3667,
-        title: "Storybooks & Picture Books",
-        link: "https://monkeypen.com/pages/free-childrens-books",
+        name: "Storybooks & Picture Books",
+        url: "https://monkeypen.com/pages/free-childrens-books",
         color: "#fd7e14",
-        icon: faBookTanakh
-    },
-    {
+        icon: faBookTanakh,
+      },
+      {
         id: 3666,
-        title: "Picture & Story Books",
-        link: "https://www.spellboundbookstore.com/collections/picture-books-1/picture-books",
+        name: "Picture & Story Books",
+        url: "https://www.spellboundbookstore.com/collections/picture-books-1/picture-books",
         color: "#6f42c1",
-        icon: faStore
-    },
-    {
+        icon: faStore,
+      },
+      {
         id: 3665,
-        title: "Storybooks & Picture Books",
-        link: "http://letsreadasia.org/",
+        name: "Storybooks & Picture Books",
+        url: "http://letsreadasia.org/",
         color: "#17a2b8",
-        icon: faBookJournalWhills
-    }
+        icon: faBookJournalWhills,
+      },
+    ],
+  },
+  {
+    title: "Environment & Social Responsibility",
+    resources: [
+      {
+        id: 3739,
+        name: "Teaching waste management to children",
+        url: "https://www.smilefoundationindia.org/blog/teaching-waste-management-to-children/",
+        color: "#007bff",
+        icon: faHandsHoldingChild,
+      },
+      {
+        id: 3737,
+        name: "Reduce, Reuse, Recycle",
+        url: "https://kids.niehs.nih.gov/topics/reduce",
+        color: "#dc3545",
+        icon: faRecycle,
+      },
+      {
+        id: 3735,
+        name: "Recycling & Waste Management for Kids",
+        url: "https://www.iberdrola.com/sustainability/recycling-for-kids",
+        color: "#28a745",
+        icon: faRecycle,
+      },
+      {
+        id: 3733,
+        name: "Things Children Learn From Playing With Animals",
+        url: "https://kerensnursery.com/8-things-children-learn-from-playing-with-animals/",
+        color: "#ffc107",
+        icon: faCat,
+      },
+      {
+        id: 3731,
+        name: "Zoos neither educate nor empower children",
+        url: "https://www.freedomforanimals.org.uk/news/zoos-neither-educate-nor-empower-children",
+        color: "#fd7e14",
+        icon: faOtter,
+      },
+      {
+        id: 3729,
+        name: "Tips for Teaching Wildlife Conservation for Kids",
+        url: "https://environment.co/tips-for-teaching-wildlife-conservation-for-kids/",
+        color: "#6f42c1",
+        icon: faHippo,
+      },
+      {
+        id: 3728,
+        name: "Learning about Animals & Conservation",
+        url: "https://www.lego.com/en-in/themes/duplo/article/teaching-animal-conservation",
+        color: "#17a2b8",
+        icon: faHorse,
+      },
+      {
+        id: 3726,
+        name: "Garden With Kids: Fun Activities",
+        url: "https://www.almanac.com/gardening-kids-what-plant-and-fun-activities",
+        color: "#e83e8c",
+        icon: faLeaf,
+      },
+      {
+        id: 3723,
+        name: "Childrens Garden Fun",
+        url: "https://www.coordikids.com/childrens-garden-fun/",
+        color: "#343a40",
+        icon: faMountainCity,
+      },
+      {
+        id: 3722,
+        name: "Fun Winter Garden Activities for Kids",
+        url: "https://www.gardenary.com/blog/fun-winter-garden-activities-for-kids",
+        color: "#20c997",
+        icon: faMountainSun,
+      },
+      {
+        id: 3720,
+        name: "Fun Garden Activities for Kids",
+        url: "https://kidsgardening.org/resource-activities/",
+        color: "#007bff",
+        icon: faPlantWilt,
+      },
+      {
+        id: 3719,
+        name: "Fun with Nature & Gardening",
+        url: "http://kangarookids.in/blog/gardening-activities-and-nature-exploration-for-preschoolers/",
+        color: "#dc3545",
+        icon: faTree,
+      },
+    ],
+  },
 ];
-
-const environmentSocialResponsibilityResources = [
-  {
-    id: 3739,
-    title: "Teaching waste management to children",
-    link: "https://www.smilefoundationindia.org/blog/teaching-waste-management-to-children/",
-    color: "#007bff",
-    icon: faHandsHoldingChild
-  },
-  {
-    id: 3737,
-    title: "Reduce, Reuse, Recycle",
-    link: "https://kids.niehs.nih.gov/topics/reduce",
-    color: "#dc3545",
-    icon: faRecycle
-  },
-  {
-    id: 3735,
-    title: "Recycling & Waste Management for Kids",
-    link: "https://www.iberdrola.com/sustainability/recycling-for-kids",
-    color: "#28a745",
-    icon: faRecycle
-  },
-  {
-    id: 3733,
-    title: "Things Children Learn From Playing With Animals",
-    link: "https://kerensnursery.com/8-things-children-learn-from-playing-with-animals/",
-    color: "#ffc107",
-    icon: faCat
-  },
-  {
-    id: 3731,
-    title: "Zoos neither educate nor empower children",
-    link: "https://www.freedomforanimals.org.uk/news/zoos-neither-educate-nor-empower-children",
-    color: "#fd7e14",
-    icon: faOtter
-  },
-  {
-    id: 3729,
-    title: "Tips for Teaching Wildlife Conservation for Kids",
-    link: "https://environment.co/tips-for-teaching-wildlife-conservation-for-kids/",
-    color: "#6f42c1",
-    icon: faHippo
-  },
-  {
-    id: 3728,
-    title: "Learning about Animals & Conservation",
-    link: "https://www.lego.com/en-in/themes/duplo/article/teaching-animal-conservation",
-    color: "#17a2b8",
-    icon: faHorse
-  },
-  {
-    id: 3726,
-    title: "Garden With Kids: Fun Activities",
-    link: "https://www.almanac.com/gardening-kids-what-plant-and-fun-activities",
-    color: "#e83e8c",
-    icon: faLeaf
-  },
-  {
-    id: 3723,
-    title: "Childrens Garden Fun",
-    link: "https://www.coordikids.com/childrens-garden-fun/",
-    color: "#343a40",
-    icon: faMountainCity
-  },
-  {
-    id: 3722,
-    title: "Fun Winter Garden Activities for Kids",
-    link: "https://www.gardenary.com/blog/fun-winter-garden-activities-for-kids",
-    color: "#20c997",
-    icon: faMountainSun
-  },
-  {
-    id: 3720,
-    title: "Fun Garden Activities for Kids",
-    link: "https://kidsgardening.org/resource-activities/",
-    color: "#007bff",
-    icon: faPlantWilt
-  },
-  {
-    id: 3719,
-    title: "Fun with Nature & Gardening",
-    link: "http://kangarookids.in/blog/gardening-activities-and-nature-exploration-for-preschoolers/",
-    color: "#dc3545",
-    icon: faTree
-  }
-];
-
 
 function PrimaryPage() {
-    return (
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      {/* HEADER PART */}
+      <h1 className="text-3xl font-bold text-center my-6">Primary</h1>
 
-            {/* HEADER PART */}
-            <h1 className="text-3xl font-bold text-center my-6">Primary</h1>
-            {/* <div className="text-right mb-6">
-                <a
-                    href="/bookmark/index"
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                    View Bookmarks
-                </a>
-            </div> */}
-
-
-            {/* HEALTH AND WELL-BEING */}
-            <h2 className="text-2xl font-semibold my-6">Health & Well-being</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {healthAndWellbeingResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
-            {/* Fun & Edutainment */}
-            <h2 className="text-2xl font-semibold my-6">Fun & Edutainment</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {funAndEdutainmentResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
-            {/* Creativity & Performing Arts */}
-            <h2 className="text-2xl font-semibold my-6">Creativity & Performing Arts</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {creativityAndPerformingArtsResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Digital Literacy & Tech Skills */}
-            <h2 className="text-2xl font-semibold my-6">Digital Literacy & Tech Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {digitalLiteracyResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Language & Communication */}
-            <h2 className="text-2xl font-semibold my-6">Language & Communication</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {languageCommunicationResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-
-            {/* Academic Learning */}
-            <h2 className="text-2xl font-semibold my-6">Academic Learning</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {academicLearningResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Environment & Social Responsibility */}
-            <h2 className="text-2xl font-semibold my-6">Environment & Social Responsibility</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {environmentSocialResponsibilityResources.map((resource) => (
-                    <div
-                        key={resource.id}
-                        className="bg-white shadow-md rounded-lg p-6 text-center"
-                    >
-                        <FontAwesomeIcon
-                            icon={resource.icon}
-                            size="3x"
-                            style={{ color: resource.color }}
-                        />
-                        <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
-                        <div className="flex justify-center gap-3 mt-4">
-                            <a
-                                href={resource.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                                View
-                            </a>
-                            <button 
-                                className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                            >
-                                Bookmark
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
+      {data.map((section, index) => (
+        <div key={index} className="mb-10 ">
+          <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {section.resources.map(({ icon, color, name, url }, idx) => (
+              <ResourceCardFortAwesome
+                key={idx}
+                icon={icon}
+                color={color}
+                name={name}
+                url={url}
+              />
+            ))}
+          </div>
         </div>
-    )
+      ))}
+    </div>
+  );
 }
 
-export default PrimaryPage
+export default PrimaryPage;

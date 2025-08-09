@@ -20,10 +20,23 @@ model Library {
   contactNo String?
   address   String?
 
-  createdAt DateTime @default(now())
+  createdAt DateTime    @default(now())
   User      User[]
+  Setting   Setting?
+  AllowedIP AllowedIP[]
 
   @@map("libraries")
+}
+
+model Setting {
+  id           Int      @id @default(autoincrement())
+  libraryId    Int      @unique @db.UnsignedInt
+  remoteAccess Boolean  @default(true) // true = allow access from anywhere
+  updatedAt    DateTime @updatedAt
+
+  Library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade) //Relation to Library Model
+
+  @@map("library_settings") // Custom table name
 }
 
 enum Role {
@@ -37,12 +50,12 @@ model User {
   libraryId Int     @db.UnsignedInt
   name      String
   email     String?
-  userId     String  @unique
+  userId    String  @unique
   contactNo String?
   password  String
   role      Role    @default(user)
 
-  Library Library @relation(fields: [libraryId], references: [id])
+  Library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 
@@ -70,20 +83,27 @@ enum BookContentType {
 }
 
 model Book {
-  id                Int      @id @default(autoincrement()) @db.UnsignedInt
+  id                Int  @id @default(autoincrement()) @db.UnsignedInt
   yearOfPublication Int?
-  publisher         String?
-  author            String?
-  medium            String?
-  issn              String?
-  syllabus          String?
-  subject           String?
-  title             String?
-  description       String?
-  createdAt         DateTime @default(now())
+
+  author    String?
+  publisher String?
+
+  medium   String?
+  standard String?
+  issn     String?
+  subject  String?
+
+  syllabus    String?
+  title       String?
+  description String?
+  createdAt   DateTime @default(now())
 
   contentType BookContentType @default(openAccess)
-  bookType BookType @default(eBook)
+  bookType    BookType        @default(eBook)
+
+  pdfLink       String?
+  thumbnailLink String?
 
   iBook IBook? @relation("BookToIBook")
 
@@ -91,17 +111,19 @@ model Book {
 }
 
 model IBook {
-  id              Int      @id @default(autoincrement()) @db.UnsignedInt
-  bookId          Int      @unique @db.UnsignedInt
-  book            Book     @relation("BookToIBook", fields: [bookId], references: [id])
-  summary         String   @db.Text
-  notes           String   @db.Text
-  revisionNotes   String   @db.Text
-  commonMistakes  String   @db.Text
-  studyTricks     String   @db.Text
-  definitions     String   @db.Text
-  suggestedVideos String   @db.Text
-  createdAt       DateTime @default(now())
+  id     Int  @id @default(autoincrement()) @db.UnsignedInt
+  bookId Int  @unique @db.UnsignedInt
+  book   Book @relation("BookToIBook", fields: [bookId], references: [id], onDelete: Cascade) //Relation to Book Model
+
+  summary         String? @db.Text
+  notes           String? @db.Text
+  revisionNotes   String? @db.Text
+  commonMistakes  String? @db.Text
+  studyTricks     String? @db.Text
+  definitions     String? @db.Text
+  suggestedVideos String? @db.Text
+
+  createdAt DateTime @default(now())
 
   @@map("i_books") // Custom table name
 }
@@ -119,9 +141,9 @@ model ExamCategory {
 model MockTest {
   id             Int                @id @default(autoincrement()) @db.UnsignedInt
   title          String
-  testType       TestType
+  testType       TestType           @default(DAILY)
   examCategoryId Int                @db.UnsignedInt
-  examCategory   ExamCategory       @relation(fields: [examCategoryId], references: [id])
+  examCategory   ExamCategory       @relation(fields: [examCategoryId], references: [id], onDelete: Cascade)
   questions      MockTestQuestion[]
 
   date      DateTime? @db.Date
@@ -131,34 +153,38 @@ model MockTest {
 }
 
 model MockTestQuestion {
-  id          Int              @id @default(autoincrement()) @db.UnsignedInt
-  question    String           @db.Text
-  explanation String           @db.Text
-  mockTestId  Int              @db.UnsignedInt
-  mockTest    MockTest         @relation(fields: [mockTestId], references: [id])
-  options     MockTestOption[]
-  answer      MockTestAnswer?
+  id         Int @id @default(autoincrement()) @db.UnsignedInt
+  mockTestId Int @db.UnsignedInt
+
+  question String @db.Text
+
+  mockTest MockTest         @relation(fields: [mockTestId], references: [id], onDelete: Cascade) //Relation to MockTest Model
+  options  MockTestOption[]
+  answer   MockTestAnswer?
 
   @@map("mock_tests_questions") // Custom table name
 }
 
 model MockTestOption {
-  id             Int              @id @default(autoincrement()) @db.UnsignedInt
-  text           String
-  questionId     Int              @db.UnsignedInt
-  question       MockTestQuestion @relation(fields: [questionId], references: [id])
-  MockTestAnswer MockTestAnswer[]
+  id         Int @id @default(autoincrement()) @db.UnsignedInt
+  questionId Int @db.UnsignedInt
+
+  text     String
+  question MockTestQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade) //Relation to MockTestQuestion Model
+  answer   MockTestAnswer[]
 
   @@map("mock_tests_options") // Custom table name
 }
 
 model MockTestAnswer {
-  id          Int              @id @default(autoincrement()) @db.UnsignedInt
-  questionId  Int              @db.UnsignedInt
-  optionId    Int              @db.UnsignedInt
-  explanation String           @db.Text
-  question    MockTestQuestion @relation(fields: [questionId], references: [id])
-  option      MockTestOption   @relation(fields: [optionId], references: [id])
+  id         Int @id @default(autoincrement()) @db.UnsignedInt
+  questionId Int @db.UnsignedInt
+  optionId   Int @db.UnsignedInt
+
+  explanation String @db.Text
+
+  question MockTestQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade) //Relation to MockTestQuestion Model
+  option   MockTestOption   @relation(fields: [optionId], references: [id], onDelete: Cascade) //Relation to MockTestOption Model
 
   @@unique([questionId])
   @@map("mock_tests_answers") // Custom table name
@@ -169,4 +195,15 @@ enum TestType {
   WEEKLY
   MONTHLY
   YEARLY
+}
+
+model AllowedIP {
+  id        Int      @id @default(autoincrement())
+  libraryId Int      @db.UnsignedInt
+  ipAddress String   @unique
+  createdAt DateTime @default(now())
+
+  Library Library @relation(fields: [libraryId], references: [id], onDelete: Cascade) //Relation to Library Model
+
+  @@map("allowed_ip_addresses") // Custom table name
 }

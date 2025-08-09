@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import AOS from "aos";
-
-import { Header, Footer } from "@/components";
 import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";
 
@@ -76,6 +74,28 @@ export default function Page() {
       aos: "flip-right",
     },
   ];
+
+  let arr = [{
+    "id": "14",
+    "slug": "afcat-defense-agniveer",
+    "name": "AFCAT, Defense, Agniveer"
+  },
+  {
+    "id": "15",
+    "slug": "banking",
+    "name": "Banking"
+  },
+  {
+    "id": "16",
+    "slug": "mpsc-state-commission",
+    "name": "MPSC & State Commission"
+  },
+  {
+    "id": "17",
+    "slug": "railway",
+    "name": "Railway"
+  },
+  ]
 
   return (
     <>

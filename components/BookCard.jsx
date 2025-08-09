@@ -5,22 +5,29 @@ import Link from "next/link";
 
 const BookCard = ({ book, randomColor }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col">
+    <div
+      className="bg-white shadow-md hover:shadow-xl rounded-md  hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"
+      style={{
+        boxShadow: `0 4px 10px ${randomColor}`, // apply random color here
+      }}
+    >
       {/* Dynamic Title Cover */}
       <div
-        className={`relative h-56 m-4  flex items-center justify-center text-white text-center px-4 ${randomColor}`}
+        className={`relative h-48 m-4  flex items-center justify-center text-white text-center px-4 ${randomColor}`}
       >
-        <h2 className="text-xl font-semibold leading-snug">{book.title}</h2>
+        <h2 className="text-xl font-semibold leading-snug">
+          {book.title.length > 25 ? book.title.slice(0, 25) + "…" : book.title}
+        </h2>
 
         {/* eBook badge */}
-          <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
-            {book.bookType}
-          </span> 
+        <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
+          {book.bookType}
+        </span>
       </div>
 
       {/* Book Info */}
       <div className="p-4 pt-0 space-y-1 text-sm text-gray-700">
-        <h3 className="text-base font-semibold text-gray-900">
+        <h3 className="text-sm font-semibold text-gray-900">
           {book.title}
           {book.medium && ` (${book.medium})`}
         </h3>
@@ -31,10 +38,10 @@ const BookCard = ({ book, randomColor }) => {
           </span>
           {book.author.length > 25 ? (
             <Tooltip content={book.author}>
-              <span className="text-sm">{book.author.slice(0, 25) + "…"}</span>
+              <span className="text-xs">{book.author.slice(0, 25) + "…"}</span>
             </Tooltip>
           ) : (
-            <span className="text-sm">{book.author}</span>
+            <span className="text-xs">{book.author}</span>
           )}
         </div>
       </div>
@@ -43,11 +50,13 @@ const BookCard = ({ book, randomColor }) => {
       <div className="px-4 pb-4 mt-auto">
         <Link
           href={
-            book.bookType === "iBook"
-              ? `/e-books/read-i-book/${book.id}`
-              : `/e-books/read-book/${book.id}`
+            book.pdfLink
+              ? book.bookType === "iBook"
+                ? `/e-books/read-i-book/${btoa(book.pdfLink)}`
+                : `/e-books/read-book/${btoa(book.pdfLink)}`
+              : "#"
           }
-          className={`block w-full text-center text-sm font-semibold text-white ${randomColor}  rounded-lg py-2 transition-all`}
+          className={`block w-full px-8  text-center text-sm font-semibold text-white ${randomColor}  rounded-lg py-2 transition-all`}
         >
           Read →
         </Link>

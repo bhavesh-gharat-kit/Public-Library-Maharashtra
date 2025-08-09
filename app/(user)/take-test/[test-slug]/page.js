@@ -35,7 +35,6 @@ export default function Page() {
         setLoading(true);
         const res = await axios.get(`/api/user/tests/${paramSlug}/fetch`);
         setTestData(res.data?.testData);
-        console.log(res.data?.testData);
       } catch (error) {
         toast.error("Error while loading data!");
         router.back();

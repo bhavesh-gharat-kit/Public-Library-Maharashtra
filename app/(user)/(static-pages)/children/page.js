@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import toast from "react-hot-toast";
+import React from "react"; 
 import {
   FaBook,
   FaFlask,
@@ -9,9 +8,9 @@ import {
   FaTv,
   FaVideo,
 } from "react-icons/fa";
-import { ExternalResourceCard } from "@/components";
+import { ResourceCard } from "@/components";
 
-const sections = [
+const data = [
   {
     title: "Learning Videos (Alphabet, Numbers, Colors)",
     resources: [
@@ -87,10 +86,6 @@ const sections = [
 ];
 
 const ChildrenSectionPage = () => {
-  const handleBookmark = (id, name) => {
-    // Placeholder for actual bookmark logic
-    toast.success(`Bookmark added for ${name}`);
-  };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl mx-auto">
@@ -98,21 +93,12 @@ const ChildrenSectionPage = () => {
         Children's Section
       </h1>
 
-      {/* <div className="text-right mb-6">
-        <a
-          href="/bookmark/index"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          View Bookmarks
-        </a>
-      </div> */}
-
-      {sections.map((section) => (
+      {data.map((section) => (
         <div key={section.title} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {section.resources.map((item, index) => (
-              <ExternalResourceCard item={item} key={index} />
+              <ResourceCard item={item} key={index} />
             ))}
           </div>
         </div>

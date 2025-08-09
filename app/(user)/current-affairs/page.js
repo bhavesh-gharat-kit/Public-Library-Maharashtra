@@ -45,9 +45,6 @@ export default function Page() {
     },
   ];
 
-  useEffect(() => {
-    console.log(selectedMonth);
-  }, [selectedMonth]);
 
   const monthData = {
     2025: [0, 1, 2, 3, 4, 5, 6],

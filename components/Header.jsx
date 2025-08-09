@@ -26,7 +26,7 @@ export default function Header() {
       color: "text-teal-600",
     },
     {
-      href: "https://nlbdkc.noeticindia.com/nationallibraryvandre/page/help-center-updated?pageId=79",
+      href: "/help-center",
       label: "Help Center",
       icon: <FaQuestionCircle />,
       color: "text-green-600",
@@ -45,9 +45,6 @@ export default function Header() {
     });
   };
 
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">

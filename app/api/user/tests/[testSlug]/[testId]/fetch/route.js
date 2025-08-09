@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request, context) {
   try {
     const { testSlug, testId } = await context.params;
-    let body = await request.json;
+    let body = await request.json();
 
     if (!testSlug || !testId) {
       console.error("❌ testSlug/testId is missing in route params");
@@ -20,7 +20,6 @@ export async function POST(request, context) {
       gameSound = false,
       questionMode = "full",
       questionCount,
-      questionRange,
     } = body || {};
 
     const data = await prisma.MockTest.findFirst({
@@ -29,6 +28,9 @@ export async function POST(request, context) {
     });
 
     if (!data) {
+      if(testSlug=="current-affairs"){
+        await handleCreateCurrentAffairsTest();
+      }
       return NextResponse.json({ message: "No test found" }, { status: 400 });
     }
 
@@ -38,11 +40,6 @@ export async function POST(request, context) {
     if (questionMode === "limited") {
       if (questionCount) {
         selectedQuestions = selectedQuestions.slice(0, questionCount);
-      } else if (questionRange?.from && questionRange?.to) {
-        selectedQuestions = selectedQuestions.slice(
-          questionRange.from - 1,
-          questionRange.to
-        );
       }
     }
 

@@ -60,8 +60,7 @@ export async function POST(req) {
     const body = await req.json();
     const { name, email, contactNo, userId, password } = body;
     const libraryId = process.env.LIBRARY_ID;
-
-    console.log(body);
+    
 
     if (!name || !email || !password || !libraryId) {
       return NextResponse.json(

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { ExternalResourceCard } from "@/components";
+import { ResourceCard } from "@/components";
 import { FaChartLine } from "react-icons/fa";
 
-const resources = [
+const data = [
   {
     title: "External Digital Library",
     resources: [
@@ -88,21 +88,18 @@ const AdditionalResourcesPage = () => {
           Additional Resources
         </h1>
 
-        {/* <div className="text-right mb-6">
-          <a
-            href="/bookmark/index"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          >
-            View Bookmarks
-          </a>
-        </div> */}
-
-        {resources.map((section) => (
+        {data.map((section) => (
           <div key={section.section} className="mb-10 ">
             <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.resources.map((item, index) => (
-                <ExternalResourceCard item={item} key={index} />
+              {section.resources.map(({ icon, color, name, url }, index) => (
+                <ResourceCard
+                  icon={icon}
+                  color={color}
+                  name={name}
+                  url={url}
+                  key={index}
+                />
               ))}
             </div>
           </div>

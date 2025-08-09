@@ -6,8 +6,8 @@ import {
   faHeartbeat,
   faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import toast from "react-hot-toast";
+
+import { ResourceCardFortAwesome } from "@/components";
 
 const examData = [
   {
@@ -65,37 +65,18 @@ const EntranceExamsPage = () => {
     <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-3xl font-bold text-center my-6">Entrance Exams</h1>
 
-      {/* <div className="text-right mb-6">
-        <a href="/bookmark/index" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          View Bookmarks
-        </a>
-      </div> */}
-
       {examData.map((section) => (
         <div key={section.title} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {section.items.map((item) => (
-              <div key={item.id} className="bg-white rounded-lg shadow-md p-6 text-center">
-                <FontAwesomeIcon icon={item.icon} size="3x" style={{ color: item.color }} />
-                <h5 className="text-lg font-medium mt-4 text-blue-600">{item.name}</h5>
-                <div className="flex justify-center gap-3 mt-4">
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-                    rel="noreferrer"
-                  >
-                    View
-                  </a>
-                  <button
-                    onClick={() => toast.success(`Bookmark added for ${item.name}`)}
-                    className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
-                  >
-                    Bookmark
-                  </button>
-                </div>
-              </div>
+            {section.items.map(({ icon, color, name, url }, index) => (
+              <ResourceCardFortAwesome
+                key={index}
+                icon={icon}
+                color={color}
+                name={name}
+                url={url}
+              />
             ))}
           </div>
         </div>
