@@ -19,7 +19,9 @@ export async function middleware(request) {
   if (!skipIpCheck) {
     const ip = getClientIp(request);
 
-    const allowed = await isIPAllowed(ip);
+    // const allowed = await isIPAllowed(ip);
+    // const allowed = process.env.NEXT_PUBLIC_STATIC_IP == ip;
+    const allowed = true;
     if (!allowed) {
       return NextResponse.redirect(new URL("/403", request.url));
     }
@@ -118,4 +120,4 @@ async function authorize(request, allowedRoles = []) {
   return user;
 }
 
-export const runtime = 'experimental-edge';
+// export const runtime = 'experimental-edge';
