@@ -20,7 +20,7 @@ export default function Tooltip({ children, content, position = "top" }) {
       {children}
       {visible && (
         <div
-          className={`absolute z-50 px-3 py-2 text-xs font-medium text-white bg-gray-500 rounded-lg shadow-md whitespace-nowrap transition-all duration-200 ${positionClasses[position]}`}
+          className={`absolute z-50 w-[90%] px-3 py-2 text-xs font-medium text-white bg-gray-500 rounded-lg shadow-md transition-all duration-200 ${positionClasses[position]}`}
         >
           {content}
         </div>

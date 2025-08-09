@@ -71,11 +71,11 @@ export default function FilterSidebar({
               <span><FaCalendar/></span>
               Year of Publication
             </h3>
-            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+            <ul className="flex justify-between flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
               {filters.yearOfPublication?.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                  className="flex items-start shrink-0   gap-2 text-sm text-gray-700"
                 >
                   <input
                     type="checkbox"
@@ -100,11 +100,11 @@ export default function FilterSidebar({
               <span>📅</span>
               Languages
             </h3>
-            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+            <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
               {filters.languages?.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                  className="flex items-start shrink-0 gap-2 text-sm text-gray-700"
                 >
                   <input
                     type="checkbox"
@@ -114,7 +114,7 @@ export default function FilterSidebar({
                     onChange={(e) => handleUpdateFilters(e, "languages", item)}
                     className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
                   />
-                  <label className="cursor-pointer">{item}</label>
+                  <label className="cursor-pointer break-words">{item}</label>
                 </li>
               ))}
             </ul>
@@ -125,11 +125,11 @@ export default function FilterSidebar({
               <span><FaBookOpen/></span>
               Publishers
             </h3>
-            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+            <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
               {filters.publishers?.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                  className=" flex items-start gap-2 text-sm text-gray-700"
                 >
                   <input
                     type="checkbox"
@@ -137,7 +137,7 @@ export default function FilterSidebar({
                       appliedFilters.publishers?.includes(item) ? true : false
                     }
                     onChange={(e) => handleUpdateFilters(e, "publishers", item)}
-                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                    className="accent-indigo-600 h-4 w-4 shrink-0 cursor-pointer transform transition-transform duration-150 hover:scale-110"
                   />
                   <label className="cursor-pointer">{item}</label>
                 </li>
@@ -150,11 +150,11 @@ export default function FilterSidebar({
               <span><FaFilter/></span>
               Content Types
             </h3>
-            <ul className="grid grid-cols-2 gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+            <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
               {filters.contentTypes?.map((item, index) => (
                 <li
                   key={index}
-                  className="w-[48%] flex items-center  gap-2 text-sm text-gray-700"
+                  className="flex items-start shrink-0   gap-2 text-sm text-gray-700"
                 >
                   <input
                     type="checkbox"
@@ -174,12 +174,12 @@ export default function FilterSidebar({
 
           {/* Buttons */}
           <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
-            <button
+            {/* <button
               onClick={handleApply}
               className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-indigo-700 transition-all flex items-center justify-center gap-2"
             >
               <FiCheckSquare className="text-lg" /> Apply Filters
-            </button>
+            </button> */}
             <button
               onClick={handleClear}
               className="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-semibold hover:bg-gray-200 transition flex items-center justify-center gap-2"

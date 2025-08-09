@@ -13,6 +13,12 @@ export async function GET(req) {
     const contentTypes = searchParams.get("contentTypes");
     const search = searchParams.get("search");
 
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    // const limit = parseInt(searchParams.get("limit") || "12", 10);
+    const limit = 12;
+
+    const skip = (page - 1) * limit;
+
     const parseArray = (val) => (val ? val.split(",") : undefined);
 
     const where = {
@@ -49,13 +55,20 @@ export async function GET(req) {
     const books = await prisma.Book.findMany({
       where,
       orderBy: { createdAt: "desc" },
+      skip,
+      take: limit,
     });
 
     const totalBooks = await prisma.Book.count({
       where,
     });
 
-    return NextResponse.json({ success: true, data: books, totalBooks });
+    return NextResponse.json({
+      success: true,
+      data: books,
+      totalBooks,
+      totalPages: Math.ceil(totalBooks / limit),
+    });
   } catch (err) {
     console.error("Error fetching books:", err);
     return NextResponse.json(

@@ -16,7 +16,7 @@ const BookCard = ({ book, randomColor }) => {
         className={`relative h-48 m-4  flex items-center justify-center text-white text-center px-4 ${randomColor}`}
       >
         <h2 className="text-xl font-semibold leading-snug">
-          {book.title.length > 25 ? book.title.slice(0, 25) + "…" : book.title}
+          {book.title.length > 50 ? book.title.slice(0, 50) + "…" : book.title}
         </h2>
 
         {/* eBook badge */}
@@ -28,20 +28,27 @@ const BookCard = ({ book, randomColor }) => {
       {/* Book Info */}
       <div className="p-4 pt-0 space-y-1 text-sm text-gray-700">
         <h3 className="text-sm font-semibold text-gray-900">
-          {book.title}
-          {book.medium && ` (${book.medium})`}
+          {book.title?.length > 50 ? (
+            <Tooltip content={book.title}>
+              {book.title.slice(0, 50) +
+                "…" +
+                (book.medium && ` (${book.medium})`)}
+            </Tooltip>
+          ) : (
+            book.title + " " + (book.medium && ` (${book.medium})`)
+          )}
         </h3>
 
         <div className="flex items-center gap-2 text-gray-600">
           <span>
             <FaPenNib />
           </span>
-          {book.author.length > 25 ? (
+          {book.author?.length > 25 ? (
             <Tooltip content={book.author}>
               <span className="text-xs">{book.author.slice(0, 25) + "…"}</span>
             </Tooltip>
           ) : (
-            <span className="text-xs">{book.author}</span>
+            <span className="text-xs">{book?.author || "N/A"}</span>
           )}
         </div>
       </div>

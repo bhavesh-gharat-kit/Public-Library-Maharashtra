@@ -17,6 +17,7 @@ import {
   FaChevronRight,
   FaSearch,
 } from "react-icons/fa";
+import { scrollToTop } from "@/lib/helperFunctions";
 
 export default function Page() {
   const [books, setBooks] = useState([]);
@@ -32,7 +33,7 @@ export default function Page() {
 
   // search state
   const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState(""); 
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [totalBooks, setTotalBooks] = useState(0);
 
   // Abort controller ref for cancelling previous requests
@@ -126,7 +127,7 @@ export default function Page() {
 
     // add search params if debouncedQuery exists
     if (debouncedQuery) {
-      params.search = debouncedQuery; 
+      params.search = debouncedQuery;
     }
 
     // Cancel previous request if any
@@ -138,6 +139,7 @@ export default function Page() {
 
     const fetchBooks = async () => {
       try {
+        scrollToTop();
         setBooksLoading(true);
 
         const res = await axios.get("/api/books", {
@@ -151,9 +153,7 @@ export default function Page() {
         setBooks(res.data.data || []);
         setTotalPages(res.data.totalPages || 1);
         // try different possible keys for total count:
-        setTotalBooks(
-          res.data?.totalBooks
-        );
+        setTotalBooks(res.data?.totalBooks);
       } catch (err) {
         // ignore abort cancellations; log others
         const isAbort =
@@ -175,14 +175,50 @@ export default function Page() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appliedFilters, page, limit, debouncedQuery]);
 
+  // const bgColors = [
+  //   "bg-blue-600",
+  //   "bg-green-600",
+  //   "bg-red-500",
+  //   "bg-purple-600",
+  //   "bg-pink-500",
+  //   "bg-yellow-500",
+  //   "bg-indigo-600",
+  //   "bg-cyan-600",
+  //   "bg-teal-600",
+  //   "bg-orange-600",
+  //   "bg-rose-600",
+  //   "bg-fuchsia-600",
+  //   "bg-violet-600",
+  //   "bg-lime-600",
+  //   "bg-emerald-600",
+  //   "bg-amber-600",
+  //   "bg-sky-600",
+  //   "bg-slate-700",
+  //   "bg-zinc-700",
+  //   "bg-neutral-700",
+  // ];
+
   const bgColors = [
-    "bg-blue-600",
-    "bg-green-600",
-    "bg-red-500",
-    "bg-purple-600",
-    "bg-pink-500",
-    "bg-yellow-500",
-    "bg-indigo-600",
+    "bg-gradient-to-r from-blue-600 to-indigo-600",
+    "bg-gradient-to-r from-green-500 to-emerald-600",
+    "bg-gradient-to-r from-red-500 to-pink-600",
+    "bg-gradient-to-r from-purple-500 to-fuchsia-600",
+    "bg-gradient-to-r from-pink-500 to-rose-600",
+    "bg-gradient-to-r from-yellow-500 to-amber-600",
+    "bg-gradient-to-r from-indigo-500 to-violet-600",
+    "bg-gradient-to-r from-cyan-500 to-sky-600",
+    "bg-gradient-to-r from-teal-500 to-emerald-600",
+    "bg-gradient-to-r from-orange-500 to-red-600",
+    "bg-gradient-to-r from-rose-500 to-pink-600",
+    "bg-gradient-to-r from-fuchsia-500 to-pink-600",
+    "bg-gradient-to-r from-violet-500 to-purple-600",
+    "bg-gradient-to-r from-lime-500 to-green-600",
+    "bg-gradient-to-r from-emerald-500 to-teal-600",
+    "bg-gradient-to-r from-amber-500 to-orange-600",
+    "bg-gradient-to-r from-sky-500 to-cyan-600",
+    "bg-gradient-to-r from-slate-600 to-slate-800",
+    "bg-gradient-to-r from-zinc-600 to-zinc-800",
+    "bg-gradient-to-r from-neutral-600 to-neutral-800",
   ];
 
   if (loading) return <FullScreenLoader />;
@@ -220,7 +256,9 @@ export default function Page() {
               {/* Book Count */}
               <div className="text-lg font-semibold text-gray-700">
                 Total Books:{" "}
-                <span className="text-blue-600 font-bold">{totalBooks}</span>
+                <span className="text-blue-600 font-bold">
+                  {Number(totalBooks).toLocaleString()}
+                </span>
               </div>
             </div>
             {!books?.length && !booksLoading ? (
@@ -232,17 +270,7 @@ export default function Page() {
             ) : (
               <>
                 <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3  p-4">
-                  {[
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                    ...books,
-                  ].map((item, index) => {
+                  {books.map((item, index) => {
                     const randomColor = bgColors[index % bgColors.length]; // rotate through colors
 
                     return (
@@ -256,34 +284,39 @@ export default function Page() {
                 </div>
 
                 {/* Pagination */}
-                <div className="flex justify-center items-center mt-6 gap-3">
-                  {/* Previous Button */}
-                  <button
-                    disabled={page === 1}
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
+                {totalPages > page && (
+                  <div className="flex justify-center items-center mt-6 gap-3">
+                    {/* Previous Button */}
+                    <button
+                      disabled={page === 1}
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
                hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
                flex items-center justify-center"
-                  >
-                    <FaChevronLeft className="text-gray-600" size={16} />
-                  </button>
+                    >
+                      <FaChevronLeft className="text-gray-600" size={16} />
+                    </button>
 
-                  {/* Page Info */}
-                  <span className="px-3 py-1 text-gray-700 font-medium bg-gray-100 rounded-lg">
-                    Page {page} of {totalPages}
-                  </span>
+                    {/* Page Info */}
+                    <span className="px-3 py-1 text-gray-700 font-medium bg-gray-100 rounded-lg">
+                      Page {Number(page).toLocaleString()} of{" "}
+                      {Number(totalPages).toLocaleString()}
+                    </span>
 
-                  {/* Next Button */}
-                  <button
-                    disabled={page === totalPages}
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                    className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
+                    {/* Next Button */}
+                    <button
+                      disabled={page === totalPages}
+                      onClick={() =>
+                        setPage((p) => Math.min(totalPages, p + 1))
+                      }
+                      className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
                hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
                flex items-center justify-center"
-                  >
-                    <FaChevronRight className="text-gray-600" size={16} />
-                  </button>
-                </div>
+                    >
+                      <FaChevronRight className="text-gray-600" size={16} />
+                    </button>
+                  </div>
+                )}
               </>
             )}
           </div>
