@@ -96,7 +96,7 @@ export default function IBookGPT({ bookId }) {
 
       {/* Message Display Area */}
       <div
-        className="flex-1 overflow-y-auto scrollbar-sm mb-4 space-y-4 min-h-[300px] pr-2"
+        className="flex-1 overflow-y-auto max-h-[550px] scrollbar-sm mb-4 space-y-4 min-h-[300px] pr-2"
         ref={containerRef}
       >
         <StudyTools setSelectedTool={setSelectedTool} />

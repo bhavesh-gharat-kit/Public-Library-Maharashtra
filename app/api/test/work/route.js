@@ -28,8 +28,10 @@ export async function GET() {
     //       title: book.title || null,
     //       pdfLink: book.pdfLink || null,
     //       contentType: "openAccess",
-    //       bookType: "eBook", // default
-    //       medium: book.language || null,
+    //       bookType: "iBook", // default
+    //       medium: book.medium ||book.language || null,
+    //       thumbnailLink: book.thumbnailLink || null,
+    //       standard: book.standard || null,
     //     },
     //   });
     //   insertedCount++;

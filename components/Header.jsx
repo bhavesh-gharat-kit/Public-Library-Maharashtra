@@ -13,10 +13,12 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 import { CustomConfirm } from "@/components";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session, status } = useSession();
+  const pathname = usePathname();
 
   const navLinks = [
     {
@@ -44,7 +46,6 @@ export default function Header() {
       onCancel: () => {},
     });
   };
-
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -85,14 +86,22 @@ export default function Header() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((item, index) => (
-              <NavItem item={item} key={index} />
+              <NavItem
+                item={item}
+                key={index}
+                isActive={pathname.startsWith(item.href)}
+              />
             ))}
 
             {status === "authenticated" ? (
               <>
                 {session.user.role === "admin" && (
                   <Link href="/admin">
-                    <span className="flex flex-row items-center gap-2 font-semibold text-sm hover:underline transition text-green-700 whitespace-nowrap">
+                    <span
+                      className={`flex flex-row items-center gap-2 font-semibold text-sm ${
+                        pathname.startsWith("/admin") ? "underline" : ""
+                      } hover:underline transition text-green-700 whitespace-nowrap`}
+                    >
                       <FaUserShield />
                       Admin
                     </span>
@@ -130,14 +139,22 @@ export default function Header() {
         <div className="md:hidden bg-gray-50 px-4 py-3 shadow-inner rounded-b">
           <div className="flex flex-col items-center space-y-4">
             {navLinks.map((item, index) => (
-              <NavItem item={item} key={index} />
+              <NavItem
+                item={item}
+                key={index}
+                isActive={pathname.startsWith(item.href)}
+              />
             ))}
 
             {status === "authenticated" ? (
               <>
                 {session.user.role === "admin" && (
                   <Link href="/admin" className="block w-full">
-                    <span className="flex flex-row mr-auto items-center gap-2 font-semibold text-sm hover:underline transition text-green-700 whitespace-nowrap">
+                    <span
+                      className={`flex flex-row mr-auto items-center gap-2 font-semibold text-sm ${
+                        isActive ? "underline" : ""
+                      } hover:underline transition text-green-700 whitespace-nowrap`}
+                    >
                       <FaUserShield />
                       Admin
                     </span>
@@ -171,11 +188,13 @@ export default function Header() {
   );
 }
 
-function NavItem({ item }) {
+function NavItem({ item, isActive }) {
   return (
     <Link href={item.href} rel="noopener noreferrer" className="block w-full">
       <span
-        className={`flex flex-row items-center gap-2 font-semibold text-sm hover:underline transition ${item.color} whitespace-nowrap`}
+        className={`flex flex-row items-center gap-2 font-semibold text-sm ${
+          isActive ? "underline" : ""
+        } hover:underline transition ${item.color} whitespace-nowrap`}
       >
         {item.icon}
         {item.label}

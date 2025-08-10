@@ -32,10 +32,10 @@ const BookCard = ({ book, randomColor }) => {
             <Tooltip content={book.title}>
               {book.title.slice(0, 50) +
                 "…" +
-                (book.medium && ` (${book.medium})`)}
+                (book.medium ? ` (${book.medium})` : "")}
             </Tooltip>
           ) : (
-            book.title + " " + (book.medium && ` (${book.medium})`)
+            book.title + " " + (book.medium ? ` (${book.medium})` : "")
           )}
         </h3>
 
