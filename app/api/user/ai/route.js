@@ -17,8 +17,7 @@ export async function GET() {
     });
 
     const reply = chatResponse.choices[0]?.message?.content || "No response";
-    console.log("✅ GPT-4 reply:", reply);
-
+    
     return NextResponse.json({ chatResponse }, { status: 200 });
   } catch (error) {
     console.error("❌ Error calling GPT-4 via SDK:", error);

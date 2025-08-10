@@ -5,9 +5,7 @@ import toast from "react-hot-toast";
 import { FaExternalLinkAlt, FaLink } from "react-icons/fa";
 
 export default function ResourceCard({ icon, color, name, url }, key) {
-  if (!icon) {
-    console.log({ key });
-  }
+
   return (
     <div className="group relative overflow-hidden bg-white rounded-2xl shadow-lg p-6 text-center border border-gray-200 hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-200 hover:-translate-y-1 transition-all duration-300">
       {/* Icon */}

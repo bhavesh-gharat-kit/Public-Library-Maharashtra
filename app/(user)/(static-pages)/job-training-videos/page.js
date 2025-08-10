@@ -663,8 +663,6 @@ function JobAndInterest() {
   // HANDLING THE YOUTUBE POP MODAL USING SWEER-ALERT
   const handleYoutubeModal = (youtubetitle, youtubeId) => {
     const ytLink = "https://www.youtube.com/embed/" + youtubeId + "?autoplay=1";
-    console.log(ytLink);
-
     Swal.fire({
       title: youtubetitle,
       html: `

@@ -43,7 +43,7 @@ export async function POST(req, context) {
     // If the tool's data is missing, generate and save it
     if (!bookData.iBook[tool]) {
       let prompt = getIBookPrompt(bookData, tool);
-      console.log(prompt)
+      
       const reply = await generateFromPrompt(prompt);
 
       bookData.iBook = await prisma.iBook.update({

@@ -1,3 +1,4 @@
+// Fetching book data from database
 import prisma from "@/lib/prisma"; // adjust path to your prisma instance
 
 export async function GET(request, context) {

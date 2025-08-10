@@ -1,72 +1,35 @@
-import { MONTHS } from "@/lib/constants";
-import { generateFromPrompt } from "@/lib/helperFunctionsServerSide";
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-
-export async function GET() {
+// app/api/pdf-proxy/route.js
+export async function GET(request) {
   try {
-    const result = await generateFromPrompt("Hello, How are you?");
+    // Get the "url" query parameter
+    const pdfUrl = "https://library.oapen.org/bitstream/20.500.12657/46035/1/external_content.pdf";
 
-    return NextResponse.json({ result });
+
+    // Fetch the PDF from the external source
+    const response = await fetch(pdfUrl);
+
+    if (!response.ok) {
+      return new Response(JSON.stringify({ error: "Failed to fetch PDF" }), {
+        status: response.status,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Stream the PDF to the client
+    const pdfBuffer = await response.arrayBuffer();
+
+    return new Response(pdfBuffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "inline; filename=book.pdf",
+        "Cache-Control": "no-store",
+      },
+    });
   } catch (error) {
-    console.error("Error fetching months:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
-
-
-// import { MONTHS } from '@/lib/constants';
-// import prisma from '@/lib/prisma';
-// import { NextResponse } from 'next/server';
-
-// export async function GET() {
-//   try {
-//     const currentAffairsCategory = await prisma.examCategory.findFirst({
-//       where: {
-//         slug: 'current-affairs',
-//       },
-//     });
-
-//     if (!currentAffairsCategory) {
-//       return NextResponse.json({ error: 'Current Affairs category not found' }, { status: 404 });
-//     }
-
-//     const tests = await prisma.mockTest.findMany({
-//       where: {
-//         examCategoryId: currentAffairsCategory.id,
-//       },
-//       select: {
-//         createdAt: true,
-//       },
-//       orderBy: { createdAt: 'desc' },
-//     });
-
-//     const result = {};
-
-//     for (const test of tests) {
-//       const date = new Date(test.createdAt);
-//       const year = date.getFullYear().toString();
-//       const monthName = MONTHS[date.getMonth()];
-
-//       if (!result[year]) {
-//         result[year] = [];
-//       }
-
-//       if (!result[year].includes(monthName)) {
-//         result[year].push(monthName);
-//       }
-//     }
-
-//     Object.keys(result).forEach((year) => {
-//       result[year].sort((a, b) => MONTHS.indexOf(a) - MONTHS.indexOf(b));
-//     });
-
-//     return NextResponse.json(result);
-//   } catch (error) {
-//     console.error('Error fetching months:', error);
-//     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-//   }
-// }
