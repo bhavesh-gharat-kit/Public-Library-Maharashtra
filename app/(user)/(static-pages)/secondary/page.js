@@ -3,6 +3,7 @@
 import {
   faFirstdraft,
   faPagelines,
+  faPython,
   faSpaceAwesome,
 } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -21,6 +22,7 @@ import {
   faBuildingColumns,
   faCameraRetro,
   faCarrot,
+  faChalkboardUser,
   faClapperboard,
   faCloudShowersHeavy,
   faCompassDrafting,
@@ -55,6 +57,7 @@ import {
   faPersonRunning,
   faRadio,
   faRecordVinyl,
+  faRobot,
   faSackDollar,
   faSchool,
   faSchoolFlag,
@@ -71,6 +74,102 @@ import React from "react";
 import { ResourceCardFortAwesome } from "@/components";
 
 const data = [
+  {
+    title: "Digital Literacy & Tech Skills",
+    resources: [
+      {
+        id: 3796,
+        name: "Introduction to AI",
+        url: "https://quizmanthon.com/elearn-artificial-intelligence-8.php",
+        icon: faBrain,
+        color: "#007bff",
+      },
+      {
+        id: 3795,
+        name: "Artificial Intelligence Projects, Lessons and Activities",
+        url: "https://www.sciencebuddies.org/projects-lessons-activities/artificial-intelligence/sixth-grade",
+        icon: faBrain,
+        color: "#dc3545",
+      },
+      {
+        id: 3794,
+        name: "What Is Artificial Intelligence with Examples & Uses",
+        url: "https://www.simplilearn.com/tutorials/artificial-intelligence-tutorial/what-is-artificial-intelligence",
+        icon: faBrain,
+        color: "#28a745",
+      },
+      {
+        id: 3793,
+        name: "Social Media Safety",
+        url: "https://rainn.org/safe-media",
+        icon: faChalkboardUser,
+        color: "#ffc107",
+      },
+      {
+        id: 3792,
+        name: "15 ways to use social media for education",
+        url: "https://sproutsocial.com/insights/social-media-for-education/",
+        icon: faUserGraduate,
+        color: "#fd7e14",
+      },
+      {
+        id: 3791,
+        name: "Effective Social Media Use for Students",
+        url: "https://www.jbcnschool.edu.in/blog/how-to-use-social-media-effectively-for-students/",
+        icon: faIcons,
+        color: "#6f42c1",
+      },
+      {
+        id: 3790,
+        name: "What is Cybersecurity?",
+        url: "https://www.kaspersky.com/resource-center/definitions/what-is-cyber-security",
+        icon: faGlobe,
+        color: "#17a2b8",
+      },
+      {
+        id: 3789,
+        name: "Children and Cyber Safety",
+        url: "https://www.nls.ac.in/wp-content/uploads/2020/11/Children-and-Cyber-Safety_an-Ebook_-published-on-14-nov-final-anr.pdf",
+        icon: faGlobe,
+        color: "#e83e8c",
+      },
+      {
+        id: 3788,
+        name: "Cyber Awareness",
+        url: "https://bbpsnoida.balbharati.org/wp-content/uploads/2016/05/HANDOUTS-CYBER-AWARENESSnew.pdf",
+        icon: faGlobe,
+        color: "#343a40",
+      },
+      {
+        id: 3778,
+        name: "Robotics And Coding: The Complete Beginners Guide",
+        url: "https://www.create-learn.us/blog/robotics-and-coding/",
+        icon: faRobot,
+        color: "#20c997",
+      },
+      {
+        id: null,
+        name: "Robotics: What Are Robots?",
+        url: "https://builtin.com/robotics",
+        icon: faRobot,
+        color: "#007bff",
+      },
+      {
+        id: 3771,
+        name: "How to Learn Robotics for Kids",
+        url: "https://www.create-learn.us/blog/robotics-for-kids/",
+        icon: faRobot,
+        color: "#dc3545",
+      },
+      {
+        id: 3768,
+        name: "Python Robotics – Programming a Robot with Python",
+        url: "https://academy.visualcomponents.com/courses/python-robotics-programming-a-robot-with-python/",
+        icon: faPython,
+        color: "#28a745",
+      },
+    ],
+  },
   {
     title: "Creativity & Performing Arts",
     resources: [
@@ -116,13 +215,13 @@ const data = [
         color: "#6f42c1",
         icon: faDrum,
       },
-      {
-        id: 3829,
-        name: "Instrument Courses",
-        url: "https://www.shankarmahadevanacademy.com/instruments/",
-        color: "#17a2b8",
-        icon: faGuitar,
-      },
+      // {
+      //   id: 3829,
+      //   name: "Instrument Courses",
+      //   url: "https://www.shankarmahadevanacademy.com/instruments/",
+      //   color: "#17a2b8",
+      //   icon: faGuitar,
+      // },
       {
         id: 3827,
         name: "Music & Instrument Learning",
@@ -713,13 +812,13 @@ const data = [
         color: "#6f42c1",
         icon: faBookOpenReader,
       },
-      {
-        id: 3857,
-        name: "Civic Duties & Rights",
-        url: "https://knowledgeum.in/blogs/fundamental-rights-and-duties",
-        color: "#17a2b8",
-        icon: faBookOpen,
-      },
+      // {
+      //   id: 3857,
+      //   name: "Civic Duties & Rights",
+      //   url: "https://knowledgeum.in/blogs/fundamental-rights-and-duties",
+      //   color: "#17a2b8",
+      //   icon: faBookOpen,
+      // },
       {
         id: 3855,
         name: "Fundamental rights and duties in the Indian constitution",
@@ -727,13 +826,13 @@ const data = [
         color: "#e83e8c",
         icon: faUserGraduate,
       },
-      {
-        id: 3853,
-        name: "Civic Duties & Rights",
-        url: "https://knowledgeum.in/blogs/fundamental-rights-and-duties",
-        color: "#343a40",
-        icon: faSchool,
-      },
+      // {
+      //   id: 3853,
+      //   name: "Civic Duties & Rights",
+      //   url: "https://knowledgeum.in/blogs/fundamental-rights-and-duties",
+      //   color: "#343a40",
+      //   icon: faSchool,
+      // },
       {
         id: 3842,
         name: "Climate change and sustainability education",
@@ -763,7 +862,7 @@ const data = [
         icon: faPersonChalkboard,
       },
     ],
-  }
+  },
 ];
 
 function SecondaryPage() {

@@ -76,13 +76,13 @@ const data = [
         url: "https://www.architectandinteriorsindia.com",
         color: "#6f42c1",
       },
-      {
-        id: 286,
-        name: "Adorn",
-        icon: FaNewspaper,
-        url: "https://www.adornmag.in",
-        color: "#17a2b8",
-      },
+      // {
+      //   id: 286,
+      //   name: "Adorn",
+      //   icon: FaNewspaper,
+      //   url: "https://www.adornmag.in",
+      //   color: "#17a2b8",
+      // },
       {
         id: 285,
         name: "Marie Claire India",
@@ -97,13 +97,13 @@ const data = [
         url: "https://www.grazia.co.in",
         color: "#343a40",
       },
-      {
-        id: 283,
-        icon: FaNewspaper,
-        name: "Harper's Bazaar India",
-        url: "https://www.harpersbazaar.com/india",
-        color: "#20c997",
-      },
+      // {
+      //   id: 283,
+      //   icon: FaNewspaper,
+      //   name: "Harper's Bazaar India",
+      //   url: "https://www.harpersbazaar.com/india",
+      //   color: "#20c997",
+      // },
       {
         id: 282,
         icon: FaNewspaper,
@@ -188,13 +188,13 @@ const data = [
         url: "https://www.magazinesubscriptions.in/Human-Capital.html",
         color: "#dc3545",
       },
-      {
-        id: 270,
-        name: "Indian Management",
-        icon: FaNewspaper,
-        url: "https://www.allindia.com",
-        color: "#28a745",
-      },
+      // {
+      //   id: 270,
+      //   name: "Indian Management",
+      //   icon: FaNewspaper,
+      //   url: "https://www.allindia.com",
+      //   color: "#28a745",
+      // },
       {
         id: 269,
         name: "Pitch",
@@ -265,13 +265,8 @@ const data = [
         url: "https://www.entrepreneur.com",
         color: "#28a745",
       },
-      {
-        id: 259,
-        name: "Startup City",
-        icon: FaNewspaper,
-        url: "https://www.startupcity.com/",
-        color: "#ffc107",
-      },
+     
+      
       {
         id: 258,
         name: "Siliconindia",
@@ -440,13 +435,13 @@ const data = [
         url: "https://travelandleisureindia.in",
         color: "#e83e8c",
       },
-      {
-        id: 234,
-        icon: FaNewspaper,
-        name: "Overseas Indian",
-        url: "https://overseasindian.in",
-        color: "#343a40",
-      },
+      // {
+      //   id: 234,
+      //   icon: FaNewspaper,
+      //   name: "Overseas Indian",
+      //   url: "https://overseasindian.in",
+      //   color: "#343a40",
+      // },
       {
         id: 233,
         icon: FaNewspaper,
@@ -643,13 +638,13 @@ const data = [
         url: "https://www.readersdigest.in",
         color: "#20c997",
       },
-      {
-        id: 202,
-        icon: FaNewspaper,
-        name: "India Today Woman",
-        url: "https://www.indiatoday.in/woman",
-        color: "#007bff",
-      },
+      // {
+      //   id: 202,
+      //   icon: FaNewspaper,
+      //   name: "India Today Woman",
+      //   url: "https://www.indiatoday.in/woman",
+      //   color: "#007bff",
+      // },
       {
         id: 201,
         icon: FaNewspaper,
@@ -883,13 +878,13 @@ const data = [
         icon: FaNewspaper,
         color: "#fd7e14",
       },
-      {
-        id: 151,
-        name: "Arunachal Front",
-        url: "https://arunachalfront.info",
-        icon: FaNewspaper,
-        color: "#6f42c1",
-      },
+      // {
+      //   id: 151,
+      //   name: "Arunachal Front",
+      //   url: "https://arunachalfront.info",
+      //   icon: FaNewspaper,
+      //   color: "#6f42c1",
+      // },
       {
         id: 150,
         name: "Sikkim Express",
@@ -911,13 +906,13 @@ const data = [
         icon: FaNewspaper,
         color: "#343a40",
       },
-      {
-        id: 147,
-        name: "Meghalaya Times",
-        url: "https://www.meghalayatimes.info",
-        icon: FaNewspaper,
-        color: "#20c997",
-      },
+      // {
+      //   id: 147,
+      //   name: "Meghalaya Times",
+      //   url: "https://www.meghalayatimes.info",
+      //   icon: FaNewspaper,
+      //   color: "#20c997",
+      // },
       {
         id: 146,
         name: "Himalayan Mirror",
@@ -953,13 +948,13 @@ const data = [
         icon: FaNewspaper,
         color: "#fd7e14",
       },
-      {
-        id: 141,
-        name: "Dainik Assam",
-        url: "https://www.dainikassam.com",
-        icon: FaNewspaper,
-        color: "#6f42c1",
-      },
+      // {
+      //   id: 141,
+      //   name: "Dainik Assam",
+      //   url: "https://www.dainikassam.com",
+      //   icon: FaNewspaper,
+      //   color: "#6f42c1",
+      // },
       {
         id: 140,
         name: "Asomiya Pratidin",

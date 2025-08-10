@@ -105,13 +105,13 @@ const data = [
         icon: faBookReader,
         color: "#007bff",
       },
-      {
-        id: 3,
-        name: "Karnataka Textbooks",
-        url: "https://ktbs.kar.nic.in/New/index.html#!/textbook",
-        icon: faBookOpen,
-        color: "#dc3545",
-      },
+      // {
+      //   id: 3,
+      //   name: "Karnataka Textbooks",
+      //   url: "https://ktbs.kar.nic.in/New/index.html#!/textbook",
+      //   icon: faBookOpen,
+      //   color: "#dc3545",
+      // },
       {
         id: 2,
         name: "ePathshala",
@@ -131,13 +131,13 @@ const data = [
   {
     title: "Study Materials & Notes",
     items: [
-      {
-        id: 16,
-        name: "Toppr",
-        url: "https://www.toppr.com",
-        icon: faLaptopMedical,
-        color: "#007bff",
-      },
+      // {
+      //   id: 16,
+      //   name: "Toppr",
+      //   url: "https://www.toppr.com",
+      //   icon: faLaptopMedical,
+      //   color: "#007bff",
+      // },
       {
         id: 15,
         name: "ExamFear",

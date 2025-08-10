@@ -337,13 +337,13 @@ const skillData = [
         icon: faRocket,
         color: "#17a2b8",
       },
-      {
-        id: 388,
-        name: "Introduction to Aerodynamics",
-        url: "https://www.shiksha.com/online-courses/aeroelastic-or-aerodynamics-in-loads-analysis-with-matlab-nastrans-cplusplus-fortran-with-cgi-certification-132",
-        icon: faWind,
-        color: "#e83e8c",
-      },
+      // {
+      //   id: 388,
+      //   name: "Introduction to Aerodynamics",
+      //   url: "https://www.shiksha.com/online-courses/aeroelastic-or-aerodynamics-in-loads-analysis-with-matlab-nastrans-cplusplus-fortran-with-cgi-certification-132",
+      //   icon: faWind,
+      //   color: "#e83e8c",
+      // },
       {
         id: 387,
         name: "Aviation Management",

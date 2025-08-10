@@ -278,13 +278,13 @@ const data = [
         color: "#dc3545",
         icon: faLaptopFile,
       },
-      {
-        id: 3683,
-        name: "Basic Coding (Block-based, Scratch)",
-        url: "https://tinker.ly/scratch-programming-what-are-code-blocks/",
-        color: "#28a745",
-        icon: faSchool,
-      },
+      // {
+      //   id: 3683,
+      //   name: "Basic Coding (Block-based, Scratch)",
+      //   url: "https://tinker.ly/scratch-programming-what-are-code-blocks/",
+      //   color: "#28a745",
+      //   icon: faSchool,
+      // },
       {
         id: 3682,
         name: "Basic Coding (Block-based, Scratch)",
@@ -299,13 +299,13 @@ const data = [
         color: "#fd7e14",
         icon: faBuildingColumns,
       },
-      {
-        id: 3678,
-        name: "Introduction to Computers & Internet Safety",
-        url: "https://islingtonchildcare.proceduresonline.com/chapters/p_computer_safety.html",
-        color: "#6f42c1",
-        icon: faGlobe,
-      },
+      // {
+      //   id: 3678,
+      //   name: "Introduction to Computers & Internet Safety",
+      //   url: "https://islingtonchildcare.proceduresonline.com/chapters/p_computer_safety.html",
+      //   color: "#6f42c1",
+      //   icon: faGlobe,
+      // },
       {
         id: 3677,
         name: "Introduction to Computers & Internet Safety",
@@ -313,13 +313,13 @@ const data = [
         color: "#17a2b8",
         icon: faComputer,
       },
-      {
-        id: 3676,
-        name: "Introduction to Computers & Internet Safety",
-        url: "https://peda.net/kenya/ass/subjects2/computer-studies/form-1/itc2",
-        color: "#e83e8c",
-        icon: faComputer,
-      },
+      // {
+      //   id: 3676,
+      //   name: "Introduction to Computers & Internet Safety",
+      //   url: "https://peda.net/kenya/ass/subjects2/computer-studies/form-1/itc2",
+      //   color: "#e83e8c",
+      //   icon: faComputer,
+      // },
       {
         id: 3672,
         name: "Introduction to Computers & Internet Safety",
@@ -332,13 +332,13 @@ const data = [
   {
     title: "Creativity & Performing Arts",
     resources: [
-      {
-        id: 3745,
-        name: "Free, fun drama games",
-        url: "https://www.britishcouncil.in/blog/free-fun-drama-games-help-your-child-learn-english",
-        color: "#007bff",
-        icon: faMasksTheater,
-      },
+      // {
+      //   id: 3745,
+      //   name: "Free, fun drama games",
+      //   url: "https://www.britishcouncil.in/blog/free-fun-drama-games-help-your-child-learn-english",
+      //   color: "#007bff",
+      //   icon: faMasksTheater,
+      // },
       {
         id: 3744,
         name: "Drama Activities",
