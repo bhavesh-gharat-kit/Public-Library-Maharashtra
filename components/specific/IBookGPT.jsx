@@ -14,6 +14,7 @@ import {
   FaPenNib,
   FaVideo,
   FaPaperPlane,
+  FaApper,
 } from "react-icons/fa";
 
 export function FeedbackButtons({ handleCopy }) {
@@ -174,6 +175,21 @@ export function StudyTools({ setSelectedTool }) {
       icon: <FaStickyNote />,
       label: "Important Notes for Exams",
       name: "notes",
+    },
+    {
+      icon: <FaApper />,
+      label: "Question Paper",
+      name: "questionPaper",
+    },
+    {
+      icon: <FaApper />,
+      label: "Create Question & Answers",
+      name: "questionAnswer",
+    },
+    {
+      icon: <FaApper />,
+      label: "Create MCQ",
+      name: "createMCQ",
     },
   ];
   return (
