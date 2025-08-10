@@ -152,7 +152,7 @@ export default function Header() {
                   <Link href="/admin" className="block w-full">
                     <span
                       className={`flex flex-row mr-auto items-center gap-2 font-semibold text-sm ${
-                        isActive ? "underline" : ""
+                        pathname.startsWith("/admin") ? "underline" : ""
                       } hover:underline transition text-green-700 whitespace-nowrap`}
                     >
                       <FaUserShield />
