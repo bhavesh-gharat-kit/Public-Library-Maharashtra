@@ -13,43 +13,8 @@ import {
 
 const data = [
   {
-    title: "Online Courses (STEM)",
+    title: "Science Documentaries",
     resources: [
-      {
-        id: 37,
-        name: "Scientific American",
-        url: "https://www.scientificamerican.com",
-        color: "#007bff",
-        icon: FaNewspaper,
-      },
-      {
-        id: 38,
-        name: "edX STEM Courses",
-        url: "https://www.edx.org/learn/stem",
-        color: "#007bff",
-        icon: FaLaptop,
-      },
-      {
-        id: 39,
-        name: "MIT Technology Review",
-        url: "https://www.technologyreview.com",
-        color: "#007bff",
-        icon: FaLightbulb,
-      },
-      {
-        id: 36,
-        name: "Google Scholar",
-        url: "https://scholar.google.com",
-        color: "#007bff",
-        icon: FaBook,
-      },
-      {
-        id: 35,
-        name: "TechCrunch",
-        url: "https://techcrunch.com",
-        color: "#007bff",
-        icon: FaMicrophone,
-      },
       {
         id: 34,
         name: "National Geographic Science",
@@ -58,6 +23,54 @@ const data = [
         icon: FaGlobe,
       },
     ],
+  },
+  {
+    title: "Technology News",
+    resources: [
+      {
+        id: 35,
+        name: "TechCrunch",
+        url: "https://techcrunch.com",
+        color: "#007bff",
+        icon: FaMicrophone,
+      },
+    ],
+  },
+  {
+    title: "Innovation & Discoveries",
+    resources: [
+      {
+        id: 39,
+        name: "MIT Technology Review",
+        url: "https://www.technologyreview.com",
+        color: "#007bff",
+        icon: FaLightbulb,
+      },
+    ],
+  },
+  {
+    title: "Online Courses (STEM)",
+    resources: [
+      {
+        id: 38,
+        name: "edX STEM Courses",
+        url: "https://www.edx.org/learn/stem",
+        color: "#007bff",
+        icon: FaLaptop,
+      },
+    ],
+  },
+  {
+    title: "Research Papers & Journals",
+    resources: [
+      {
+        id: 36,
+        name: "Google Scholar",
+        url: "https://scholar.google.com",
+        color: "#007bff",
+        icon: FaBook,
+      },
+     ],
   },
 ];
 

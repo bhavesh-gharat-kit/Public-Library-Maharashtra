@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  faVideo,
-} from "@fortawesome/free-solid-svg-icons";
+import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
@@ -21,7 +19,9 @@ const youtubeModalResources = [
   {
     id: 584,
     title: "संवादातून शिक्षण",
-    youtubeId: "fVIKmEViHlI", 
+    youtubeId: "fVIKmEViHlI",
+    playlistId:
+      "https://www.youtube.com/playlist?list=PLlPVlklC5YixC1gMuUFrQe56zo54THPP8",
     thumbnail: "https://i.ytimg.com/vi/fVIKmEViHlI/hqdefault.jpg",
   },
   {
@@ -705,8 +705,10 @@ function JobAndInterest() {
             <div
               className="cursor-pointer overflow-hidden transition-all duration-300"
               // HANDLING THE YT POP-UP MODAL
-              onClick={() =>
-                handleYoutubeModal(resource.title, resource.youtubeId)
+              onClick={
+                resource.playlistId
+                  ? undefined
+                  : () => handleYoutubeModal(resource.title, resource.youtubeId)
               }
             >
               <img
@@ -718,13 +720,16 @@ function JobAndInterest() {
             <h5 className="text-lg font-medium mt-4">{resource.title}</h5>
             <div className="flex justify-center gap-3 mt-4">
               <a
-                href={resource.url}
+                href={resource.playlistId ? resource.playlistId : resource.url}
                 target="_blank"
                 rel="noreferrer"
                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 cursor-pointer"
                 // HANDLING THE YT POP-UP MODAL
-                onClick={() =>
-                  handleYoutubeModal(resource.title, resource.youtubeId)
+                onClick={
+                  resource.playlistId
+                    ? undefined
+                    : () =>
+                        handleYoutubeModal(resource.title, resource.youtubeId)
                 }
               >
                 View

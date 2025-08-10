@@ -36,6 +36,22 @@ export async function GET(request, context) {
       return acc;
     }, {});
 
+    // ✅ Special case: "current-affairs" → Ensure current month is included
+    if (testSlug === "current-affairs") {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const currentMonth = now.getMonth(); // already 0-indexed
+
+      if (!monthData[currentYear]) {
+        monthData[currentYear] = [];
+      }
+      if (!monthData[currentYear].includes(currentMonth)) {
+        monthData[currentYear].push(currentMonth);
+        // keep months sorted ascending
+        monthData[currentYear].sort((a, b) => a - b);
+      }
+    }
+
     return NextResponse.json({
       testData: { examCategory, monthsData: monthData },
     });
@@ -196,7 +212,6 @@ export async function POST(request, context) {
         );
       }
     }
-    
 
     return NextResponse.json({
       testSlug,

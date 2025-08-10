@@ -13,6 +13,44 @@ import {
 
 const data = [
   {
+    title: "Modern Fiction",
+    resources: [
+    
+      {
+        id: 41,
+        name: "Goodreads",
+        url: "https://www.goodreads.com",
+        icon: FaBookReader,
+        color: "#007bff",
+      },
+     
+    ],
+  },
+  {
+    title: "Non-Fiction",
+    resources: [
+
+      {
+        id: 42,
+        name: "Open Library",
+        url: "https://openlibrary.org",
+        icon: FaUniversity,
+        color: "#007bff",
+      },
+    ],
+  },
+  {
+    title: "Online Libraries & E-books",
+    resources: [
+      {
+        id: 45,
+        name: "Google Books",
+        url: "https://books.google.com",
+        icon: FaBook, // originally a string, now mapped
+      }
+    ],
+  },
+  {
     title: "Classic Literature",
     resources: [
       {
@@ -22,27 +60,11 @@ const data = [
         icon: FaBookOpen,
         color: "#007bff",
       },
-      {
-        id: 45,
-        name: "Google Books",
-        url: "https://books.google.com",
-        icon: FaBook, // originally a string, now mapped
-        color: "#007bff",
-      },
-      {
-        id: 44,
-        name: "Book Riot",
-        url: "https://bookriot.com",
-        icon: FaStar,
-        color: "#007bff",
-      },
-      {
-        id: 41,
-        name: "Goodreads",
-        url: "https://www.goodreads.com",
-        icon: FaBookReader,
-        color: "#007bff",
-      },
+    ],
+  },
+  {
+    title: "Poetry",
+    resources: [
       {
         id: 43,
         name: "Poetry Foundation",
@@ -50,11 +72,16 @@ const data = [
         icon: FaFeatherAlt,
         color: "#007bff",
       },
+    ],
+  },
+  {
+    title: "Book Reviews & Recommendations",
+    resources: [
       {
-        id: 42,
-        name: "Open Library",
-        url: "https://openlibrary.org",
-        icon: FaUniversity,
+        id: 44,
+        name: "Book Riot",
+        url: "https://bookriot.com",
+        icon: FaStar,
         color: "#007bff",
       },
     ],

@@ -18,6 +18,84 @@ import {
 
 const data = [
   {
+    title: "Online Classes & Tutorials",
+    items: [
+      {
+        id: 13,
+        name: "Unacademy",
+        url: "https://unacademy.com",
+        icon: faBookReader,
+        color: "#007bff",
+      },
+      {
+        id: 12,
+        name: "edX",
+        url: "https://www.edx.org",
+        icon: faChalkboard,
+        color: "#dc3545",
+      },
+      {
+        id: 11,
+        name: "Coursera",
+        url: "https://www.coursera.org",
+        icon: faLaptop,
+        color: "#28a745",
+      },
+    ],
+  },
+  {
+    title: "Higher Education",
+    items: [
+      {
+        id: 7,
+        name: "Swayam",
+        url: "https://swayam.gov.in",
+        icon: faChalkboardTeacher,
+        color: "#007bff",
+      },
+      {
+        id: 6,
+        name: "MIT OpenCourseWare",
+        url: "https://ocw.mit.edu",
+        icon: faUniversity,
+        color: "#dc3545",
+      },
+      {
+        id: 5,
+        name: "NPTEL",
+        url: "https://nptel.ac.in",
+        icon: faVideo,
+        color: "#28a745",
+      },
+    ],
+  },
+  {
+    title: "Educational Videos",
+    items: [
+      {
+        id: 10,
+        name: "Byju's",
+        url: "https://www.byjus.com",
+        icon: faLaptopCode,
+        color: "#007bff",
+      },
+      {
+        id: 9,
+        name: "TED-Ed",
+        url: "https://ed.ted.com",
+        icon: faLightbulb,
+        color: "#dc3545",
+      },
+      {
+        id: 8,
+        name: "Khan Academy",
+        url: "https://www.khanacademy.org",
+        icon: faGraduationCap,
+        color: "#28a745",
+      },
+    ],
+  },
+  {
     title: "School Curriculum",
     items: [
       {
@@ -51,58 +129,6 @@ const data = [
     ],
   },
   {
-    title: "Higher Education",
-    items: [
-      {
-        id: 7,
-        name: "Swayam",
-        url: "https://swayam.gov.in",
-        icon: faChalkboardTeacher,
-        color: "#007bff",
-      },
-      {
-        id: 6,
-        name: "MIT OpenCourseWare",
-        url: "https://ocw.mit.edu",
-        icon: faUniversity,
-        color: "#dc3545",
-      },
-      {
-        id: 5,
-        name: "NPTEL",
-        url: "https://nptel.ac.in",
-        icon: faVideo,
-        color: "#28a745",
-      },
-    ],
-  },
-  {
-    title: "Online Classes & Tutorials",
-    items: [
-      {
-        id: 13,
-        name: "Unacademy",
-        url: "https://unacademy.com",
-        icon: faBookReader,
-        color: "#007bff",
-      },
-      {
-        id: 12,
-        name: "edX",
-        url: "https://www.edx.org",
-        icon: faChalkboard,
-        color: "#dc3545",
-      },
-      {
-        id: 11,
-        name: "Coursera",
-        url: "https://www.coursera.org",
-        icon: faLaptop,
-        color: "#28a745",
-      },
-    ],
-  },
-  {
     title: "Study Materials & Notes",
     items: [
       {
@@ -124,32 +150,6 @@ const data = [
         name: "Study Tonight",
         url: "https://www.studytonight.com",
         icon: faBook,
-        color: "#28a745",
-      },
-    ],
-  },
-  {
-    title: "Educational Videos",
-    items: [
-      {
-        id: 10,
-        name: "Byju's",
-        url: "https://www.byjus.com",
-        icon: faLaptopCode,
-        color: "#007bff",
-      },
-      {
-        id: 9,
-        name: "TED-Ed",
-        url: "https://ed.ted.com",
-        icon: faLightbulb,
-        color: "#dc3545",
-      },
-      {
-        id: 8,
-        name: "Khan Academy",
-        url: "https://www.khanacademy.org",
-        icon: faGraduationCap,
         color: "#28a745",
       },
     ],

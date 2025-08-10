@@ -2,6 +2,7 @@
 
 import {
   faCamera,
+  faPaintBrush,
   faSeedling,
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
@@ -10,13 +11,25 @@ import { ResourceCardFortAwesome } from "@/components";
 
 const data = [
   {
-    title: "Gardening",
+    title: "Art & Craft",
     items: [
       {
-        id: 27,
-        title: "Gardener's World",
-        url: "https://www.gardenersworld.com",
-        icon: faSeedling,
+        id: 26,
+        title: "Pinterest Art & Craft",
+        url: "https://alison.com/tag/arts-and-crafts",
+        icon: faPaintBrush,
+        color: "#007bff",
+      },
+    ],
+  },
+  {
+    title: "Cooking",
+    items: [
+      {
+        id: 26,
+        title: "AllRecipes",
+        url: "https://www.allrecipes.com",
+        icon: faUtensils,
         color: "#007bff",
       },
     ],
@@ -34,13 +47,13 @@ const data = [
     ],
   },
   {
-    title: "Cooking",
+    title: "Gardening",
     items: [
       {
-        id: 26,
-        title: "AllRecipes",
-        url: "https://www.allrecipes.com",
-        icon: faUtensils,
+        id: 27,
+        title: "Gardener's World",
+        url: "https://www.gardenersworld.com",
+        icon: faSeedling,
         color: "#007bff",
       },
     ],

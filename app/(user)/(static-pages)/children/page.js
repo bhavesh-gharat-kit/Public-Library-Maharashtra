@@ -12,18 +12,6 @@ import { ResourceCard } from "@/components";
 
 const data = [
   {
-    title: "Learning Videos (Alphabet, Numbers, Colors)",
-    resources: [
-      {
-        id: 32,
-        name: "ABCmouse",
-        url: "https://www.abcmouse.com",
-        icon: FaVideo,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
     title: "Fun Science Experiments",
     resources: [
       {
@@ -31,18 +19,6 @@ const data = [
         name: "Science Bob",
         url: "https://sciencebob.com/category/experiments",
         icon: FaFlask,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
-    title: "Rhymes & Songs",
-    resources: [
-      {
-        id: 33,
-        name: "Nursery Rhymes",
-        url: "https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ",
-        icon: FaMusic,
         color: "#007bff",
       },
     ],
@@ -60,13 +36,13 @@ const data = [
     ],
   },
   {
-    title: "Cartoons & Animated Series",
+    title: "Learning Videos (Alphabet, Numbers, Colors)",
     resources: [
       {
-        id: 28,
-        name: "Cartoon Network",
-        url: "https://www.cartoonnetwork.com",
-        icon: FaTv,
+        id: 32,
+        name: "ABCmouse",
+        url: "https://www.abcmouse.com",
+        icon: FaVideo,
         color: "#007bff",
       },
     ],
@@ -83,6 +59,32 @@ const data = [
       },
     ],
   },
+  {
+    title: "Rhymes & Songs",
+    resources: [
+      {
+        id: 33,
+        name: "Nursery Rhymes",
+        url: "https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ",
+        icon: FaMusic,
+        color: "#007bff",
+      },
+    ],
+  },
+
+  {
+    title: "Cartoons & Animated Series",
+    resources: [
+      {
+        id: 28,
+        name: "Cartoon Network",
+        url: "https://www.cartoonnetwork.com",
+        icon: FaTv,
+        color: "#007bff",
+      },
+    ],
+  },
+
 ];
 
 const ChildrenSectionPage = () => {

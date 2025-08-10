@@ -1,8 +1,17 @@
 "use client";
 import React from "react";
 import { ResourceCard } from "@/components";
-import { FaBook, FaBookOpen, FaBookReader, FaChalkboardTeacher, FaFileAlt, FaGlobe, FaGraduationCap, FaTools, FaUserTie } from "react-icons/fa";
-
+import {
+  FaBook,
+  FaBookOpen,
+  FaBookReader,
+  FaChalkboardTeacher,
+  FaFileAlt,
+  FaGlobe,
+  FaGraduationCap,
+  FaTools,
+  FaUserTie,
+} from "react-icons/fa";
 
 const data = [
   {
@@ -53,7 +62,7 @@ const data = [
     ],
   },
   {
-    section: "Marathi Books",
+    title: "Marathi Books",
     resources: [
       {
         id: 582,
@@ -78,6 +87,7 @@ const data = [
       },
     ],
   },
+
 ];
 
 const AdditionalResourcesPage = () => {
@@ -94,10 +104,7 @@ const AdditionalResourcesPage = () => {
             <h2 className="text-2xl font-semibold mb-4">{section.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {section.resources.map((item, index) => (
-                <ResourceCard
-                  item={item}
-                  key={index}
-                />
+                <ResourceCard item={item} key={index} />
               ))}
             </div>
           </div>

@@ -6,11 +6,11 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-// could you please rewrite the below prompt to generate latest current affairs questions?
+
 // export async function GET() {
 //   try {
 //     const prompt = `
-// Generate 100 multiple choice questions on current affairs.
+// Generate 100 multiple-choice questions on current affairs from the last 6 months up to today’s date.
 // Return ONLY valid JSON array with the following structure:
 // [
 //   {
@@ -21,9 +21,11 @@ const openai = new OpenAI({
 //   }
 // ]
 // Rules:
-// - Do NOT include any extra commentary or formatting.
-// - All questions must be factually correct and from current events (last 6 months).
-// - Keep questions concise.
+// Output only the JSON array, with no extra commentary, markdown, or formatting.
+// All questions must be factually correct, based on reliable current events sources.
+// The “question” should be concise and clearly related to recent events (last 6 months).
+// The “answer” must exactly match one of the “options”.
+// “explanation” must be a short factual statement (max 50 words).
 // `;
 
 //     const chatResponse = await openai.chat.completions.create({

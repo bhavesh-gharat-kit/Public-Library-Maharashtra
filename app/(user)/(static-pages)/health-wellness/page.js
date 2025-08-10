@@ -5,18 +5,6 @@ import { FaAppleAlt, FaDumbbell, FaHeart, FaSpa } from "react-icons/fa";
 
 const data = [
   {
-    title: "Yoga & Meditation",
-    items: [
-      {
-        id: 58,
-        name: "Yoga Journal",
-        url: "https://www.yogajournal.com",
-        icon: FaSpa,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
     title: "Mental Health Resources",
     items: [
       {
@@ -24,18 +12,6 @@ const data = [
         name: "Mental Health Foundation",
         url: "https://www.mentalhealth.org.uk",
         icon: FaHeart,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
-    title: "Fitness Programs",
-    items: [
-      {
-        id: 61,
-        name: "Fitness Blender",
-        url: "https://www.fitnessblender.com",
-        icon: FaDumbbell,
         color: "#007bff",
       },
     ],
@@ -52,6 +28,32 @@ const data = [
       },
     ],
   },
+  {
+    title: "Yoga & Meditation",
+    items: [
+      {
+        id: 58,
+        name: "Yoga Journal",
+        url: "https://www.yogajournal.com",
+        icon: FaSpa,
+        color: "#007bff",
+      },
+    ],
+  },
+
+  {
+    title: "Fitness Programs",
+    items: [
+      {
+        id: 61,
+        name: "Fitness Blender",
+        url: "https://www.fitnessblender.com",
+        icon: FaDumbbell,
+        color: "#007bff",
+      },
+    ],
+  },
+
 ];
 
 const HealthWellnessPage = () => {

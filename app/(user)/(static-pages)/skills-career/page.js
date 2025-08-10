@@ -827,18 +827,6 @@ const skillData = [
     ],
   },
   {
-    title: "IT & Software",
-    items: [
-      {
-        id: 21,
-        name: "Codecademy",
-        url: "https://www.codecademy.com",
-        icon: faCode,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
     title: "Language Learning",
     items: [
       {
@@ -850,6 +838,19 @@ const skillData = [
       },
     ],
   },
+  {
+    title: "IT & Software",
+    items: [
+      {
+        id: 21,
+        name: "Codecademy",
+        url: "https://www.codecademy.com",
+        icon: faCode,
+        color: "#007bff",
+      },
+    ],
+  },
+
 ];
 
 const SkillsLearningPage = () => {

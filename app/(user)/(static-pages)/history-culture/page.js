@@ -8,6 +8,55 @@ import { ResourceCard } from "@/components";
 function HistoryAndCulture() {
   const data = [
     {
+      title: "Cultural Documentaries",
+      items: [
+        {
+          id: 48,
+          name: "Smithsonian Channel",
+          url: "https://www.smithsonianchannel.com",
+          icon: FaFilm,
+          color: "#007bff",
+        },
+      ],
+    },
+    {
+      title: "Indian History",
+      items: [
+        {
+          id: 46,
+          name: "History India",
+          url: "https://thebetterindia.com/topics/culture/history/",
+          icon: FaLandmark,
+          color: "#007bff",
+        },
+      ],
+    },
+
+    {
+      title: "Historical Sites & Museums (Virtual Tours)",
+      items: [
+        {
+          id: 50,
+          name: "Google Arts & Culture",
+          url: "https://artsandculture.google.com/",
+          icon: FaUser,
+          color: "#007bff",
+        },
+      ],
+    },
+    {
+      title: "Biographies",
+      items: [
+        {
+          id: 50,
+          name: "Biography",
+          url: "https://celadonbooks.com/what-is-a-biography/",
+          icon: FaUser,
+          color: "#007bff",
+        },
+      ],
+    },
+    {
       title: "Mythology & Folklore",
       items: [
         {
@@ -27,42 +76,6 @@ function HistoryAndCulture() {
           name: "BBC History",
           url: "https://www.bbc.co.uk/history",
           icon: FaGlobe,
-          color: "#007bff",
-        },
-      ],
-    },
-    {
-      title: "Indian History",
-      items: [
-        {
-          id: 46,
-          name: "History India",
-          url: "https://thebetterindia.com/topics/culture/history/",
-          icon: FaLandmark,
-          color: "#007bff",
-        },
-      ],
-    },
-    {
-      title: "Cultural Documentaries",
-      items: [
-        {
-          id: 48,
-          name: "Smithsonian Channel",
-          url: "https://www.smithsonianchannel.com",
-          icon: FaFilm,
-          color: "#007bff",
-        },
-      ],
-    },
-    {
-      title: "Biographies",
-      items: [
-        {
-          id: 50,
-          name: "Biography",
-          url: "https://celadonbooks.com/what-is-a-biography/",
-          icon: FaUser,
           color: "#007bff",
         },
       ],

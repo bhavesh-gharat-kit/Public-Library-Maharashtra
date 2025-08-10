@@ -11,18 +11,6 @@ import { ResourceCardFortAwesome } from "@/components";
 
 const examData = [
   {
-    title: "Management",
-    items: [
-      {
-        id: 19,
-        name: "CAT",
-        url: "https://iimcat.ac.in",
-        icon: faBriefcase,
-        color: "#007bff",
-      },
-    ],
-  },
-  {
     title: "Engineering",
     items: [
       {
@@ -35,13 +23,13 @@ const examData = [
     ],
   },
   {
-    title: "Medical",
+    title: "Management",
     items: [
       {
-        id: 18,
-        name: "NEET",
-        url: "https://www.shiksha.com/medicine-health-sciences/neet-exam",
-        icon: faHeartbeat,
+        id: 19,
+        name: "CAT",
+        url: "https://iimcat.ac.in",
+        icon: faBriefcase,
         color: "#007bff",
       },
     ],
@@ -54,6 +42,18 @@ const examData = [
         name: "UPSC",
         url: "https://upsc.gov.in",
         icon: faGlobe,
+        color: "#007bff",
+      },
+    ],
+  },
+  {
+    title: "Medical",
+    items: [
+      {
+        id: 18,
+        name: "NEET",
+        url: "https://www.shiksha.com/medicine-health-sciences/neet-exam",
+        icon: faHeartbeat,
         color: "#007bff",
       },
     ],
