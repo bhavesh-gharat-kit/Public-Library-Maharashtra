@@ -13,18 +13,11 @@ import Link from "next/link";
 
 const tests = [
   {
-    title: "CA CS CMA",
-    desc: "Professional exams for commerce students.",
-    logo: "/assets/img/mocktest-logos/cacscma.jpeg",
-    link: "/mock-tests/cacscma",
-    aos: "fade-up",
-  },
-  {
-    title: "CBSE",
-    desc: "Mock tests from class 6th to 12th.",
-    logo: "/assets/img/mocktest-logos/cbse.png",
-    link: "/mock-tests/cbse",
-    aos: "flip-up",
+    title: "IIT JEE",
+    desc: "Engineering entrance exam preparation.",
+    logo: "/assets/img/mocktest-logos/jee.jpeg",
+    link: "/mock-tests/iitjee",
+    aos: "flip-left",
   },
   {
     title: "Competitive Exams",
@@ -34,32 +27,11 @@ const tests = [
     aos: "zoom-out",
   },
   {
-    title: "CTET",
-    desc: "Central Teacher Eligibility Test preparation.",
-    logo: "/assets/img/mocktest-logos/ctet.png",
-    link: "/mock-tests/ctet",
-    aos: "zoom-in",
-  },
-  {
-    title: "CUET",
-    desc: "UG entrance test practice series.",
-    logo: "/assets/img/mocktest-logos/cuet.jpeg",
-    link: "/mock-tests/cuet",
-    aos: "slide-left",
-  },
-  {
-    title: "English Grammar",
-    desc: "Grammar practice for competitive exams.",
-    logo: "/assets/img/mocktest-logos/english.png",
-    link: "/mock-tests/english-grammar",
-    aos: "fade-right",
-  },
-  {
-    title: "IIT JEE",
-    desc: "Engineering entrance exam preparation.",
-    logo: "/assets/img/mocktest-logos/jee.jpeg",
-    link: "/mock-tests/iitjee",
-    aos: "flip-left",
+    title: "UPSC",
+    desc: "Union Public Service Commission exams.",
+    logo: "/assets/img/mocktest-logos/upsc.jpeg",
+    link: "/mock-tests/upsc",
+    aos: "slide-right",
   },
   {
     title: "MPSC",
@@ -75,29 +47,56 @@ const tests = [
     link: "/mock-tests/neet",
     aos: "flip-right",
   },
-  {
-    title: "NTSE",
-    desc: "National Talent Search Examination practice.",
-    logo: "/assets/img/mocktest-logos/ntse.jpeg",
-    link: "/mock-tests/ntse",
-    aos: "fade-left",
-  },
-  {
-    title: "Olympiad",
-    desc: "Practice for SOF and other olympiads.",
-    logo: "/assets/img/mocktest-logos/olympiad.png",
-    link: "/mock-tests/olympiad",
-    aos: "fade-down",
-  },
-  {
-    title: "UPSC",
-    desc: "Union Public Service Commission exams.",
-    logo: "/assets/img/mocktest-logos/upsc.jpeg",
-    link: "/mock-tests/upsc",
-    aos: "slide-right",
-  },
+  // {
+  //   title: "CA CS CMA",
+  //   desc: "Professional exams for commerce students.",
+  //   logo: "/assets/img/mocktest-logos/cacscma.jpeg",
+  //   link: "/mock-tests/cacscma",
+  //   aos: "fade-up",
+  // },
+  // {
+  //   title: "CTET",
+  //   desc: "Central Teacher Eligibility Test preparation.",
+  //   logo: "/assets/img/mocktest-logos/ctet.png",
+  //   link: "/mock-tests/ctet",
+  //   aos: "zoom-in",
+  // },
+  // {
+  //   title: "CUET",
+  //   desc: "UG entrance test practice series.",
+  //   logo: "/assets/img/mocktest-logos/cuet.jpeg",
+  //   link: "/mock-tests/cuet",
+  //   aos: "slide-left",
+  // },
+  // {
+  //   title: "English Grammar",
+  //   desc: "Grammar practice for competitive exams.",
+  //   logo: "/assets/img/mocktest-logos/english.png",
+  //   link: "/mock-tests/english-grammar",
+  //   aos: "fade-right",
+  // },
+  // {
+  //   title: "CBSE",
+  //   desc: "Mock tests from class 6th to 12th.",
+  //   logo: "/assets/img/mocktest-logos/cbse.png",
+  //   link: "/mock-tests/cbse",
+  //   aos: "flip-up",
+  // },
+  // {
+  //   title: "NTSE",
+  //   desc: "National Talent Search Examination practice.",
+  //   logo: "/assets/img/mocktest-logos/ntse.jpeg",
+  //   link: "/mock-tests/ntse",
+  //   aos: "fade-left",
+  // },
+  // {
+  //   title: "Olympiad",
+  //   desc: "Practice for SOF and other olympiads.",
+  //   logo: "/assets/img/mocktest-logos/olympiad.png",
+  //   link: "/mock-tests/olympiad",
+  //   aos: "fade-down",
+  // },
 ];
-
 
 function FlipCard({ test, delay }) {
   const [flipped, setFlipped] = useState(false);
@@ -115,9 +114,7 @@ function FlipCard({ test, delay }) {
         }`}
       >
         {/* Front Side */}
-        <div 
-        className="absolute w-full h-full bg-white rounded-xl shadow-lg hover:shadow-purple-300 transition-shadow duration-500 flex flex-col justify-center items-center p-4 gap-4 backface-hidden border border-gray-200"
-        >
+        <div className="absolute w-full h-full bg-white rounded-xl shadow-lg hover:shadow-purple-300 transition-shadow duration-500 flex flex-col justify-center items-center p-4 gap-4 backface-hidden border border-gray-200">
           <img
             src={test.logo}
             alt={test.title}

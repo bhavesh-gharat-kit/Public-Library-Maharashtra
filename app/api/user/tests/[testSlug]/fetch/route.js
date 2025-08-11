@@ -33,15 +33,20 @@ export async function GET(request, context) {
       999
     );
 
-    const monthYears = await prisma.$queryRaw`
-    SELECT DISTINCT 
-      YEAR(createdAt) AS year,
-      MONTH(createdAt) - 1 AS month  -- 0-indexed for JS
-    FROM mock_tests
-    WHERE examCategoryId = ${examCategory.id}
-    AND createdAt < ${todayEnd}
-    ORDER BY year DESC, month ASC;
-  `;
+    const monthYears = (
+      await prisma.$queryRaw`
+      SELECT DISTINCT 
+        YEAR(createdAt) AS year,
+        MONTH(createdAt) - 1 AS month
+      FROM mock_tests
+      WHERE examCategoryId = ${examCategory.id}
+      AND createdAt < ${todayEnd}
+      ORDER BY year DESC, month ASC;
+    `
+    ).map((row) => ({
+      year: Number(row.year),
+      month: Number(row.month),
+    }));
 
     const monthData = monthYears.reduce((acc, { year, month }) => {
       if (!acc[year]) acc[year] = [];
@@ -59,7 +64,7 @@ export async function GET(request, context) {
       }
       if (!monthData[currentYear].includes(currentMonth)) {
         monthData[currentYear].push(currentMonth);
-        
+
         // keep months sorted ascending
         monthData[currentYear].sort((a, b) => a - b);
       }
