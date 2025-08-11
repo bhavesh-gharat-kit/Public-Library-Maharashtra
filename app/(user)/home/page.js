@@ -208,23 +208,19 @@ export default function ResourcesPage() {
   return (
     <main className="py-10 bg-yellow-50">
       <div className="max-w-5xl mx-auto px-4">
-        {/* Main Heading in Marathi */}
-        <h1
-          className="text-center text-4xl font-bold text-red-600 mb-3"
-          style={{ fontFamily: "'Baloo 2', cursive" }}
-        >
-          लालबागचा राजा <span className="font-extrabold">AI</span> अंकिय
-          ग्रंथालय
-        </h1>
-
-        {/* English Heading */}
-        <h3
-          className="text-center text-xl text-red-600 font-extrabold tracking-wide"
-          style={{ fontFamily: "'Baloo 2', cursive" }}
-        >
-          LALBAUGCHA RAJA <span className="font-extrabold">AI</span> DIGITAL
-          LIBRARY
-        </h3>
+        <div className="flex items-center justify-center">
+          <img src="/logo.png" className="h-24 md:h-36" />
+          <div>
+            <h1 className="text-center text-2xl md:text-4xl font-bold text-red-600 mb-3">
+              लालबागचा राजा <span className="font-extrabold">AI</span> अंकिय
+              ग्रंथालय
+            </h1>
+            <h3 className="text-center text-base md:text-xl text-red-600 font-extrabold tracking-wide">
+              LALBAUGCHA RAJA <span className="font-extrabold">AI</span> DIGITAL
+              LIBRARY
+            </h3>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-5 md:py-10">
           {resources.map((resource, index) => (

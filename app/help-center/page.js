@@ -4,15 +4,19 @@ import React from "react";
 const helpVideos = [
   {
     title: "How to use digital library ?",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual video ID
+    youtubeId: "m6ocbrhSXkM", 
   },
   {
     title: "How to use test series ?",
-    youtubeId: "eY52Zsg-KVI", // Replace with actual video ID
-  },
+    youtubeId: "L9BxfaeKcqM",
+  }, 
   {
     title: "How library admin can add users and manage validity ?",
-    youtubeId: "z9Ug-3qhrwY", // Replace with actual video ID
+    youtubeId: "6esEUJ9hVy8",
+  },
+  {
+    title: "How to highlight content and take notes ?",
+    youtubeId: "BHEwSBVrpnQ",
   },
 ];
 
@@ -26,7 +30,7 @@ const HelpCenter = () => {
           {helpVideos.map((video, index) => (
             <div className="" key={index}>
               <h3 className="text-xl font-semibold mb-4">{video.title}</h3>
-              <div className="aspect-w-16 max-w-64  aspect-h-9">
+              <div className="aspect-w-24 max-w-96 h-48  aspect-h-18">
                 <iframe
                   className="w-full h-full rounded-xl"
                   src={`https://www.youtube.com/embed/${video.youtubeId}`}
