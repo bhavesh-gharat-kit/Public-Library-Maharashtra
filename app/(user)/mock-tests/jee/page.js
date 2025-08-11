@@ -3,55 +3,33 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";
+import { MockTestSubCard } from "@/components";
 
 export default function Page() {
   useEffect(() => {
     AOS.init({ once: true, duration: 800, easing: "ease-in-out" });
   }, []);
 
-  const testCards = [
+  let testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      link: "/take-test/iit-jee-chemistry",
+      title: "Chemistry",
+      description: "IIT JEE Chemistry daily quizzes",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      link: "/take-test/iit-jee-mathematics",
+      title: "Mathematics",
+      description: "IIT JEE Mathematics daily quizzes",
       aos: "fade-down",
     },
     {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
-      aos: "flip-up",
-    },
-    {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
+      link: "/take-test/iit-jee-physics",
+      title: "Physics",
+      description: "IIT JEE Physics daily quizzes",
+      aos: "fade-down",
     },
   ];
-
-  let data = [{
-    "id": "32",
-    "slug": "iit-jee-chemistry",
-    "name": "Chemistry"
-  },
-  {
-    "id": "33",
-    "slug": "iit-jee-mathematics",
-    "name": "Mathematics"
-  },
-  {
-    "id": "34",
-    "slug": "iit-jee-physics",
-    "name": "Physics"
-  },
-  ]
 
   return (
     <>
@@ -74,27 +52,7 @@ export default function Page() {
           {/* Cards Grid */}
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
             {testCards.map((card, idx) => (
-              <div
-                key={idx}
-                data-aos={card.aos}
-                data-aos-delay={idx * 100}
-                className="group bg-white shadow-lg hover:shadow-purple-300 rounded-2xl p-6 transition duration-500 border hover:border-purple-500 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="text-xl font-semibold text-purple-700 mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-                <Link
-                  href={card.link}
-                  className="mt-6 inline-block bg-purple-600 text-white font-medium text-sm text-center py-2 px-4 rounded-md hover:bg-purple-700 transition"
-                >
-                  Explore Tests
-                </Link>
-              </div>
+              <MockTestSubCard key={idx} card={card} idx={idx} />
             ))}
           </section>
         </div>

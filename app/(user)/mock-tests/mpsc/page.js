@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";
+import { MockTestSubCard } from "@/components";
 
 export default function Page() {
   useEffect(() => {
@@ -11,69 +12,19 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "MPSC & State Commission",
+      description:
+        "Prepare for state services with focused, exam-oriented mock tests.",
+      link: "/take-test/mpsc-state-commission",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      title: "MPSC Assistant Section Officer",
+      description: "MCQ-based mock tests for State PSC.",
+      link: "/take-test/mpsc-assistant-section-officer",
       aos: "fade-down",
     },
-    {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
-      aos: "flip-up",
-    },
-    {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
-    },
   ];
-
-  let data = [
-    {
-      "id": "35",
-      "slug": "mpsc-psi-police-sub-inspector",
-      "name": "PSI – Police Sub Inspector"
-    },
-    {
-      "id": "36",
-      "slug": "mpsc-rajyaseva-prelims",
-      "name": "Rajyaseva Prelims"
-    },
-    {
-      "id": "37",
-      "slug": "mpsc-राज्यसेवा-पूर्व-परीक्षा",
-      "name": "राज्यसेवा पूर्व परीक्षा"
-    },
-    {
-      "id": "38",
-      "slug": "mpsc-वन्-सेवा-परीक्षा-marathi",
-      "name": "वन सेवा परीक्षा – Marathi"
-    },
-    {
-      "id": "39",
-      "slug": "mpsc-महासंचालक-कर-निरीक्षक",
-      "name": "महासंचालक कर निरीक्षक – Inspector"
-    },
-    {
-      "id": "40",
-      "slug": "mpsc-assistant-section-officer",
-      "name": "Assistant Section Officer"
-    },
-    {
-      "id": "41",
-      "slug": "mpsc-forest-services-english",
-      "name": "Forest Services – English"
-    },
-    
-  ]
 
   return (
     <>
@@ -86,37 +37,17 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for MPSC EXAMS
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free MPSC EXAMS Mock Tests
             </p>
           </div>
 
           {/* Cards Grid */}
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
             {testCards.map((card, idx) => (
-              <div
-                key={idx}
-                data-aos={card.aos}
-                data-aos-delay={idx * 100}
-                className="group bg-white shadow-lg hover:shadow-purple-300 rounded-2xl p-6 transition duration-500 border hover:border-purple-500 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="text-xl font-semibold text-purple-700 mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-                <Link
-                  href={card.link}
-                  className="mt-6 inline-block bg-purple-600 text-white font-medium text-sm text-center py-2 px-4 rounded-md hover:bg-purple-700 transition"
-                >
-                  Explore Tests
-                </Link>
-              </div>
+              <MockTestSubCard key={idx} card={card} idx={idx} />
             ))}
           </section>
         </div>

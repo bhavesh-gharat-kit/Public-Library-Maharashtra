@@ -6,8 +6,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Footer, Header } from "@/components";
 
 export const metadata = {
-  title: "Welcome User",
-  description: "Welcome to public library",
+  title: "लालबागचा राजा AI अंकिय ग्रंथालय",
+  description: "Welcome to लालबागचा राजा AI अंकिय ग्रंथालय",
 };
 
 export default async function AdminLayout({ children }) {

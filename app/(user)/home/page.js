@@ -23,7 +23,7 @@ import Link from "next/link";
 function ResourceCard({ resource, delay = 0 }) {
   return (
     <div
-      className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center transition-transform hover:scale-[102%] hover:shadow-lg"
+      className="bg-white shadow-md shadow-yellow-200 rounded-lg p-6 flex flex-col items-center text-center transition-transform hover:scale-[102%] hover:shadow-lg"
       data-aos={resource.animation}
       data-aos-delay={delay}
     >
@@ -206,20 +206,27 @@ export default function ResourcesPage() {
   ];
 
   return (
-    <main className="py-10">
+    <main className="py-10 bg-yellow-50">
       <div className="max-w-5xl mx-auto px-4">
-        <h1 className="text-center text-3xl sm:text-4xl font-extrabold text-blue-700 mb-6">
-          📚 Public Library Maharashtra Digital Knowledge Centre (PLMDKC)
+        {/* Main Heading in Marathi */}
+        <h1
+          className="text-center text-4xl font-bold text-red-600 mb-3"
+          style={{ fontFamily: "'Baloo 2', cursive" }}
+        >
+          लालबागचा राजा <span className="font-extrabold">AI</span> अंकिय
+          ग्रंथालय
         </h1>
-        <h2 className="text-center text-md sm:text-lg font-bold text-blue-500 mb-2">
-          सार्वजनिक पुस्तकालय महाराष्ट्र, अंकीय ज्ञान केंद्र
-        </h2>
-        <p className="text-center text-md sm:text-lg font-bold text-blue-500 mb-8">
-          1 to 100, We’ve Got a Book for Every Curious Kid, Dreamy Teen, Busy
-          Adult & Wise Soul!
-        </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* English Heading */}
+        <h3
+          className="text-center text-xl text-red-600 font-extrabold tracking-wide"
+          style={{ fontFamily: "'Baloo 2', cursive" }}
+        >
+          LALBAUGCHA RAJA <span className="font-extrabold">AI</span> DIGITAL
+          LIBRARY
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-5 md:py-10">
           {resources.map((resource, index) => (
             <ResourceCard key={index} resource={resource} delay={100} />
           ))}

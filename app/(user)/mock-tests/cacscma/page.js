@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 
-import { Header, Footer } from "@/components";
+import { Header, Footer, MockTestSubCard } from "@/components";
 import { FaBookOpen, FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
@@ -20,20 +20,20 @@ export default function Page() {
       link: "/take-test/ca-foundation",
       aos: "fade-up",
     },
-    {
-      title: "CMA Foundation",
-      description:
-        "Ace your Cost & Management Accounting entrance with these tests.",
-      link: "/take-test/cma-foundation",
-      aos: "slide-up",
-    },
-    {
-      title: "CS Executive",
-      description:
-        "Boost your Company Secretary prep with structured mock exams.",
-      link: "/take-test/cs-executive",
-      aos: "flip-up",
-    },
+    // {
+    //   title: "CMA Foundation",
+    //   description:
+    //     "Ace your Cost & Management Accounting entrance with these tests.",
+    //   link: "/take-test/cma-foundation",
+    //   aos: "slide-up",
+    // },
+    // {
+    //   title: "CS Executive",
+    //   description:
+    //     "Boost your Company Secretary prep with structured mock exams.",
+    //   link: "/take-test/cs-executive",
+    //   aos: "flip-up",
+    // },
   ];
 
   return (
@@ -57,26 +57,7 @@ export default function Page() {
           {/* Cards Section */}
           <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {testCards.map((card, idx) => (
-              <div
-                key={idx}
-                data-aos={card.aos}
-                data-aos-delay={idx * 100}
-                className="group bg-white shadow-lg hover:shadow-purple-300 rounded-2xl p-6 transition duration-500 border hover:border-purple-500 flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="text-xl font-bold text-purple-700 mb-2 group-hover:underline">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6">{card.description}</p>
-                </div>
-                <Link
-                  href={card.link}
-                  className="mt-auto inline-flex items-center justify-center gap-2 text-sm font-semibold text-white bg-purple-600 hover:bg-purple-800 border border-purple-800 rounded-md py-2 px-4 transition-all duration-300"
-                >
-                  Explore Tests
-                  <FaArrowRight />
-                </Link>
-              </div>
+              <MockTestSubCard key={idx} card={card} idx={idx} />
             ))}
           </div>
         </div>

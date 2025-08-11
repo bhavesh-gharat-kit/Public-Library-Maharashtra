@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-gray-100 py-6 border-t border-gray-200 mt-12">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        
         {/* Links */}
-        <ul className="flex justify-center flex-wrap gap-6 mb-4">
+        {/* <ul className="flex justify-center flex-wrap gap-6 mb-4">
           <li>
             <Link
               href="#"
@@ -25,12 +24,23 @@ export default function Footer() {
               Terms &amp; Conditions
             </Link>
           </li>
-        </ul>
+        </ul> */}
 
         {/* Copy */}
         <p className="text-xs text-gray-500">
-          © 2025-26 <span className="font-semibold text-gray-700">National Library Bandra</span>. Powered by{" "}
-          <span className="text-blue-600 font-medium">Noetic Technologies</span>.
+          © 2025-26{" "}
+          <span className="font-semibold text-gray-700">
+          LALBAUGCHA RAJA AI DIGITAL LIBRARY
+          </span>
+          . Powered by{" "}
+          <a
+            href="https://noeticindia.com"
+            target="_blank"
+            className="text-blue-600 cursor-pointer hover:text-blue-700 font-medium"
+          >
+            Noetic Technologies
+          </a>
+          .
         </p>
       </div>
     </footer>

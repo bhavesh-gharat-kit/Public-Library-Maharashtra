@@ -5,8 +5,8 @@ import { faBookOpen, faSearch, faQuestionCircle } from "@fortawesome/free-solid-
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900 px-3 sm:px-6">
-      <div className="text-center max-w-lg p-8 rounded-2xl bg-white shadow-2xl border border-gray-200">
+    <div className="min-h-screen flex items-center justify-center bg-yellow-50 text-gray-900 px-3 sm:px-6">
+      <div className="text-center max-w-lg p-8 rounded-2xl bg-white shadow-2xl shadow-yellow-200 border border-gray-200">
         
         {/* Icon */}
         <div className="flex justify-center mb-6">
@@ -21,7 +21,7 @@ export default function NotFoundPage() {
 
         {/* Message */}
         <p className="text-gray-600 mb-6 leading-relaxed">
-          Oops! The page you’re looking for is missing from our Public Library shelves.  
+          Oops! The page you’re looking for is missing from LALBAUGCHA RAJA AI DIGITAL LIBRARY.  
           It may have been moved, removed, or the URL might be incorrect.
         </p>
 

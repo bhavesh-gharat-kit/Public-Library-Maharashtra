@@ -12,65 +12,19 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description:
-        "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "NCERT Hindi",
+      desc: "Prepare for union public services with focused, exam-oriented mock tests in hindi.",
+      link: "/take-test/upsc-ncert-hindi",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description:
-        "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      title: "NCERT Geography",
+      desc: "Prepare for union public services with focused, exam-oriented mock tests for geography subject.",
+      link: "/take-test/upsc-ncert-geography",
       aos: "fade-down",
-    },
-    {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
-      aos: "flip-up",
-    },
-    {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
     },
   ];
 
-  let data = [
-    {
-      id: "84",
-      slug: "upsc-ncert-hindi",
-      name: "NCERT (UPSC) हिंदी",
-    },
-    {
-      id: "85",
-      slug: "upsc-ncert-geography",
-      name: "NCERT Geography",
-    },
-    {
-      id: "86",
-      slug: "upsc-ncert-history",
-      name: "NCERT History",
-    },
-    {
-      id: "87",
-      slug: "upsc-ncert-polity",
-      name: "NCERT Indian Polity",
-    },
-    {
-      id: "88",
-      slug: "upsc-reasoning-aptitude",
-      name: "Reasoning and Aptitude",
-    },
-    {
-      id: "89",
-      slug: "upsc-samanya-buddhi",
-      name: "सामान्य बुद्धि एवं तर्कशक्ति",
-    },
-  ];
   return (
     <>
       <section className="min-h-screen flex flex-col items-center px-4 py-4 md:py-8 bg-gradient-to-b from-purple-50 to-white">
@@ -82,17 +36,17 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for UPSC
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free UPSC Mock Tests
             </p>
           </div>
 
           {/* Cards Grid */}
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
             {testCards.map((card, idx) => (
-             <MockTestSubCard key={idx} card={card} idx={idx} />
+              <MockTestSubCard key={idx} card={card} idx={idx} />
             ))}
           </section>
         </div>

@@ -171,10 +171,10 @@ export default function Page() {
       {selectedTestId && (
         <TestOptionsModal
           onClose={() => setSelectedTestId(null)}
-          playLink={`/take-test/current-affairs/play/${selectedTestId}`}
-          practiceLink={`/take-test/current-affairs/play/${selectedTestId}`}
-          testLink={`/take-test/current-affairs/play/${selectedTestId}`}
-          studyLink={`/take-test/current-affairs/play/${selectedTestId}`}
+          playLink={`/take-test/${testSlug}/play/${selectedTestId}`}
+          practiceLink={`/take-test/${testSlug}/play/${selectedTestId}`}
+          testLink={`/take-test/${testSlug}/play/${selectedTestId}`}
+          studyLink={`/take-test/${testSlug}/play/${selectedTestId}`}
         />
       )}
     </>
