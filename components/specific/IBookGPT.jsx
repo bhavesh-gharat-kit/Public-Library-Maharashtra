@@ -15,7 +15,10 @@ import {
   FaVideo,
   FaPaperPlane,
   FaApper,
+  FaQuestion,
+  FaPage4,
 } from "react-icons/fa";
+import { MDComponent } from "..";
 
 export function FeedbackButtons({ handleCopy }) {
   return (
@@ -103,7 +106,8 @@ export function Message({ msg }) {
             : "bg-gray-100 text-gray-800"
         }`}
       >
-        {msg.text}
+        <MDComponent markdownText={msg.text} />
+        {/* {msg.text} */}
         {msg.type === "ai" && (
           <FeedbackButtons handleCopy={() => handleCopy(msg.text)} />
         )}
@@ -177,19 +181,19 @@ export function StudyTools({ setSelectedTool }) {
       name: "notes",
     },
     {
-      icon: <FaApper />,
+      icon: <FaQuestion />,
+      label: "Create MCQ",
+      name: "cmq",
+    },
+    {
+      icon: <FaPage4 />,
       label: "Question Paper",
       name: "questionPaper",
     },
     {
-      icon: <FaApper />,
+      icon: <FaQuestion />,
       label: "Create Question & Answers",
       name: "questionAnswer",
-    },
-    {
-      icon: <FaApper />,
-      label: "Create MCQ",
-      name: "createMCQ",
     },
   ];
   return (

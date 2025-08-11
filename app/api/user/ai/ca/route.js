@@ -73,7 +73,6 @@ export async function GET() {
           data: {
             title,
             examCategoryId,
-            // testType defaults to DAILY per schema
             date: new Date(), // optional
           },
         });
@@ -122,8 +121,6 @@ export async function GET() {
               explanation: q.explanation || "",
             },
           });
-
-          console.log(`   ➡️ Inserted Question ID ${questionRecord.id}`);
         }
 
         console.log("🎯 All questions inserted successfully!");

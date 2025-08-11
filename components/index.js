@@ -24,3 +24,5 @@ export { default as IPModal } from "./IPModal";
 export { default as AdminSideBar } from "./AdminSideBar";
 export { default as PasswordUpdateModal } from "./PasswordUpdateModal";
 export { default as MockTestSubCard } from "./MockTestSubCard";
+export { default as MDComponent } from "./MDComponent";
+export { default as TestResultSummary } from "./TestResultSummary";

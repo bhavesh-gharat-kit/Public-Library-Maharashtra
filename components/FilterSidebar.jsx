@@ -1,6 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaFilter, FaChevronDown, FaChevronUp, FaBook, FaCalendar, FaBookOpen } from "react-icons/fa";
+import {
+  FaFilter,
+  FaChevronDown,
+  FaChevronUp,
+  FaBook,
+  FaCalendar,
+  FaBookOpen,
+  FaLanguage,
+  FaSchool,
+} from "react-icons/fa";
 import { FiCheckSquare, FiXCircle } from "react-icons/fi";
 
 export default function FilterSidebar({
@@ -18,7 +27,7 @@ export default function FilterSidebar({
   };
 
   const handleClear = () => {
-    setSelectedFilters({});
+    setAppliedFilters({});
     onClear && onClear();
   };
 
@@ -61,14 +70,19 @@ export default function FilterSidebar({
         <aside className="bg-white border border-gray-200 shadow-lg rounded-lg p-5 space-y-6">
           <div className="pb-3 border-b border-gray-200">
             <h2 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
-            <span><FaBook/></span>
-               Filter Books
+              <span>
+                <FaBook />
+              </span>
+              Filter Books
             </h2>
           </div>
 
-          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+          {/* Publication Year */}
+          {/* <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span><FaCalendar/></span>
+              <span>
+                <FaCalendar />
+              </span>
               Year of Publication
             </h3>
             <ul className="flex justify-between flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -93,11 +107,42 @@ export default function FilterSidebar({
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
+          {/* Syllabus */}
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span>📅</span>
+              <span>
+                <FaBook />
+              </span>
+              Syllabus
+            </h3>
+            <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.syllabuses?.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start shrink-0 gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.syllabuses?.includes(item) ? true : false
+                    }
+                    onChange={(e) => handleUpdateFilters(e, "syllabuses", item)}
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer break-words">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Languages */}
+          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>
+                <FaLanguage />
+              </span>
               Languages
             </h3>
             <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -120,9 +165,40 @@ export default function FilterSidebar({
             </ul>
           </div>
 
+          {/* Standard */}
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span><FaBookOpen/></span>
+              <span>
+                <FaSchool />
+              </span>
+              Standard
+            </h3>
+            <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
+              {filters.standards?.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start shrink-0 gap-2 text-sm text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    checked={
+                      appliedFilters.standards?.includes(item) ? true : false
+                    }
+                    onChange={(e) => handleUpdateFilters(e, "standards", item)}
+                    className="accent-indigo-600 h-4 w-4 cursor-pointer transform transition-transform duration-150 hover:scale-110"
+                  />
+                  <label className="cursor-pointer break-words">{item}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Publishers */}
+          {/* <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+            <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <span>
+                <FaBookOpen />
+              </span>
               Publishers
             </h3>
             <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -143,11 +219,14 @@ export default function FilterSidebar({
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
-          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+          {/* Content Type */}
+          {/* <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
-              <span><FaFilter/></span>
+              <span>
+                <FaFilter />
+              </span>
               Content Types
             </h3>
             <ul className="flex flex-wrap gap-3 max-h-48 overflow-y-auto custom-scrollbar">
@@ -170,7 +249,7 @@ export default function FilterSidebar({
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Buttons */}
           <div className="pt-4 border-t border-gray-200 flex flex-col gap-3">
@@ -187,7 +266,6 @@ export default function FilterSidebar({
               <FiXCircle className="text-lg" /> Clear All
             </button>
           </div>
-
         </aside>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { getRandomItems } from "@/lib/helperFunctionsServerSide";
 import { NextResponse } from "next/server";
 
 export async function POST(request, context) {
@@ -28,12 +29,11 @@ export async function POST(request, context) {
     });
 
     if (!data) {
-      if(testSlug=="current-affairs"){
-        await handleCreateCurrentAffairsTest();
-      }
       return NextResponse.json({ message: "No test found" }, { status: 400 });
     }
 
+    data.questions = getRandomItems(data.questions, 15);
+    
     // Select questions based on mode
     let selectedQuestions = [...data.questions];
 

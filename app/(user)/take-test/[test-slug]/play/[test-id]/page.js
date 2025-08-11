@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   CountdownScreen,
   FullScreenLoader,
+  TestResultSummary,
   TestSettingsModal,
 } from "@/components";
 import { useRouter, useParams } from "next/navigation";
@@ -64,7 +65,7 @@ const PlayTestPage = () => {
     if (answers[currentQuestionIndex] !== null) return;
 
     if (settings?.gameSound) {
-      const audio = new Audio("/assets/audio/bg-music.mp3");
+      const audio = new Audio("/assets/audio/click-sound.mp3");
       audio.play().catch((err) => {
         console.warn("Sound playback failed:", err);
       });
@@ -132,100 +133,11 @@ const PlayTestPage = () => {
 
   if (completed) {
     return (
-      <div className="min-h-screen bg-gray-100 p-4 flex justify-center">
-        <div className="w-full max-w-4xl bg-white rounded-xl shadow-xl p-6 space-y-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-green-700">
-              🎉 Test Completed
-            </h2>
-            <p className="text-sm text-gray-600">Review your answers below</p>
-          </div>
-
-          <ul className="space-y-6">
-            {testData.questions.map((q, idx) => {
-              const userAnswer = answers[idx];
-              const isCorrect =
-                q.options[userAnswer]?.id === q.answer?.optionId;
-              const isUnanswered = userAnswer === null;
-
-              return (
-                <li
-                  key={idx}
-                  className="border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm"
-                >
-                  <div className="flex justify-between items-center">
-                    <p className="font-semibold text-gray-800">
-                      Q{idx + 1}: {q.question}
-                    </p>
-                    <span
-                      className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                        isUnanswered
-                          ? "bg-yellow-100 text-yellow-800"
-                          : isCorrect
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-600"
-                      }`}
-                    >
-                      {isUnanswered
-                        ? "Unanswered"
-                        : isCorrect
-                        ? "Correct"
-                        : "Incorrect"}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                    {q.options.map((opt, optIdx) => {
-                      const isSelected = userAnswer === optIdx;
-                      const isRight = opt.id === q.answer?.optionId;
-
-                      return (
-                        <div
-                          key={optIdx}
-                          className={`border px-3 py-2 rounded-md ${
-                            isRight
-                              ? "border-green-500 bg-green-50"
-                              : isSelected
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200"
-                          }`}
-                        >
-                          {opt.text}
-                          {isRight && (
-                            <span className="ml-2 text-green-600 font-semibold">
-                              ✓
-                            </span>
-                          )}
-                          {isSelected && !isRight && (
-                            <span className="ml-2 text-red-600 font-semibold">
-                              ✗
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Explanation (optional if available in data) */}
-                  {q.explanation && (
-                    <div className="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-sm text-blue-700 rounded">
-                      <strong>Explanation:</strong> {q.explanation}
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-
-          {wasTimeout && (
-            <div className="text-center mt-4">
-              <p className="text-red-500 text-sm font-medium">
-                ⚠️ Test auto-submitted due to timeout.
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
+      <TestResultSummary
+        testData={testData}
+        answers={answers}
+        remainingTime={remainingTime}
+      />
     );
   }
 

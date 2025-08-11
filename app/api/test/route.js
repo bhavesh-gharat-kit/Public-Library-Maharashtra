@@ -1,31 +1,26 @@
+import { getRandomItems } from "@/lib/helperFunctionsServerSide";
+import prisma from "@/lib/prisma";
+
 // app/api/pdf-proxy/route.js
 export async function GET(request) {
   try {
-    // Get the "url" query parameter
-    const pdfUrl = "https://library.oapen.org/bitstream/20.500.12657/46035/1/external_content.pdf";
-
-
-    // Fetch the PDF from the external source
-    const response = await fetch(pdfUrl);
-
-    if (!response.ok) {
-      return new Response(JSON.stringify({ error: "Failed to fetch PDF" }), {
-        status: response.status,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-
-    // Stream the PDF to the client
-    const pdfBuffer = await response.arrayBuffer();
-
-    return new Response(pdfBuffer, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "inline; filename=book.pdf",
-        "Cache-Control": "no-store",
-      },
+    const test = await prisma.MockTest.findFirst({
+      include: { questions: { include: { options: true, answer: true } } },
+      where: { id: Number(159) },
     });
+
+    test.questions = getRandomItems(test.questions, 15);
+    
+
+//     const questions = await prisma.$queryRaw`
+//   SELECT * FROM mock_tests_questions
+//   WHERE mockTestId = ${test.id}
+//   ORDER BY RAND()
+//   LIMIT 15
+// `;
+
+
+    return new Response(JSON.stringify({ test }));
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,

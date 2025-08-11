@@ -10,6 +10,8 @@ export async function GET(req) {
     const subjects = searchParams.get("subjects");
     const publishers = searchParams.get("publishers");
     const authors = searchParams.get("authors");
+    const syllabuses = searchParams.get("syllabuses");
+    const standards = searchParams.get("standards");
     const contentTypes = searchParams.get("contentTypes");
     const search = searchParams.get("search");
 
@@ -37,6 +39,12 @@ export async function GET(req) {
       }),
       ...(languages && {
         medium: { in: parseArray(languages) },
+      }),
+      ...(standards && {
+        standard: { in: parseArray(standards) },
+      }),
+      ...(syllabuses && {
+        syllabus: { in: parseArray(syllabuses) },
       }),
       ...(subjects && {
         subject: { in: parseArray(subjects) },
