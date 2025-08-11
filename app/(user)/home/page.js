@@ -44,7 +44,7 @@ function ResourceCard({ resource, delay = 0 }) {
 
 export default function ResourcesPage() {
   useEffect(() => {
-    AOS.init({ once: false, duration: 800 });
+    AOS.init({ once: true, duration: 800 });
   }, []);
 
   const resources = [
@@ -206,21 +206,10 @@ export default function ResourcesPage() {
   ];
 
   return (
-    <main className="py-10 bg-yellow-50">
+    <main className="py-5 bg-[#fffbd5]">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-center">
-          <img src="/logo.png" className="h-24 md:h-36" />
-          <div>
-            <h1 className="text-center text-2xl md:text-4xl font-bold text-red-600 mb-3">
-              लालबागचा राजा <span className="font-extrabold">AI</span> अंकिय
-              ग्रंथालय
-            </h1>
-            <h3 className="text-center text-base md:text-xl text-red-600 font-extrabold tracking-wide">
-              LALBAUGCHA RAJA <span className="font-extrabold">AI</span> DIGITAL
-              LIBRARY
-            </h3>
-          </div>
-        </div>
+
+        <img src="/assets/img/name.jpg" className="w-full max-w-[800px] h-auto mx-auto" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-5 md:py-10">
           {resources.map((resource, index) => (
