@@ -183,7 +183,7 @@ export function StudyTools({ setSelectedTool }) {
     {
       icon: <FaQuestion />,
       label: "Create MCQ",
-      name: "cmq",
+      name: "mcq",
     },
     {
       icon: <FaPage4 />,
