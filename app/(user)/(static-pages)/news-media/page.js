@@ -774,6 +774,13 @@ const data = [
     title: "Online Newspapers (English, Hindi, Regional Languages)",
     items: [
       {
+        id: 166,
+        name: "Employment News",
+        url: "https://rojgarsamachar.gov.in/",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
         id: 167,
         name: "News Deets",
         url: "https://newsdeets.com/",
@@ -1167,7 +1174,7 @@ const data = [
       },
       {
         id: 110,
-        name: "Marathi Lok",
+        name: "Loksatta",
         url: "https://www.loksatta.com/",
         icon: FaNewspaper,
         color: "#17a2b8",
