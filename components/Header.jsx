@@ -52,11 +52,12 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.jpg" alt="Logo" className="h-10 w-auto" />
-            <span className="font-bold text-red-600 text-lg">
+          <Link href="/" className="flex items-center">
+            <img src="/logo.jpg" alt="Logo" className="h-12 w-auto" />
+            {/* <span className="font-bold text-red-600 text-lg">
               लालबागचा राजा AI अंकीय ग्रंथालय
-            </span>
+              </span> */}
+              <img src="/assets/img/name-marathi.jpg" alt="Logo" className="h-8 md:h-10 w-auto" />
           </Link>
 
           {/* Mobile toggle button */}
