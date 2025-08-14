@@ -67,16 +67,33 @@ export default function Home() {
           </div>
         </section>
       </main> */}
-      <div className="w-full h-auto bg-[#fffbd5] min-h-[90vh]">
+      <div className="w-full h-auto bg-[#fffbd5] min-h-[90vh] md:hidden">
         <div className="relative">
           <img
-            src="/assets/img/home/front-page.jpg"
+            src="/assets/img/home/front-page-o.jpg"
             className="w-full h-auto max-w-[900px] mx-auto"
           />
           <div className="flex justify-end mt-8 absolute right-[5%] md:right-[10%] top-[35%]">
             <Link
               href="/home"
               className="bg-blue-900 text-white rounded-full px-5 py-2 hover:bg-blue-700 transition-colors text-sm font-semibold"
+            >
+              Go to Digital Library
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-auto items-center justify-center bg-[#fffbd5] min-h-[90vh] hidden md:flex">
+        <div className="relative">
+          <img
+            src="/assets/img/home/front-page.jpg"
+            className="w-auto md:h-[85vh]  mx-auto"
+          />
+          <div className="flex justify-end mt-8 absolute right-[5%] md:right-[0%] top-[20%]">
+            <Link
+              href="/home"
+              className="bg-blue-900 text-white rounded-full px-3 py-2 hover:bg-blue-700 transition-colors text-xs font-semibold"
             >
               Go to Digital Library
             </Link>
