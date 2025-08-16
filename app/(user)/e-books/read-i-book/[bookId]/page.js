@@ -30,10 +30,10 @@ export default function Home({ params }) {
 
   // ✅ Use the proxy endpoint instead of direct external URL
   const fileUrl = `/api/books/read-book/${bookId}`;
-  // const fileUrl = `/api/test`;
+  
 
   return (
-    <div className="py-6 px-4 flex flex-col md:flex-row gap-4">
+    <div className="py-6 px-4 flex flex-col md:flex-row items-end gap-4">
       {/* <PDFViewer fileUrl={fileUrl} className="w-full md:w-2/3" /> */}
       <div className="w-full md:w-2/3">
         <FlipbookViewer pdfUrl={fileUrl} />

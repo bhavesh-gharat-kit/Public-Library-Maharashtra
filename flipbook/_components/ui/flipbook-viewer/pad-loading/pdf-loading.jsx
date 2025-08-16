@@ -80,7 +80,7 @@ const PdfLoading = () => {
                     </svg>
                 </div>
                 <div className="text-base font-semibold">
-                    Loading PDF...
+                    Loading Book...
                 </div>
             </div>
         </div>

@@ -156,4 +156,4 @@ async function authorize(request, allowedRoles = []) {
 }
 
 // export const runtime = "nodejs"; // nodejs runtime
-export const runtime = "experimental-edge"; //edge runtime
+// export const runtime = "experimental-edge"; //edge runtime
