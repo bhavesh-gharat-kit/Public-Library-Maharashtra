@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "prisma generate && next start",
+    "prestart": "prisma generate",
     "lint": "next lint",
     "generate": "NODE_OPTIONS=--dns-result-order=ipv4first prisma generate"
   },

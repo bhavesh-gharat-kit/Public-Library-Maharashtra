@@ -1,7 +1,6 @@
 // middleware.js
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
-import prisma from "@/lib/prisma";
 
 const secret = process.env.NEXTAUTH_SECRET;
 
@@ -19,17 +18,8 @@ let lastCacheFetch = 0;
 
 const CACHE_TTL = 60_000; // 1 minute
 
-// Fetch allowed IPs + public access flag from DB
-async function fetchAccessSettingsFromDB() {
-  // Example Prisma query:
 
-  // const settings = await prisma.settings.findUnique({
-  //   where: { libraryId: process.env.LIBRARY_ID },
-  // });
-  // const ips = await prisma.AllowedIP.findMany({
-  //   select: { ip: true },
-  //   where: { libraryId: process.env.LIBRARY_ID },
-  // });
+async function fetchAccessSettingsFromDB() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/access-settings`, {
     headers: { "Content-Type": "application/json" },
   });
@@ -42,13 +32,6 @@ async function fetchAccessSettingsFromDB() {
   return {
     allowPublicAccess: accessSettings.allowPublicAccess,
     ips: accessSettings.ips,
-  };
-  
-
-  // Mocked for example:
-  return {
-    allowPublicAccess: true,
-    ips: ["127.0.0.1", "192.168.1.50"],
   };
 }
 
@@ -172,4 +155,5 @@ async function authorize(request, allowedRoles = []) {
   return user;
 }
 
-export const runtime = "nodejs";
+// export const runtime = "nodejs"; // nodejs runtime
+export const runtime = "experimental-edge"; //edge runtime

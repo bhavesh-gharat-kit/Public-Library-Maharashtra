@@ -42,6 +42,7 @@ export async function POST(req, context) {
 
     // If the tool's data is missing, generate and save it
     if (!bookData.iBook[tool]) {
+      
       let prompt = getIBookPrompt(bookData, tool);
       
       const reply = await generateFromPrompt(prompt);
