@@ -39,18 +39,24 @@ const BookCard = ({ book, randomColor }) => {
           )}
         </h3>
 
-        <div className="flex items-center gap-2 text-gray-600">
-          <span>
-            <FaPenNib />
-          </span>
-          {book.author?.length > 25 ? (
-            <Tooltip content={book.author}>
-              <span className="text-xs">{book.author.slice(0, 25) + "…"}</span>
-            </Tooltip>
-          ) : (
-            <span className="text-xs">{book?.author || "N/A"}</span>
-          )}
-        </div>
+        {book.author ? (
+          <div className="flex items-center gap-2 text-gray-600">
+            <span>
+              <FaPenNib />
+            </span>
+            {book.author?.length > 25 ? (
+              <Tooltip content={book.author}>
+                <span className="text-xs">
+                  {book.author.slice(0, 25) + "…"}
+                </span>
+              </Tooltip>
+            ) : (
+              <span className="text-xs">{book?.author || "N/A"}</span>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
 
       {/* View Button */}

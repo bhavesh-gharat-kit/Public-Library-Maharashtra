@@ -98,7 +98,7 @@ const Slider = ({ maxSlide = 10, currentSlide, onSlideChange, totalPages }) => {
         <div className="py-4">
             <div
                 ref={sliderRef}
-                className="relative w-full h-1 bg-foreground rounded-full"
+                className="relative w-full h-1 bg-[#111827] rounded-full"
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
                 onPointerCancel={handlePointerLeave}
@@ -112,9 +112,9 @@ const Slider = ({ maxSlide = 10, currentSlide, onSlideChange, totalPages }) => {
                     onDrag={handleDrag}
                     onStop={() => setDragging(false)}
                 >
-                    <div ref={thumbRef} className="absolute z-20 size-1 bg-primary rounded-full cursor-pointer">
+                    <div ref={thumbRef} className="absolute z-20 size-1 bg-[#3b82f6] rounded-full cursor-pointer">
                         <div className={cn(
-                            "size-3 hover:size-4 bg-primary absolute -top-1 hover:-top-1.5 -left-1 hover:-left-1.5 rounded-full transition-all",
+                            "size-3 hover:size-4 bg-[#3b82f6] absolute -top-1 hover:-top-1.5 -left-1 hover:-left-1.5 rounded-full transition-all",
                             dragging && 'w-3 h-3 -left-1.5 -top-1.5 rounded-full'
                         )}></div>
                     </div>
@@ -128,7 +128,7 @@ const Slider = ({ maxSlide = 10, currentSlide, onSlideChange, totalPages }) => {
                 <div
                     ref={tooltipRef}
                     className={cn(
-                        'bg-primary/20 backdrop-blur-sm text-white rounded p-2 text-xs w-fit h-fit',
+                        'bg-[#3b82f6]/20 backdrop-blur-sm text-white rounded p-2 text-xs w-fit h-fit',
                         hoverValue === null && 'opacity-0 w-0 h-0 select-none'
                     )}
                     style={{ position: 'absolute', left: tooltipPosition.left, bottom: '20px' }}

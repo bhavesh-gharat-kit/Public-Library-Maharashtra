@@ -115,7 +115,8 @@ footer .nav-link:hover {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
+  height: 5px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #cbd5e0;

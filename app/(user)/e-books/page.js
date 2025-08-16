@@ -18,6 +18,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { scrollToTop } from "@/lib/helperFunctions";
+import { bgColors } from "@/lib/constants";
 
 export default function Page() {
   const [books, setBooks] = useState([]);
@@ -27,11 +28,11 @@ export default function Page() {
   const [booksLoading, setBooksLoading] = useState(true);
 
   // Pagination state
-  const [page, setPage] = useState(1); // current page
-  const [limit] = useState(12); // books per page
+  const [page, setPage] = useState(1);
+  const [limit] = useState(12);
   const [totalPages, setTotalPages] = useState(1);
 
-  // search state
+  // Search state
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [totalBooks, setTotalBooks] = useState(0);
@@ -39,6 +40,47 @@ export default function Page() {
   // Abort controller ref for cancelling previous requests
   const controllerRef = useRef(null);
 
+  // ---------- 📌 Reusable book fetcher ----------
+  const fetchBooks = async ({ page, limit, filters, search, signal }) => {
+    try {
+      setBooksLoading(true);
+
+      const params = { page, limit };
+
+      // add filters if present
+      for (const key in filters) {
+        if (filters[key]?.length) {
+          params[key] = filters[key];
+        }
+      }
+
+      if (search) {
+        params.search = search;
+      }
+
+      const res = await axios.get("/api/books", {
+        params,
+        paramsSerializer: (params) =>
+          qs.stringify(params, { arrayFormat: "comma" }),
+        signal,
+      });
+
+      setBooks(res.data.data || []);
+      setTotalPages(res.data.totalPages || 1);
+      setTotalBooks(res.data?.totalBooks || 0);
+      scrollToTop();
+    } catch (err) {
+      const isAbort =
+        err?.name === "CanceledError" || err?.message === "canceled";
+      if (!isAbort) {
+        console.error("Error fetching books:", err);
+      }
+    } finally {
+      setBooksLoading(false);
+    }
+  };
+
+  // ---------- Init ----------
   useEffect(() => {
     AOS.init({
       once: false,
@@ -50,8 +92,6 @@ export default function Page() {
     const fetchFiltersData = async () => {
       try {
         setLoading(true);
-        const params = {};
-
         const res = await axios.get("/api/books/filters");
         setFiltersData(res.data?.data);
       } catch (err) {
@@ -64,162 +104,46 @@ export default function Page() {
     fetchFiltersData();
   }, []);
 
+  // ---------- Debounce search ----------
   useEffect(() => {
     const handler = setTimeout(() => {
-      // Trim whitespace and set debounced value
       setDebouncedQuery(query.trim());
-      // reset to first page whenever a new search term is applied
-      setPage(1);
+      setPage(1); // reset page when search changes
     }, 400);
 
     return () => clearTimeout(handler);
   }, [query]);
 
+  // ---------- Reset page when filters change ----------
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        setBooksLoading(true);
-        const params = { page, limit };
-
-        for (const key in appliedFilters) {
-          if (appliedFilters[key]?.length) {
-            params[key] = appliedFilters[key]; // keep arrays
-          }
-        }
-
-        const res = await axios.get("/api/books", {
-          params,
-          paramsSerializer: (params) => {
-            return qs.stringify(params, { arrayFormat: "comma" }); // => key=a,b,c
-          },
-        });
-
-        setBooks(res.data.data);
-        setTotalPages(res.data.totalPages || 1);
-      } catch (err) {
-        console.error("Error fetching books:", err);
-      } finally {
-        setBooksLoading(false);
-      }
-    };
-
-    fetchBooks();
-  }, [appliedFilters, page, limit]);
-
-  const setAppliedFiltersAndReset = (updater) => {
-    setAppliedFilters((prev) => {
-      const next = typeof updater === "function" ? updater(prev) : updater;
-      return next;
-    });
     setPage(1);
-  };
+  }, [appliedFilters]);
 
+  // ---------- Fetch books when dependencies change ----------
   useEffect(() => {
-    // Build params
-    const params = { page, limit };
-
-    // add filters arrays to params if present
-    for (const key in appliedFilters) {
-      if (appliedFilters[key]?.length) {
-        params[key] = appliedFilters[key];
-      }
-    }
-
-    // add search params if debouncedQuery exists
-    if (debouncedQuery) {
-      params.search = debouncedQuery;
-    }
-
-    // Cancel previous request if any
     if (controllerRef.current) {
       controllerRef.current.abort();
     }
     const controller = new AbortController();
     controllerRef.current = controller;
 
-    const fetchBooks = async () => {
-      try {
-        scrollToTop();
-        setBooksLoading(true);
+    fetchBooks({
+      page,
+      limit,
+      filters: appliedFilters,
+      search: debouncedQuery,
+      signal: controller.signal,
+    });
 
-        const res = await axios.get("/api/books", {
-          params,
-          paramsSerializer: (params) =>
-            qs.stringify(params, { arrayFormat: "comma" }),
-          signal: controller.signal, // cancelable
-        });
-
-        // adapt to your API shape:
-        setBooks(res.data.data || []);
-        setTotalPages(res.data.totalPages || 1);
-        // try different possible keys for total count:
-        setTotalBooks(res.data?.totalBooks);
-      } catch (err) {
-        // ignore abort cancellations; log others
-        const isAbort =
-          err?.name === "CanceledError" || err?.message === "canceled";
-        if (!isAbort) {
-          console.error("Error fetching books:", err);
-        }
-      } finally {
-        setBooksLoading(false);
-      }
-    };
-
-    fetchBooks();
-
-    // cleanup: abort if effect re-runs or unmounts
-    return () => {
-      controller.abort();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => controller.abort();
   }, [appliedFilters, page, limit, debouncedQuery]);
 
-  // const bgColors = [
-  //   "bg-blue-600",
-  //   "bg-green-600",
-  //   "bg-red-500",
-  //   "bg-purple-600",
-  //   "bg-pink-500",
-  //   "bg-yellow-500",
-  //   "bg-indigo-600",
-  //   "bg-cyan-600",
-  //   "bg-teal-600",
-  //   "bg-orange-600",
-  //   "bg-rose-600",
-  //   "bg-fuchsia-600",
-  //   "bg-violet-600",
-  //   "bg-lime-600",
-  //   "bg-emerald-600",
-  //   "bg-amber-600",
-  //   "bg-sky-600",
-  //   "bg-slate-700",
-  //   "bg-zinc-700",
-  //   "bg-neutral-700",
-  // ];
-
-  const bgColors = [
-    "bg-gradient-to-r from-blue-600 to-indigo-600",
-    "bg-gradient-to-r from-green-500 to-emerald-600",
-    "bg-gradient-to-r from-red-500 to-pink-600",
-    "bg-gradient-to-r from-purple-500 to-fuchsia-600",
-    "bg-gradient-to-r from-pink-500 to-rose-600",
-    "bg-gradient-to-r from-yellow-500 to-amber-600",
-    "bg-gradient-to-r from-indigo-500 to-violet-600",
-    "bg-gradient-to-r from-cyan-500 to-sky-600",
-    "bg-gradient-to-r from-teal-500 to-emerald-600",
-    "bg-gradient-to-r from-orange-500 to-red-600",
-    "bg-gradient-to-r from-rose-500 to-pink-600",
-    "bg-gradient-to-r from-fuchsia-500 to-pink-600",
-    "bg-gradient-to-r from-violet-500 to-purple-600",
-    "bg-gradient-to-r from-lime-500 to-green-600",
-    "bg-gradient-to-r from-emerald-500 to-teal-600",
-    "bg-gradient-to-r from-amber-500 to-orange-600",
-    "bg-gradient-to-r from-sky-500 to-cyan-600",
-    "bg-gradient-to-r from-slate-600 to-slate-800",
-    "bg-gradient-to-r from-zinc-600 to-zinc-800",
-    "bg-gradient-to-r from-neutral-600 to-neutral-800",
-  ];
+  // ---------- Utility setter ----------
+  const setAppliedFiltersAndReset = (updater) => {
+    setAppliedFilters((prev) =>
+      typeof updater === "function" ? updater(prev) : updater
+    );
+  };
 
   if (loading) return <FullScreenLoader />;
 

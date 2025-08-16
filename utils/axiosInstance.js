@@ -48,10 +48,7 @@ axiosInstance.interceptors.response.use(
       toast.warn("You do not have permission to do this.");
     } else if (status >= 500) {
       toast.error("Server error occurred. Try again later.");
-    } else {
-      toast.error(message);
-    }
-
+    } 
     return Promise.reject(error);
   }
 );
