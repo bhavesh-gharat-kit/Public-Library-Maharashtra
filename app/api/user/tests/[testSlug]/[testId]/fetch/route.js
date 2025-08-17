@@ -4,6 +4,7 @@ import {
   getRandomItems,
 } from "@/lib/helperFunctionsServerSide";
 import { NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 
 export async function POST(request, context) {
   try {
@@ -75,6 +76,11 @@ export async function POST(request, context) {
     //   shuffledQuestions = shuffledQuestions.slice(0, questionCount);
     // }
 
+    let whereClause = Prisma.sql`WHERE q.examCategoryId = ${examCategory.id}`;
+    if (isCurrentAffair) {
+      whereClause = Prisma.sql`${whereClause} AND q.currentAffairsDate > ${startOfToday}`;
+    }
+
     // Step 1: Fetch questions (with answers)
     const questionRows = await prisma.$queryRaw`
 SELECT 
@@ -91,10 +97,11 @@ SELECT
 FROM exam_category_questions q
 LEFT JOIN mock_tests_answers a
   ON q.id = a.questionId
-WHERE q.examCategoryId = ${examCategory.id}
+ ${whereClause}
 ORDER BY RAND()
 LIMIT 15;
 `;
+
 
     // Build base questions object
     const questionsMap = {};
@@ -146,6 +153,13 @@ LIMIT 15;
     if (questionMode === "limited" && questionCount) {
       questions = questions.slice(0, questionCount);
     }
+
+    // if (!questions || questions.length === 0) {
+    //   return NextResponse.json(
+    //     { message: "No questions found for this test", success: false },
+    //     { status: 404 }
+    //   );
+    // }
 
     return NextResponse.json({
       testSlug,
