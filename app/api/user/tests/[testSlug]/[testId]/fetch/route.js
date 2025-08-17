@@ -154,12 +154,12 @@ LIMIT 15;
       questions = questions.slice(0, questionCount);
     }
 
-    // if (!questions || questions.length === 0) {
-    //   return NextResponse.json(
-    //     { message: "No questions found for this test", success: false },
-    //     { status: 404 }
-    //   );
-    // }
+    if (!questions || questions.length === 0) {
+      return NextResponse.json(
+        { message: "No questions found for this test", success: false },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({
       testSlug,
