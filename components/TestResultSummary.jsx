@@ -15,10 +15,23 @@ const COLORS = ["#4ade80", "#f87171", "#fde68a"]; // green, red, yellow
 
 const TestResultSummary = ({ testData, answers, remainingTime }) => {
   const [showAnswers, setShowAnswers] = useState(false);
+  const [expanded, setExpanded] = useState({}); // keeps track of which questions are expanded
+
+  const toggleExplanation = (idx) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [idx]: !prev[idx],
+    }));
+  };
   const totalQuestions = testData.questions.length;
   const attempted = answers.filter((a) => a !== null).length;
   const correct = testData.questions.reduce((acc, q, idx) => {
-    return acc + (q.options[answers[idx]]?.id === q.answer?.optionId ? 1 : 0);
+    return (
+      acc +
+      (Number(q.options[answers[idx]]?.id) == Number(q.answer?.optionId)
+        ? 1
+        : 0)
+    );
   }, 0);
   const wrong = attempted - correct;
   const unanswered = totalQuestions - attempted;
@@ -148,7 +161,7 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
             {testData.questions.map((q, idx) => {
               const userAnswer = answers[idx];
               const isCorrect =
-                q.options[userAnswer]?.id === q.answer?.optionId;
+                Number(q.options[userAnswer]?.id) == Number(q.answer?.optionId);
               const isUnanswered = userAnswer === null;
 
               return (
@@ -180,7 +193,7 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                     {q.options.map((opt, optIdx) => {
                       const isSelected = userAnswer === optIdx;
-                      const isRight = opt.id === q.answer?.optionId;
+                      const isRight = Number(opt.id) == Number(q.answer?.optionId);
 
                       return (
                         <div
@@ -210,9 +223,22 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                   </div>
 
                   {/* Explanation */}
-                  {q.explanation && (
-                    <div className="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-sm text-blue-700 rounded">
-                      <strong>Explanation:</strong> {q.explanation}
+                  {q.answer?.explanation && (
+                    <div className="mt-3">
+                      <button
+                        onClick={() => toggleExplanation(idx)}
+                        className="text-blue-600 text-sm font-medium hover:underline"
+                      >
+                        {expanded[idx]
+                          ? "Hide Explanation"
+                          : "View Explanation"}
+                      </button>
+
+                      {expanded[idx] && (
+                        <div className="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-sm text-blue-700 rounded">
+                          <strong>Explanation:</strong> {q.answer?.explanation}
+                        </div>
+                      )}
                     </div>
                   )}
                 </li>

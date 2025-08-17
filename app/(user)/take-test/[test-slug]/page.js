@@ -12,7 +12,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { axios } from "@/utils";
 import toast from "react-hot-toast";
-import clsx from "clsx"; // installed via: npm install clsx
+import clsx from "clsx";
 
 export default function Page() {
   const router = useRouter();
@@ -34,9 +34,12 @@ export default function Page() {
       try {
         setLoading(true);
         const res = await axios.get(`/api/user/tests/${paramSlug}/fetch`);
+        if (!res.status == 200)
+          return toast.error(res.data.message || "something went wrong");
+
         setTestData(res.data?.testData);
       } catch (error) {
-        toast.error("Error while loading data!");
+        toast.error("Data was not loaded!");
         router.back();
       } finally {
         setLoading(false);
@@ -115,7 +118,7 @@ export default function Page() {
                   >
                     <div className="flex justify-center items-center gap-2 mb-2 text-indigo-700 font-semibold">
                       <FaCalendarAlt className="text-indigo-500" />
-                      <span>{formatDate(e.createdAt)}</span>
+                      <span>{e.date}</span>
                     </div>
 
                     <button
@@ -136,7 +139,7 @@ export default function Page() {
       </section>
 
       {/* Month Selector */}
-      <div className="min-h-screen max-w-5xl mx-auto px-4 py-10">
+      <div className="min-h-[50vh] max-w-5xl mx-auto px-4 py-10 flex flex-col-reverse">
         {testData?.monthsData &&
           Object.entries(testData.monthsData).map(
             ([year, months], yearIndex) => (
@@ -152,7 +155,7 @@ export default function Page() {
                   data-aos="fade-up"
                   data-aos-delay={yearIndex * 100}
                 >
-                  {months.map((month, index) => (
+                  {months?.map((month, index) => (
                     <MonthCard
                       key={month}
                       name={MONTHS[month]}

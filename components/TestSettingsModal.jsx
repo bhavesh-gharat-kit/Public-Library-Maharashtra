@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
+import { Target } from "lucide-react";
 
 export default function TestSettingsModal({
   onCancel,
@@ -46,9 +47,7 @@ export default function TestSettingsModal({
       <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
         <div className="relative w-full max-w-md mx-auto">
           <div className="absolute -top-16 w-full text-center">
-            <h2 className="text-2xl font-bold text-white">
-              Current Affairs MCQs
-            </h2>
+            <h2 className="text-2xl font-bold text-white">Daily MCQ Quiz</h2>
             <p className="text-sm text-gray-200 mt-1">15 Questions</p>
           </div>
 
@@ -85,7 +84,7 @@ export default function TestSettingsModal({
               </div>
             </div>
 
-            <div>
+            {/* <div>
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
@@ -97,6 +96,12 @@ export default function TestSettingsModal({
                 <option value="hindi">Hindi</option>
                 <option value="english">English</option>
               </select>
+            </div> */}
+
+            <div className="flex items-center justify-center">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-lg font-medium">
+                <Target/> Get ready to test your knowledge!
+              </span>
             </div>
 
             <div className="space-y-3">

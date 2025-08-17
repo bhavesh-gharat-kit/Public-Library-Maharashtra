@@ -131,75 +131,6 @@ model IBook {
   @@map("i_books") // Custom table name
 }
 
-model ExamCategory {
-  id        Int        @id @default(autoincrement()) @db.UnsignedInt
-  slug      String?    @unique
-  name      String
-  mockTests MockTest[]
-  createdAt DateTime   @default(now())
-
-  @@map("exam_categories") // Custom table name
-}
-
-model MockTest {
-  id             Int                @id @default(autoincrement()) @db.UnsignedInt
-  title          String
-  testType       TestType           @default(DAILY)
-  examCategoryId Int                @db.UnsignedInt
-  examCategory   ExamCategory       @relation(fields: [examCategoryId], references: [id], onDelete: Cascade)
-  questions      MockTestQuestion[]
-
-  date      DateTime? @db.Date
-  createdAt DateTime  @default(now())
-
-  @@map("mock_tests") // Custom table name
-}
-
-model MockTestQuestion {
-  id         Int @id @default(autoincrement()) @db.UnsignedInt
-  mockTestId Int @db.UnsignedInt
-
-  question String @db.Text
-
-  mockTest MockTest         @relation(fields: [mockTestId], references: [id], onDelete: Cascade) //Relation to MockTest Model
-  options  MockTestOption[]
-  answer   MockTestAnswer?
-
-  @@map("mock_tests_questions") // Custom table name
-}
-
-model MockTestOption {
-  id         Int @id @default(autoincrement()) @db.UnsignedInt
-  questionId Int @db.UnsignedInt
-
-  text     String
-  question MockTestQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade) //Relation to MockTestQuestion Model
-  answer   MockTestAnswer[]
-
-  @@map("mock_tests_options") // Custom table name
-}
-
-model MockTestAnswer {
-  id         Int @id @default(autoincrement()) @db.UnsignedInt
-  questionId Int @db.UnsignedInt
-  optionId   Int @db.UnsignedInt
-
-  explanation String @db.Text
-
-  question MockTestQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade) //Relation to MockTestQuestion Model
-  option   MockTestOption   @relation(fields: [optionId], references: [id], onDelete: Cascade) //Relation to MockTestOption Model
-
-  @@unique([questionId])
-  @@map("mock_tests_answers") // Custom table name
-}
-
-enum TestType {
-  DAILY
-  WEEKLY
-  MONTHLY
-  YEARLY
-}
-
 model AllowedIP {
   id        Int      @id @default(autoincrement()) @db.UnsignedInt
   libraryId Int      @db.UnsignedInt
@@ -223,4 +154,73 @@ model SuggestedBooks {
   createdAt DateTime @default(now())
 
   @@map("suggested_books") // Custom table name
+}
+
+model ExamCategory {
+  id        Int                    @id @default(autoincrement()) @db.UnsignedInt
+  slug      String?                @unique
+  name      String
+  mockTests MockTest[] // Tests for this category
+  questions ExamCategoryQuestion[] // Pool of questions belonging to this category
+  createdAt DateTime               @default(now())
+
+  @@map("exam_categories")
+}
+
+model MockTest {
+  id             Int          @id @default(autoincrement()) @db.UnsignedInt
+  title          String
+  testType       TestType     @default(DAILY)
+  examCategoryId Int          @db.UnsignedInt
+  examCategory   ExamCategory @relation(fields: [examCategoryId], references: [id], onDelete: Cascade)
+
+  // No direct questions here – questions will be drawn from ExamCategoryQuestion dynamically
+  date      DateTime? @db.Date
+  createdAt DateTime?  @default(now())
+
+  @@map("mock_tests")
+}
+
+model ExamCategoryQuestion {
+  id             Int    @id @default(autoincrement()) @db.UnsignedInt
+  examCategoryId Int    @db.UnsignedInt
+  question       String @db.Text
+
+  currentAffairsDate DateTime? @default(now()) // For Current Affairs only (null for other categories)
+
+  examCategory ExamCategory     @relation(fields: [examCategoryId], references: [id], onDelete: Cascade)
+  options      MockTestOption[]
+  answer       MockTestAnswer?
+
+  @@map("exam_category_questions")
+}
+
+model MockTestOption {
+  id         Int                  @id @default(autoincrement()) @db.UnsignedInt
+  questionId Int                  @db.UnsignedInt
+  text       String
+  question   ExamCategoryQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answer     MockTestAnswer[]
+
+  @@map("mock_tests_options")
+}
+
+model MockTestAnswer {
+  id          Int    @id @default(autoincrement()) @db.UnsignedInt
+  questionId  Int    @db.UnsignedInt
+  optionId    Int    @db.UnsignedInt
+  explanation String @db.Text
+
+  question ExamCategoryQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  option   MockTestOption       @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId]) // One correct answer per question
+  @@map("mock_tests_answers")
+}
+
+enum TestType {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
 }

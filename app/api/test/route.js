@@ -1,34 +1,50 @@
+// File: app/api/scrape-current-affairs/route.js (Next.js App Router)
+
+import { NextResponse } from "next/server";
+import * as cheerio from "cheerio";
+import fs from "fs/promises";
 import {
-  getRandomItems,
-  insertMockTestWithQuestions,
+  convertBigIntToString,
+  insertQuestionsByCategory,
 } from "@/lib/helperFunctionsServerSide";
-import prisma from "@/lib/prisma";
 
-// app/api/pdf-proxy/route.js
-export async function GET(request) {
+export async function GET() {
   try {
-    let q = [
-      {
-        question: "What is the primary definition of income in accounting?",
-        options: [
-          "Revenue generated from sales",
-          "Total assets minus liabilities",
-          "Net profit after taxes",
-          "Cash inflows from financing activities",
-        ],
-        answer: "Revenue generated from sales",
-        explanation:
-          "Income is primarily defined as the revenue generated from the sale of goods or services.",
-      },
-    ];
+    const needed = 5;
 
-    // let test = insertMockTestWithQuestions("CA Foundation daily test", 2, q);
+    const data = await prisma.$queryRaw`
+  SELECT 
+    q.id              AS questionId,
+    q.question        AS questionText,
+    q.examCategoryId  AS categoryId,
 
-    return new Response(JSON.stringify({ test }));
-  } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
+    o.id              AS optionId,
+    o.text            AS optionText,
+
+    a.id              AS answerId,
+    a.optionId        AS correctOptionId,
+    a.explanation     AS explanation
+
+  FROM exam_category_questions q
+  JOIN mock_tests_options o
+    ON q.id = o.questionId
+  LEFT JOIN mock_tests_answers a
+    ON q.id = a.questionId
+
+  WHERE q.examCategoryId = ${1}
+  ORDER BY RAND()
+  LIMIT ${needed};
+`;
+
+    // then fetch options/answer for ids OR join if columns separate
+
+    return NextResponse.json({
+      success: true,
+      data: convertBigIntToString(data),
     });
+    return NextResponse.json({ success: true, total: data.length });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ success: false, error: err.message });
   }
 }

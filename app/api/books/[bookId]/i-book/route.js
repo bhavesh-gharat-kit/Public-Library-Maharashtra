@@ -1,7 +1,10 @@
 // app/api/books/[bookId]/i-book/route.js
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { generateFromPrompt, getIBookPrompt } from "@/lib/helperFunctionsServerSide";
+import {
+  generateFromPrompt,
+  getIBookPrompt,
+} from "@/lib/helperFunctionsServerSide";
 
 export async function POST(req, context) {
   try {
@@ -10,7 +13,7 @@ export async function POST(req, context) {
 
     const { tool } = await req.json();
 
-    if (!bookId ||  !tool) {
+    if (!bookId || !tool) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -42,10 +45,16 @@ export async function POST(req, context) {
 
     // If the tool's data is missing, generate and save it
     if (!bookData.iBook[tool]) {
-      
+      // if (true) {
+
       let prompt = getIBookPrompt(bookData, tool);
-      
-      const reply = await generateFromPrompt(prompt);
+
+      const reply = await generateFromPrompt(prompt, {
+        model: "gpt-4o-mini",
+        temperature: 0.3,
+        systemMessage:
+          "You are a helpful assistant who always follows the prompt exactly.",
+      });
 
       bookData.iBook = await prisma.iBook.update({
         where: { id: bookData.iBook.id },
@@ -54,7 +63,6 @@ export async function POST(req, context) {
     }
 
     return NextResponse.json({ reply: bookData.iBook[tool] });
-
   } catch (error) {
     console.error("Error fetching iBook data:", error);
     return NextResponse.json(

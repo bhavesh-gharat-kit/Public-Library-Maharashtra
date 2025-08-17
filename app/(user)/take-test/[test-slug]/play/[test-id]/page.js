@@ -9,6 +9,7 @@ import {
 } from "@/components";
 import { useRouter, useParams } from "next/navigation";
 import { axios } from "@/utils";
+import toast from "react-hot-toast";
 
 const PlayTestPage = () => {
   const router = useRouter();
@@ -39,10 +40,31 @@ const PlayTestPage = () => {
       setTestData(res.data);
       setAnswers(new Array(res.data.questions.length).fill(null));
       setShowCountdown(true);
-    } catch (error) {
-      console.error("Failed to load test data", error);
-    } finally {
       setLoading(false);
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 400) {
+          toast.error(data.message || "Missing test parameters.");
+        } else if (status === 404) {
+          toast.error(data.message || "No questions found for this test.");
+        } else if (status === 500) {
+          toast.error("Something went wrong on the server. Try again later.");
+        } else {
+          toast.error("Unexpected error occurred.");
+        }
+      } else {
+        toast.error("Network error. Please check your connection.");
+      }
+
+      console.error("Failed to load test data:", error);
+      let tid = toast.loading("Redirecting back...");
+      setTimeout(() => {
+        setLoading(false);
+        router.replace("/home");
+        toast.dismiss(tid);
+      }, 2000);
     }
   };
 

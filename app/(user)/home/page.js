@@ -69,7 +69,7 @@ export default function ResourcesPage() {
       icon: FaNewspaper,
       color: "text-green-600",
       description: "UPSC | SSC | Defence | State PSCs",
-      link: "/take-test/current-affairs",
+      link: "/current-affairs",
       animation: "fade-left",
     },
     {
