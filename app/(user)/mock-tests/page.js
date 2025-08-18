@@ -89,13 +89,13 @@ const tests = [
   //   link: "/mock-tests/ntse",
   //   aos: "fade-left",
   // },
-  // {
-  //   title: "Olympiad",
-  //   desc: "Practice for SOF and other olympiads.",
-  //   logo: "/assets/img/mocktest-logos/olympiad.png",
-  //   link: "/mock-tests/olympiad",
-  //   aos: "fade-down",
-  // },
+  {
+    title: "Olympiad",
+    desc: "Practice for SOF and other olympiads.",
+    logo: "/assets/img/mocktest-logos/olympiad.png",
+    link: "/mock-tests/olympiad",
+    aos: "fade-down",
+  },
 ];
 
 function FlipCard({ test, delay }) {

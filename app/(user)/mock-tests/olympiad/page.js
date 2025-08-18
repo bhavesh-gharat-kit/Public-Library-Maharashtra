@@ -11,31 +11,31 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "Olympiad - Class 6",
+      description: "Build strong basics in Maths, Science & Reasoning with interactive Olympiad practice.",
+      link: "/take-test/olympiad-class-6",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      title: "Olympiad - Class 7",
+      description: "Challenge yourself with higher-level concepts in Maths, Science, and Logical Reasoning.",
+      link: "/take-test/olympiad-class-7",
       aos: "fade-down",
     },
     {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
+      title: "Olympiad - Class 8",
+      description: "Sharpen problem-solving with advanced Olympiad topics in Maths, Physics, Chemistry, Biology & Reasoning.",
+      link: "/take-test/olympiad-class-8",
       aos: "flip-up",
     },
     {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
+      title: "Olympiad - Class 9",
+      description: "Master critical Olympiad concepts with high-level practice in Science, Maths, and Reasoning.",
+      link: "/take-test/olympiad-class-9",
+      aos: "slide-up",
     },
   ];
-
+  
 let data = [{
   "id": "47",
   "slug": "olympiad-class-1-computers",
@@ -234,10 +234,10 @@ let data = [{
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for Olympiad
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free Olympiad Exams Mock Tests
             </p>
           </div>
 

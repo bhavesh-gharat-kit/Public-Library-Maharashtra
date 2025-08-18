@@ -45,7 +45,7 @@ export default function Modal({ onClose, playLink }) {
             >
               <button className="w-full bg-black text-white font-bold py-3 rounded-md hover:bg-red-600 transition duration-300 flex items-center justify-center gap-3 text-lg">
                 <FontAwesomeIcon icon={faGamepad} className="text-xl" />
-                Start Playing
+                Start Test
               </button>
             </Link>
           </div>

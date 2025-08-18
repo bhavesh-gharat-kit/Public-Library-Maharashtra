@@ -24,6 +24,12 @@ export default function Page() {
       link: "/take-test/mpsc-assistant-section-officer",
       aos: "fade-down",
     },
+    {
+      title: "MPSC Marathi",
+      description: "MCQ-based mock tests for State PSC in Marathi.",
+      link: "/take-test/mpsc-marathi",
+      aos: "fade-down",
+    },
   ];
 
   return (
