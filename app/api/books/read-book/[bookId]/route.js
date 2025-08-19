@@ -1,26 +1,31 @@
 // app/api/pdf-proxy/[bookId]/route.js
-export async function GET(request,  context ) {
+export async function GET(request, context) {
   const { bookId } = await context.params;
 
+  function base64UrlDecode(str) {
+    str = str.replace(/-/g, "+").replace(/_/g, "/");
+    while (str.length % 4) str += "=";
+    return Buffer.from(str, "base64").toString("utf-8");
+  }
+
   if (!bookId) {
+    console.log("Book id is missing ....");
     return new Response("Missing bookId", { status: 400 });
   }
+
+  console.log("Book id is...", bookId);
 
   // decode base64 -> original PDF URL
   let pdfURL = "";
   // pdfURL = "http://localhost:3000/book.pdf";
   try {
-    pdfURL = Buffer.from(bookId, "base64").toString("utf-8");
+    pdfURL = base64UrlDecode(bookId);
+
   } catch (e) {
+    console.log("Book id is not valid ....", e);
     return new Response("Invalid bookId", { status: 400 });
   }
-
-  // OPTIONAL: whitelist hosts to avoid becoming an open proxy (strongly recommended)
-  // const allowed = ["library.oapen.org", "example.com"];
-  // try {
-  //   const u = new URL(pdfURL);
-  //   if (!allowed.includes(u.hostname)) return new Response("Forbidden", { status: 403 });
-  // } catch (e) { return new Response("Invalid URL", { status: 400 }); }
+  console.log("PDF Url is...", pdfURL);
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30_000); // 30s timeout
@@ -33,7 +38,6 @@ export async function GET(request,  context ) {
     // optional UA - skip if your runtime forbids it (Edge)
     // fetchHeaders["User-Agent"] = "Mozilla/5.0 (compatible)";
 
-    
     const upstream = await fetch(pdfURL, {
       method: "GET",
       headers: fetchHeaders,
@@ -42,7 +46,9 @@ export async function GET(request,  context ) {
 
     if (!upstream.ok && upstream.status !== 206) {
       // forward upstream status where sensible
-      return new Response(`Upstream error: ${upstream.statusText}`, { status: upstream.status });
+      return new Response(`Upstream error: ${upstream.statusText}`, {
+        status: upstream.status,
+      });
     }
 
     // copy useful headers from upstream
@@ -70,14 +76,13 @@ export async function GET(request,  context ) {
       headers: responseHeaders,
     });
   } catch (err) {
-    if (err.name === "AbortError") return new Response("Timeout fetching PDF", { status: 504 });
+    if (err.name === "AbortError")
+      return new Response("Timeout fetching PDF", { status: 504 });
     return new Response(`Fetch error: ${err.message}`, { status: 500 });
   } finally {
     clearTimeout(timeoutId);
   }
 }
-
-
 
 // app/api/pdf-proxy/route.js
 // export async function GET(request, context) {
@@ -117,9 +122,6 @@ export async function GET(request,  context ) {
 //     });
 //   }
 // }
-
-
-
 
 // export async function GET(request, context) {
 //   const { bookId } = await context.params;

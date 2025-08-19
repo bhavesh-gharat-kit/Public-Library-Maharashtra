@@ -4,6 +4,13 @@ import { Tooltip } from "@/components";
 import Link from "next/link";
 
 const BookCard = ({ book, randomColor }) => {
+  function base64UrlEncode(str) {
+    return Buffer.from(str, "utf-8")
+      .toString("base64")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+  }
   return (
     <div
       className="bg-white shadow-md hover:shadow-xl rounded-md  hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"
@@ -65,8 +72,8 @@ const BookCard = ({ book, randomColor }) => {
           href={
             book.pdfLink
               ? book.bookType === "iBook"
-                ? `/e-books/read-i-book/${btoa(book.pdfLink)}`
-                : `/e-books/read-book/${btoa(book.pdfLink)}`
+                ? `/e-books/read-i-book/${base64UrlEncode(book.pdfLink)}`
+                : `/e-books/read-book/${base64UrlEncode(book.pdfLink)}`
               : "#"
           }
           className={`block w-full px-8  text-center text-sm font-semibold text-white ${randomColor}  rounded-lg py-2 transition-all`}

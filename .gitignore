@@ -2,9 +2,9 @@
 /app/api/test
 /app/test
 
-/data
-/app/api/test
-/app/test
+/data/*
+/app/api/test/*
+/app/test/*
 
 # dependencies
 /node_modules
