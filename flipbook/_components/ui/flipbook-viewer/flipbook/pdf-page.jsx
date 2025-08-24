@@ -24,9 +24,9 @@ const PdfPage = forwardRef(
                 ? Math.min(zoomScale * window.devicePixelRatio, 5)
                 : window.devicePixelRatio
             }
-            renderTextLayer={true} // optional: turn off text layer if not needed
-            renderAnnotationLayer={true} // optional: turn off links/annots if not needed
-            renderMode="canvas" // 🔑 ensures images+graphics are drawn
+            renderMode="canvas"
+            renderTextLayer={false} // disable if you want pure page render
+            renderAnnotationLayer={false}
             loading={<></>}
           />
         )}

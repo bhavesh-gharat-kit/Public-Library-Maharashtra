@@ -1,16 +1,26 @@
 "use client";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 import React, { useCallback, useRef, useState } from "react";
 import Toolbar from "./toolbar/toolbar";
 import { cn } from "@/flipbook/_lib/utils";
 import Flipbook from "./flipbook/flipbook";
 import screenfull from "screenfull";
 import { TransformWrapper } from "react-zoom-pan-pinch";
-import { Document } from "react-pdf";
+import { pdfjs, Document } from "react-pdf";
 import PdfLoading from "./pad-loading/pdf-loading";
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-import { pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+
+// ✅ Always point to the hosted worker
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
+
+// ✅ Add proper CMap + font configs
+pdfjs.GlobalWorkerOptions.cMapUrl = "/cmaps/";
+pdfjs.GlobalWorkerOptions.cMapPacked = true;
+pdfjs.GlobalWorkerOptions.standardFontDataUrl = "/standard_fonts/";
+
+const options = {
+  wasmUrl: "/_next/static/wasm/",
+};
 
 const FlipbookViewer = ({ pdfUrl, shareUrl, className, disableShare }) => {
   const containerRef = useRef(); // For full screen container
@@ -39,13 +49,6 @@ const FlipbookViewer = ({ pdfUrl, shareUrl, className, disableShare }) => {
         height: viewport.height,
       });
 
-      // const pageDetails = await document.getPage(1);
-      // setPdfDetails({
-      //   totalPages: document.numPages,
-      //   width: pageDetails.view[2],
-      //   height: pageDetails.view[3],
-      // });
-
       setPdfLoading(false);
     } catch (error) {
       console.error("Error loading document:", error);
@@ -53,7 +56,6 @@ const FlipbookViewer = ({ pdfUrl, shareUrl, className, disableShare }) => {
   }, []);
 
   return (
-    // <div ref={containerRef} className={cn("relative h-[20.163rem] xs:h-[25.163rem] lg:h-[33.163rem] xl:h-[34.66rem] bg-foreground w-full overflow-hidden", className)}>
     <div
       ref={containerRef}
       className={cn(
@@ -64,7 +66,9 @@ const FlipbookViewer = ({ pdfUrl, shareUrl, className, disableShare }) => {
       {pdfLoading && <PdfLoading />}
       <Document
         file={pdfUrl}
+        renderMode="canvas"
         onLoadSuccess={onDocumentLoadSuccess}
+        options={options}
         loading={<></>}
       >
         {pdfDetails && !pdfLoading && (
