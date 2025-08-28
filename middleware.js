@@ -7,7 +7,7 @@ const secret = process.env.NEXTAUTH_SECRET;
 // ------------------- CONFIG -------------------
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|403|404|api/ip-check|api/auth|assets|api/access-setting).*)",
+    "/((?!_next/static|_next/image|favicon.ico|403|404|login|api/ip-check|api/auth|assets|api/access-setting).*)",
   ],
 };
 
