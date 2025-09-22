@@ -11,28 +11,14 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "English Grammar - Advanced",
+      title: "NTSE – Practice",
       description:
-        "Master advanced grammar concepts, complex sentence structures, and nuanced usage with these practice sets.",
-      link: "/take-test/english-grammar-advanced",
+        "Attempt NTSE-level mock tests with MAT and SAT sections, covering all key topics for Stage 1 and Stage 2 preparation.",
+      link: "/take-test/ntse-practice",
       aos: "fade-up",
     },
-    {
-      title: "English Grammar - Beginner",
-      description:
-        "Start from the basics! Learn parts of speech, simple tenses, and fundamental grammar rules through practice tests.",
-      link: "/take-test/english-grammar-beginner",
-      aos: "fade-down",
-    },
-    {
-      title: "English Grammar - Intermediate",
-      description:
-        "Level up your grammar skills with tests covering perfect tenses, clauses, conditionals, and error detection.",
-      link: "/take-test/english-grammar-intermediate",
-      aos: "flip-up",
-    },
   ];
-  
+
   return (
     <>
       <section className="min-h-screen flex flex-col items-center px-4 py-4 md:py-8 bg-gradient-to-b from-purple-50 to-white">
@@ -44,10 +30,10 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for English Grammer
+              Best Mock Tests for NTSE EXAMS
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free English Grammer Mock Tests
+              Get Access to Free NTSE Mock Tests
             </p>
           </div>
 

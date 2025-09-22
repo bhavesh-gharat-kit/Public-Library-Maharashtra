@@ -11,74 +11,63 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "CUET Accountancy",
+      description:
+        "Practice CUET Accountancy domain-specific mock tests with detailed solutions to boost your preparation.",
+      link: "/take-test/cuet-accountancy",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      title: "CUET Biology",
+      description:
+        "Revise key concepts of Biology and test your knowledge with CUET-level mock questions and explanations.",
+      link: "/take-test/cuet-biology",
       aos: "fade-down",
     },
     {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
+      title: "CUET Business Studies",
+      description:
+        "Attempt CUET Business Studies tests covering case studies, MCQs, and analysis-based questions.",
+      link: "/take-test/cuet-business-studies",
+      aos: "fade-up",
+    },
+    {
+      title: "CUET Chemistry",
+      description:
+        "Prepare with topic-wise CUET Chemistry practice tests, including Physical, Organic, and Inorganic Chemistry.",
+      link: "/take-test/cuet-chemistry",
+      aos: "fade-down",
+    },
+    {
+      title: "CUET Economics",
+      description:
+        "Strengthen your Economics preparation with CUET-level practice sets and numerical questions.",
+      link: "/take-test/cuet-economics",
       aos: "flip-up",
     },
     {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
+      title: "CUET Maths",
+      description:
+        "Solve CUET Mathematics mock tests with step-by-step solutions to improve accuracy and speed.",
+      link: "/take-test/cuet-maths",
+      aos: "flip-down",
+    },
+    {
+      title: "CUET Physics",
+      description:
+        "Attempt CUET Physics practice papers focusing on numerical problem-solving and conceptual clarity.",
+      link: "/take-test/cuet-physics",
+      aos: "zoom-in",
+    },
+    {
+      title: "CUET Quantitative",
+      description:
+        "Boost your quantitative aptitude with CUET-specific practice sets and detailed solution explanations.",
+      link: "/take-test/cuet-quantitative",
+      aos: "zoom-in-up",
     },
   ];
-
-  let data = [
-    {
-      "id": "18",
-      "slug": "cuet-accountancy",
-      "name": "CUET Accountancy"
-    },
-    {
-      "id": "19",
-      "slug": "cuet-biology",
-      "name": "CUET Biology"
-    },
-    {
-      "id": "20",
-      "slug": "cuet-business-studies",
-      "name": "CUET Business Studies"
-    },
-    {
-      "id": "21",
-      "slug": "cuet-chemistry",
-      "name": "CUET Chemistry"
-    },
-    {
-      "id": "22",
-      "slug": "cuet-economics",
-      "name": "CUET Economics"
-    },
-    {
-      "id": "23",
-      "slug": "cuet-maths",
-      "name": "CUET Maths"
-    },
-    {
-      "id": "24",
-      "slug": "cuet-physics",
-      "name": "CUET Physics"
-    },
-    {
-      "id": "25",
-      "slug": "cuet-quantitative",
-      "name": "CUET Quantitative"
-    },
-    
-  ]
+  
 
   return (
     <>
@@ -91,10 +80,10 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for CUET EXAMS
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free CUET EXAMS Mock Tests
             </p>
           </div>
 

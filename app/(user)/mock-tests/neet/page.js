@@ -11,52 +11,34 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "Biology",
+      description:
+        "Revise NCERT-based Biology chapters and practice topic-wise NEET mock tests with detailed solutions.",
+      link: "/take-test/neet-biology",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
-      aos: "fade-down",
+      title: "Chemistry",
+      description:
+        "Strengthen Physical, Organic, and Inorganic Chemistry with chapter-wise and full-length NEET practice tests.",
+      link: "/take-test/neet-chemistry",
+      aos: "fade-up",
     },
     {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
-      link: "/take-test/mpsc-state-commission",
-      aos: "flip-up",
+      title: "Physics",
+      description:
+        "Practice NEET-level Physics numericals and theory-based questions to improve speed and accuracy.",
+      link: "/take-test/neet-physics",
+      aos: "fade-up",
     },
     {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
+      title: "PCB – All in one",
+      description:
+        "Take combined Physics, Chemistry, and Biology full-length mock tests for complete NEET exam preparation.",
+      link: "/take-test/neet-pcb-all-in-one",
+      aos: "fade-up",
     },
   ];
-
-  let data = [{
-    "id": "42",
-    "slug": "neet-biology",
-    "name": "Biology"
-  },
-  {
-    "id": "43",
-    "slug": "neet-chemistry",
-    "name": "Chemistry"
-  },
-  {
-    "id": "44",
-    "slug": "neet-pcb-all-in-one",
-    "name": "PCB – All in one"
-  },
-  {
-    "id": "45",
-    "slug": "neet-physics",
-    "name": "Physics"
-  },
-  ]
 
   return (
     <>
@@ -69,10 +51,10 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for NEET
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free NEET Mock Tests
             </p>
           </div>
 

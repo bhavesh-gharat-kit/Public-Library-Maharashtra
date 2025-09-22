@@ -8,50 +8,31 @@ export default function Page() {
   useEffect(() => {
     AOS.init({ once: true, duration: 800, easing: "ease-in-out" });
   }, []);
-
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
-      link: "/take-test/afcat-defense-agniveer",
+      title: "CTET Paper 1",
+      description:
+        "Attempt full-length practice tests for CTET Paper 1. Focus on concepts for Classes 1–5 with detailed solutions.",
+      link: "/take-test/ctet-paper-1",
       aos: "fade-up",
     },
     {
-      title: "Banking",
-      description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
-      link: "/take-test/banking",
+      title: "CTET Paper 1 (हिंदी)",
+      description:
+        "हिंदी माध्यम में CTET पेपर 1 के लिए मॉक टेस्ट हल करें। कक्षा 1–5 के लिए विषयवार अभ्यास के साथ विस्तृत समाधान।",
+      link: "/take-test/ctet-paper-2",
       aos: "fade-down",
     },
     {
-      title: "MPSC & State Commission",
-      description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
+      title: "CTET Paper 2",
+      description:
+        "Prepare for CTET Paper 2 with topic-wise and full-length tests for Classes 6–8. Includes answer explanations.",
       link: "/take-test/mpsc-state-commission",
       aos: "flip-up",
     },
-    {
-      title: "Railway",
-      description: "Master RRB NTPC, Group D & more with topic-wise test sets.",
-      link: "/take-test/railway",
-      aos: "Slide-down",
-    },
   ];
+  
 
-  let test = [{
-    "id": "26",
-    "slug": "ctet-paper-1",
-    "name": "CTET Paper 1"
-  },
-  {
-    "id": "27",
-    "slug": "ctet-paper-1-hindi",
-    "name": "CTET Paper 1 (हिंदी)"
-  },
-  {
-    "id": "28",
-    "slug": "ctet-paper-2",
-    "name": "CTET Paper 2"
-  },
-  ]
 
   return (
     <>
@@ -64,10 +45,10 @@ export default function Page() {
           >
             <h2 className="text-4xl font-extrabold text-white mb-4 flex justify-center items-center gap-3">
               <FaBookOpen />
-              Best Mock Tests for COMPETITIVE EXAMS
+              Best Mock Tests for CTET EXAMS
             </h2>
             <p className="text-lg md:text-xl font-medium">
-              Get Access to Free COMPETITIVE EXAMS Mock Tests
+              Get Access to Free CTET EXAMS Mock Tests
             </p>
           </div>
 

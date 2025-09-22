@@ -115,16 +115,16 @@ model IBook {
   bookId Int  @unique @db.UnsignedInt
   book   Book @relation("BookToIBook", fields: [bookId], references: [id], onDelete: Cascade) //Relation to Book Model
 
-  summary         String? @db.Text
-  notes           String? @db.Text
-  revisionNotes   String? @db.Text
-  commonMistakes  String? @db.Text
-  studyTricks     String? @db.Text
-  definitions     String? @db.Text
-  suggestedVideos String? @db.Text
-  mcq             String? @db.Text
-  questionPaper   String? @db.Text
-  questionAnswer  String? @db.Text
+  summary         String? @db.MediumText
+  notes           String? @db.MediumText
+  revisionNotes   String? @db.MediumText
+  commonMistakes  String? @db.MediumText
+  studyTricks     String? @db.MediumText
+  definitions     String? @db.MediumText
+  suggestedVideos String? @db.MediumText
+  mcq             String? @db.MediumText
+  questionPaper   String? @db.MediumText
+  questionAnswer  String? @db.MediumText
 
   createdAt DateTime @default(now())
 
@@ -176,7 +176,7 @@ model MockTest {
 
   // No direct questions here – questions will be drawn from ExamCategoryQuestion dynamically
   date      DateTime? @db.Date
-  createdAt DateTime?  @default(now())
+  createdAt DateTime? @default(now())
 
   @@map("mock_tests")
 }

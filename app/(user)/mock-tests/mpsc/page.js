@@ -14,21 +14,51 @@ export default function Page() {
     {
       title: "MPSC & State Commission",
       description:
-        "Prepare for state services with focused, exam-oriented mock tests.",
+        "Comprehensive mock tests for MPSC and other state commissions covering all major subjects and previous-year patterns.",
       link: "/take-test/mpsc-state-commission",
       aos: "fade-up",
     },
     {
       title: "MPSC Assistant Section Officer",
-      description: "MCQ-based mock tests for State PSC.",
+      description:
+        "Practice ASO-specific mock tests focusing on reasoning, Marathi grammar, and administrative aptitude.",
       link: "/take-test/mpsc-assistant-section-officer",
-      aos: "fade-down",
+      aos: "fade-up",
     },
     {
-      title: "MPSC Marathi",
-      description: "MCQ-based mock tests for State PSC in Marathi.",
-      link: "/take-test/mpsc-marathi",
-      aos: "fade-down",
+      title: "Forest Services – English",
+      description:
+        "Solve mock papers for Forest Services in English with topic-wise and full-length test options.",
+      link: "/take-test/mpsc-forest-services-english",
+      aos: "fade-up",
+    },
+    {
+      title: "PSI – Police Sub Inspector English",
+      description:
+        "Prepare for PSI exams with dedicated English-medium tests focusing on GK, reasoning, and aptitude.",
+      link: "/take-test/mpsc-psi-police-sub-inspector-english",
+      aos: "fade-up",
+    },
+    {
+      title: "Rajyaseva Prelims",
+      description:
+        "Attempt full-length mock tests for MPSC Rajyaseva prelims covering all subjects as per the latest syllabus.",
+      link: "/take-test/mpsc-rajyaseva-prelims",
+      aos: "fade-up",
+    },
+    {
+      title: "राज्यसेवा पूर्व परीक्षा",
+      description:
+        "मराठी माध्यमातील राज्यसेवा पूर्व परीक्षेचे मॉक टेस्ट्स सरावासाठी उपलब्ध, संपूर्ण अभ्यासक्रम कव्हर करणारे.",
+      link: "/take-test/mpsc-राज्यसेवा-पूर्व-परीक्षा",
+      aos: "fade-up",
+    },
+    {
+      title: "वन सेवा परीक्षा – Marathi",
+      description:
+        "वन सेवा परीक्षेसाठी मराठी माध्यमातील प्रश्नपत्रिका, विषयवार आणि पूर्ण लांबीचे सराव पेपर्स.",
+      link: "/take-test/mpsc-वन्-सेवा-परीक्षा-marathi",
+      aos: "fade-up",
     },
   ];
 

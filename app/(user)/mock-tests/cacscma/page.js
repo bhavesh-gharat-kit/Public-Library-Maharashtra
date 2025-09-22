@@ -20,20 +20,20 @@ export default function Page() {
       link: "/take-test/ca-foundation",
       aos: "fade-up",
     },
-    // {
-    //   title: "CMA Foundation",
-    //   description:
-    //     "Ace your Cost & Management Accounting entrance with these tests.",
-    //   link: "/take-test/cma-foundation",
-    //   aos: "slide-up",
-    // },
-    // {
-    //   title: "CS Executive",
-    //   description:
-    //     "Boost your Company Secretary prep with structured mock exams.",
-    //   link: "/take-test/cs-executive",
-    //   aos: "flip-up",
-    // },
+    {
+      title: "CMA Foundation",
+      description:
+        "Ace your Cost & Management Accounting entrance with these tests.",
+      link: "/take-test/cma-foundation",
+      aos: "slide-up",
+    },
+    {
+      title: "CS Executive",
+      description:
+        "Boost your Company Secretary prep with structured mock exams.",
+      link: "/take-test/cs-executive",
+      aos: "flip-up",
+    },
   ];
 
   return (

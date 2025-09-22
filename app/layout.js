@@ -2,6 +2,7 @@ import "./globals.css";
 import "aos/dist/aos.css";
 import Providers from "./providers";
 import { lora, tiroMarathi } from "@/utils/fonts";
+import "katex/dist/katex.min.css";
 
 export const metadata = {
   title: "लालबागचा राजा AI अंकीय ग्रंथालय",

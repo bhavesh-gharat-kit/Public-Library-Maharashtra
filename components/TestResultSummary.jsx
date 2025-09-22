@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
+import { LatexRenderer } from "@/components";
 
 const COLORS = ["#4ade80", "#f87171", "#fde68a"]; // green, red, yellow
 
@@ -171,7 +172,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                 >
                   <div className="flex justify-between items-center">
                     <p className="font-semibold text-gray-800">
-                      Q{idx + 1}: {q.question}
+                      Q{idx + 1}:
+                      <LatexRenderer text={q.question} />
                     </p>
                     <span
                       className={`text-xs font-semibold px-2 py-1 rounded-full ${
@@ -193,7 +195,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                     {q.options.map((opt, optIdx) => {
                       const isSelected = userAnswer === optIdx;
-                      const isRight = Number(opt.id) == Number(q.answer?.optionId);
+                      const isRight =
+                        Number(opt.id) == Number(q.answer?.optionId);
 
                       return (
                         <div
@@ -206,7 +209,7 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                               : "border-gray-200"
                           }`}
                         >
-                          {opt.text}
+                          <LatexRenderer text={opt.text} />
                           {isRight && (
                             <span className="ml-2 text-green-600 font-semibold">
                               ✓
@@ -236,7 +239,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
 
                       {expanded[idx] && (
                         <div className="mt-2 p-3 bg-blue-50 border-l-4 border-blue-400 text-sm text-blue-700 rounded">
-                          <strong>Explanation:</strong> {q.answer?.explanation}
+                          <strong>Explanation:</strong>
+                          <LatexRenderer text={q.answer?.explanation} />
                         </div>
                       )}
                     </div>

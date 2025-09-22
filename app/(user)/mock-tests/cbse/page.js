@@ -14,88 +14,66 @@ export default function Page() {
       title: "Class 10 - Mathematics",
       description:
         "Sharpen your math skills with these chapter-wise Class 10 mock tests.",
-      link: "/take-test/class-10-mathematics",
+      link: "/take-test/cbse-class-10-mathematics",
       aos: "fade-up",
     },
     {
       title: "Class 10 - Science",
       description:
         "Test your knowledge of Physics, Chemistry, and Biology for Class 10.",
-      link: "/take-test/class-10-science",
+      link: "/take-test/cbse-class-10-science",
       aos: "slide-up",
     },
     {
       title: "Class 10 - Social Science",
       description:
         "Practice History, Civics, Geography, and Economics for Class 10.",
-      link: "/take-test/class-10-social-science",
+      link: "/take-test/cbse-class-10-social-science",
       aos: "flip-up",
     },
     {
       title: "Class 09 - Mathematics",
       description:
         "Practice algebra, geometry, and more for Class 9 Mathematics.",
-      link: "/take-test/class-9-mathematics",
+      link: "/take-test/cbse-class-9-mathematics",
       aos: "fade-down",
     },
     {
       title: "Class 09 - Science",
       description:
         "Concept-based tests covering Class 9 Physics, Chemistry, and Biology.",
-      link: "/take-test/class-9-science",
+      link: "/take-test/cbse-class-9-science",
       aos: "slide-left",
     },
     {
       title: "Class 09 - Social Science",
       description:
         "Get ready for SST with topic-wise tests aligned to CBSE syllabus.",
-      link: "/take-test/class-9-social-science",
+      link: "/take-test/cbse-class-9-social-science",
       aos: "zoom-in",
     },
-    {
-      title: "Class 08 - Mathematics",
-      description:
-        "Revise key concepts and practice problems for Class 8 Maths.",
-      link: "/take-test/class-8-mathematics",
-      aos: "fade-down",
-    },
+    // {
+    //   title: "Class 08 - Mathematics",
+    //   description:
+    //     "Revise key concepts and practice problems for Class 8 Maths.",
+    //   link: "/take-test/cbse-class-8-mathematics",
+    //   aos: "fade-down",
+    // },
     {
       title: "Class 08 - Science",
       description:
         "Cover core chapters with MCQs from Class 8 Science curriculum.",
-      link: "/take-test/class-8-science",
+      link: "/take-test/cbse-class-8-science",
       aos: "slide-right",
     },
     {
       title: "Class 08 - Social Science",
       description:
         "Practice questions from Civics, History, and Geography - Class 8.",
-      link: "/take-test/class-8-social-science",
+      link: "/take-test/cbse-class-8-social-science",
       aos: "flip-right",
     },
   ];
-
-  let arr = [{
-    "id": "14",
-    "slug": "afcat-defense-agniveer",
-    "name": "AFCAT, Defense, Agniveer"
-  },
-  {
-    "id": "15",
-    "slug": "banking",
-    "name": "Banking"
-  },
-  {
-    "id": "16",
-    "slug": "mpsc-state-commission",
-    "name": "MPSC & State Commission"
-  },
-  {
-    "id": "17",
-    "slug": "railway",
-    "name": "Railway"
-  },
-  ]
 
   return (
     <>

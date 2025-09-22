@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   CountdownScreen,
   FullScreenLoader,
+  LatexRenderer,
   TestResultSummary,
   TestSettingsModal,
 } from "@/components";
@@ -172,7 +173,6 @@ const PlayTestPage = () => {
           <span>
             Question {currentQuestionIndex + 1} of {testData.questions.length}
           </span>
-          {/* {testData.timer && <span>Time: {testData.timer}</span>} */}
           {remainingTime !== null && !completed && (
             <span className="font-mono text-red-500 text-sm">
               ⏱️ Time Left:{" "}
@@ -184,7 +184,7 @@ const PlayTestPage = () => {
 
         <div>
           <h3 className="text-lg font-semibold text-gray-800">
-            {currentQ.question}
+            <LatexRenderer text={currentQ.question}  />
           </h3>
           <ul className="mt-4 space-y-2">
             {currentQ.options.map((opt, idx) => (
@@ -199,7 +199,7 @@ const PlayTestPage = () => {
                         : "hover:bg-gray-100 border-gray-300"
                     }`}
                 >
-                  {opt.text}
+                  <LatexRenderer text={opt.text}  />
                 </button>
               </li>
             ))}

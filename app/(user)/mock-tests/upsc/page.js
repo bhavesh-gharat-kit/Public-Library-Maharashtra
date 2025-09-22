@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import { FaBookOpen } from "react-icons/fa";
-import Link from "next/link";
 import { MockTestSubCard } from "@/components";
 
 export default function Page() {
@@ -12,15 +11,39 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "NCERT Hindi",
-      desc: "Prepare for union public services with focused, exam-oriented mock tests in hindi.",
+      title: "NCERT (UPSC) हिंदी",
+      desc: "UPSC तैयारी के लिए एनसीईआरटी आधारित मॉक टेस्ट, विशेष रूप से हिंदी माध्यम के छात्रों के लिए।",
       link: "/take-test/upsc-ncert-hindi",
       aos: "fade-up",
     },
     {
       title: "NCERT Geography",
-      desc: "Prepare for union public services with focused, exam-oriented mock tests for geography subject.",
+      desc: "Master NCERT Geography with UPSC-focused mock tests covering physical, human, and Indian geography.",
       link: "/take-test/upsc-ncert-geography",
+      aos: "fade-down",
+    },
+    {
+      title: "NCERT History",
+      desc: "Revise NCERT History with exam-oriented tests on Ancient, Medieval, and Modern India.",
+      link: "/take-test/upsc-ncert-history",
+      aos: "fade-down",
+    },
+    {
+      title: "NCERT Indian Polity",
+      desc: "Sharpen your understanding of NCERT Polity concepts with UPSC-style questions and tests.",
+      link: "/take-test/upsc-ncert-polity",
+      aos: "fade-down",
+    },
+    {
+      title: "Reasoning and Aptitude",
+      desc: "Enhance logical reasoning and quantitative aptitude with practice sets designed for competitive exams.",
+      link: "/take-test/upsc-reasoning-aptitude",
+      aos: "fade-down",
+    },
+    {
+      title: "सामान्य बुद्धि एवं तर्कशक्ति",
+      desc: "सामान्य अध्ययन के लिए बुद्धि एवं तर्कशक्ति से जुड़े प्रश्नों का अभ्यास करें और अपनी तैयारी मजबूत करें।",
+      link: "/take-test/upsc-samanya-buddhi",
       aos: "fade-down",
     },
   ];

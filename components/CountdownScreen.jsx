@@ -5,62 +5,58 @@ import { FaClock } from "react-icons/fa";
 
 export default function CountdownScreen({ onComplete, count = 3 }) {
   const [countdown, setCountdown] = useState(count);
-  const [showCountdown, setShowCountdown] = useState(true);
-  const [displayedCountdown, setDisplayedCountdown] = useState(count);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     if (countdown > 0) {
-      const timer = setTimeout(() => {
-        setCountdown((prev) => prev - 1);
-      }, 1000);
+      const timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
     } else {
       const delay = setTimeout(() => {
-        setShowCountdown(false);
-        onComplete();
+        setShow(false);
+        onComplete?.();
       }, 500);
       return () => clearTimeout(delay);
     }
   }, [countdown, onComplete]);
 
-  // Update displayed countdown after countdown is updated, with slight delay
-  useEffect(() => {
-    const displayDelay = setTimeout(() => {
-      setDisplayedCountdown(countdown);
-    }, 50); // 50ms ensures React has rendered the previous value
-
-    return () => clearTimeout(displayDelay);
-  }, [countdown]);
-
-  if (!showCountdown) return null;
+  if (!show) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
-      <FaClock className="text-5xl text-yellow-400 mb-4 animate-pulse" />
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-red-600/10 to-red-800/10 text-red-600">
+      {/* Clock Icon */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.6 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="mb-6"
+      >
+        <FaClock className="text-6xl drop-shadow-lg" />
+      </motion.div>
 
-      {/* <AnimatePresence mode="wait">
-        <motion.div
-          key={displayedCountdown}
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1.3, opacity: 1 }}
-          exit={{ scale: 0.5, opacity: 0 }}
-          transition={{
-            duration: 0.4,
-            ease: "easeInOut",
-            type: "spring",
-            stiffness: 180,
-          }}
-          className="text-7xl font-extrabold tracking-widest"
-          > */}
-      <div className="text-7xl font-extrabold tracking-widest animate-ping transition-all duration-1000">
-        {displayedCountdown}
-      </div>
-      {/* </motion.div>
-      </AnimatePresence> */}
+      {/* Countdown Number */}
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={countdown}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.5 }}
+          transition={{ duration: 0.6 }}
+          className="text-[8rem] font-extrabold drop-shadow-md"
+        >
+          {countdown}
+        </motion.span>
+      </AnimatePresence>
 
-      <p className="mt-6 text-sm text-gray-400 tracking-wider uppercase">
+      {/* Subtext */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-8 text-lg font-medium tracking-wider uppercase"
+      >
         Get Ready!
-      </p>
+      </motion.p>
     </div>
   );
 }

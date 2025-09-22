@@ -41,7 +41,6 @@ export default function CurrentAffairsPage() {
       if (!testId) return toast.error("Please try again");
 
       router.push(`/take-test/current-affairs/play/${testId}`);
-      
     } catch (err) {
       console.error("Error fetching filters data:", err);
     } finally {
@@ -75,7 +74,7 @@ export default function CurrentAffairsPage() {
           onClick={redirectToCurrentAffairs}
         >
           <FaPlay />
-          Start Learning
+          Start Quiz
         </button>
       </section>
 
@@ -84,7 +83,7 @@ export default function CurrentAffairsPage() {
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="bg-white rounded-xl shadow-md hover:shadow-xl p-6 transition-transform transform hover:-translate-y-1 text-center"
+            className="bg-white rounded-xl shadow-md p-6 text-center"
             data-aos="fade-up"
             data-aos-delay={idx * 150}
           >

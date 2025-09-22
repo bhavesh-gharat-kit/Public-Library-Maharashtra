@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import { Target } from "lucide-react";
+import { LatexRenderer } from "./LaTeXRenderer";
 
 export default function TestSettingsModal({
   onCancel,
@@ -100,7 +101,7 @@ export default function TestSettingsModal({
 
             <div className="flex items-center justify-center">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-lg font-medium">
-                <Target/> Get ready to test your knowledge!
+                <Target /> Get ready to test your knowledge!
               </span>
             </div>
 
