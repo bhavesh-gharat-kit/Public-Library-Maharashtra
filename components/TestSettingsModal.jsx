@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import { Target } from "lucide-react";
-import { LatexRenderer } from "./LaTeXRenderer";
 
 export default function TestSettingsModal({
   onCancel,
