@@ -1,34 +1,32 @@
 "use client";
 import { BlockMath, InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 /**
  * LatexRenderer
  * -------------
- * Renders text with inline/block LaTeX using KaTeX.
+ * Renders inline and block LaTeX with KaTeX.
  *
- * Supports:
- *   - \( ... \)   → inline math
- *   - \[ ... \]   → block math
- *   - $$ ... $$   → block math
- *   - \begin{...}...\end{...} → block math
- *   - auto-detection of raw LaTeX commands (\frac, \left, etc.)
- *
- * Usage:
- *   <LatexRenderer text="The solution is \(x^2+1\)" />
+ * Improvements:
+ *   - Supports $...$, $$...$$, \(...\), \[...\], \begin...\end
+ *   - Uses KaTeX's throwOnError=false → graceful rendering
+ *   - Handles most invalid commands by showing them as text inside output
  */
 export default function LatexRenderer({ text }) {
   if (!text) return null;
 
+  // 🔥 Fix over-escaped LaTeX
+  text = text.replace(/\\\\/g, "\\");
+
   const parts = [];
   const regex =
-    /(\$\$.*?\$\$|\\\(.*?\\\)|\\\[.*?\\\]|\\begin\{[\s\S]*?\\end\{[a-zA-Z*]+\})/g;
+    /(\$\$[\s\S]*?\$\$|\$[^$]*\$|\\\(.*?\\\)|\\\[.*?\\\]|\\begin\{[\s\S]*?\\end\{[a-zA-Z*]+\})/g;
 
   let lastIndex = 0;
   let match;
 
   while ((match = regex.exec(text)) !== null) {
     if (match.index > lastIndex) {
-      // plain text before math
       parts.push({ type: "text", content: text.slice(lastIndex, match.index) });
     }
 
@@ -43,8 +41,10 @@ export default function LatexRenderer({ text }) {
     } else if (mathContent.startsWith("\\[")) {
       mathContent = mathContent.slice(2, -2).trim();
       parts.push({ type: "block", content: mathContent });
+    } else if (mathContent.startsWith("$")) {
+      mathContent = mathContent.slice(1, -1).trim();
+      parts.push({ type: "inline", content: mathContent });
     } else if (mathContent.startsWith("\\begin")) {
-      // full environment → block
       parts.push({ type: "block", content: mathContent.trim() });
     }
 
@@ -59,10 +59,32 @@ export default function LatexRenderer({ text }) {
     <>
       {parts.map((part, idx) => {
         if (part.type === "text") return <span key={idx}>{part.content}</span>;
-        if (part.type === "inline")
-          return <InlineMath key={idx} math={part.content} />;
-        if (part.type === "block")
-          return <BlockMath key={idx} math={part.content} />;
+
+        if (part.type === "inline") {
+          return (
+            <InlineMath
+              key={idx}
+              math={part.content}
+              errorColor="#cc0000"
+              renderError={(err) => <span>{err.name}</span>}
+              settings={{ throwOnError: false }}
+            />
+          );
+        }
+
+        if (part.type === "block") {
+          return (
+            <BlockMath
+              key={idx}
+              math={part.content}
+              errorColor="#cc0000"
+              renderError={(err) => <span>{err.name}</span>}
+              settings={{ throwOnError: false }}
+            />
+          );
+        }
+
+        return null;
       })}
     </>
   );
