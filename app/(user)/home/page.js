@@ -77,7 +77,7 @@ export default function ResourcesPage() {
       icon: FaBook,
       color: "text-blue-600",
       description:
-        "Higher Education | Educational Videos | School Curriculum | Study Materials & more",
+        "Higher Educations | Educational Videos | School Curriculum | Study Materials & more",
       link: "/education",
       animation: "fade-up",
     },
