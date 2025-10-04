@@ -190,11 +190,11 @@ export function StudyTools({ setSelectedTool }) {
       label: "Question Paper",
       name: "questionPaper",
     },
-    {
-      icon: <FaQuestion />,
-      label: "Create Question & Answers",
-      name: "questionAnswer",
-    },
+    // {
+    //   icon: <FaQuestion />,
+    //   label: "Create Question & Answers",
+    //   name: "questionAnswer",
+    // },
   ];
   return (
     <div className="mb-6">

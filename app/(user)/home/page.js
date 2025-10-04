@@ -16,6 +16,7 @@ import {
   FaHeartbeat,
   FaVideo,
   FaUniversity,
+  FaPenFancy,
 } from "react-icons/fa";
 import Link from "next/link";
 
@@ -72,6 +73,15 @@ export default function ResourcesPage() {
       link: "/current-affairs",
       animation: "fade-left",
     },
+    {
+      title: "Manuscript",
+      icon: FaPenFancy, 
+      color: "text-purple-600",
+      description:
+        "Research Papers | Book Drafts | Article Submissions | Creative Writing & more",
+        link: "/manuscript",
+        animation: "fade-up",
+      },    
     {
       title: "Education",
       icon: FaBook,
