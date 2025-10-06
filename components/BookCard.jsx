@@ -2,15 +2,10 @@ import React from "react";
 import { FaPenNib } from "react-icons/fa";
 import { Tooltip } from "@/components";
 import Link from "next/link";
+import { base64UrlEncode } from "@/lib/helperFunctions";
 
 const BookCard = ({ book, randomColor }) => {
-  function base64UrlEncode(str) {
-    return Buffer.from(str, "utf-8")
-      .toString("base64")
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/, "");
-  }
+
   return (
     <div
       className="bg-white shadow-md hover:shadow-xl rounded-md  hover:scale-[1.01] transition-all duration-300 overflow-hidden flex flex-col"

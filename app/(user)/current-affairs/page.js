@@ -79,7 +79,7 @@ export default function CurrentAffairsPage() {
       </section>
 
       {/* Features Section */}
-      <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-6 py-12">
+      <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto px-6 pb-12">
         {features.map((feature, idx) => (
           <div
             key={idx}

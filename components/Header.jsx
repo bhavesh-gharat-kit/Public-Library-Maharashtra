@@ -23,7 +23,7 @@ export default function Header() {
   const navLinks = [
     {
       href: "/home",
-      label: "Digital Library",
+      label: "Home Page",
       icon: <FaBookOpen />,
       color: "text-teal-600",
     },
