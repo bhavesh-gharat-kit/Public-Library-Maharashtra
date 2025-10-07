@@ -74,7 +74,7 @@ export default function ResourcesPage() {
       animation: "fade-left",
     },
     {
-      title: "Digitised Manuscript Collection",
+      title: "Manuscript",
       icon: FaPenFancy, 
       color: "text-purple-600",
       description:

@@ -138,7 +138,7 @@ export default function FilterSidebar({
           </div>
 
           {/* Languages */}
-          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+          {/* <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
             <h3 className="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2">
               <span>
                 <FaLanguage />
@@ -163,7 +163,7 @@ export default function FilterSidebar({
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Standard */}
           <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">

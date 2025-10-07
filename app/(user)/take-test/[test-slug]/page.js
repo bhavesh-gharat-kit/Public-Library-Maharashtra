@@ -21,7 +21,6 @@ export default function Page() {
   const [testData, setTestData] = useState(null);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedMonthData, setSelectedMonthData] = useState([]);
-  const [selectedTestId, setSelectedTestId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -122,9 +121,7 @@ export default function Page() {
                     </div>
 
                     <button
-                      onClick={() => {
-                        setSelectedTestId(e.id);
-                      }}
+                      href={`/take-test/${testSlug}/play/${e.id}`}
                       className="mx-auto flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all"
                     >
                       <FaBrain />
@@ -169,17 +166,6 @@ export default function Page() {
             )
           )}
       </div>
-
-      {/* Modal */}
-      {selectedTestId && (
-        <TestOptionsModal
-          onClose={() => setSelectedTestId(null)}
-          playLink={`/take-test/${testSlug}/play/${selectedTestId}`}
-          practiceLink={`/take-test/${testSlug}/play/${selectedTestId}`}
-          testLink={`/take-test/${testSlug}/play/${selectedTestId}`}
-          studyLink={`/take-test/${testSlug}/play/${selectedTestId}`}
-        />
-      )}
     </>
   );
 }

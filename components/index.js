@@ -1,10 +1,3 @@
-
-export { default as "Month" } from "./Month";
-export { default as "Monthly" } from "./Monthly";
-// export { default as "PdfViewer" } from "./PdfViewer";
-export { default as "Year" } from "./Year";
-
-
 export { default as "FilterSidebar" } from "./FilterSidebar";
 export { default as "Footer" } from "./Footer";
 export { default as "Header" } from "./Header";

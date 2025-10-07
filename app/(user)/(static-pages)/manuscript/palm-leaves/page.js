@@ -14,7 +14,7 @@ const manuscriptsData = [
     title: "Mimamsakaustubhah(मिमांसाकोस्तुभ:)",
     author: "Khandadeva",
     pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/251.pdf",
-  }
+  },
 ];
 
 const DISCLAIMER_TEXT = `
@@ -51,10 +51,17 @@ export default function ManuscriptPage() {
           data-aos="fade-up"
           className="bg-white max-w-3xl p-8 rounded-2xl shadow-xl border border-amber-200 overflow-y-auto scrollbar-sm max-h-[90vh]"
         >
-          <h1 className="text-3xl font-bold text-center text-amber-800 mb-6 flex items-center justify-center gap-2">
+          <div className="flex gap-2 text-3xl justify-center items-center">
             <FaPenFancy className="text-amber-700" />
-            Manuscript Disclaimer
-          </h1>
+            <div>
+              <h1 className="font-bold text-center text-amber-800">
+                Digitized Manuscripts
+              </h1>
+              <h2 className="text-2xl font-bold text-center text-amber-800 ">
+                (Disclaimer)
+              </h2>
+            </div>
+          </div>
           <p className="whitespace-pre-line text-gray-700 leading-relaxed text-justify mb-6">
             {DISCLAIMER_TEXT}
           </p>
@@ -103,7 +110,7 @@ export default function ManuscriptPage() {
               <tr>
                 <th className="px-6 py-3 text-left">Sr</th>
                 <th className="px-6 py-3 text-left">Title</th>
-                <th className="px-6 py-3 text-left">Author</th> 
+                <th className="px-6 py-3 text-left">Author</th>
                 <th className="px-6 py-3 text-center">PDF</th>
               </tr>
             </thead>
@@ -117,7 +124,7 @@ export default function ManuscriptPage() {
                   >
                     <td className="px-6 py-4">{i + 1}</td>
                     <td className="px-6 py-4 font-medium">{m.title}</td>
-                    <td className="px-6 py-4">{m.author}</td> 
+                    <td className="px-6 py-4">{m.author}</td>
                     <td className="px-6 py-4 text-center">
                       <Link
                         href={

@@ -12,8 +12,8 @@ export default function Page() {
 
   const testCards = [
     {
-      title: "AFCAT, Defense, Agniveer",
-      description: "Prepare for defense services with focused, exam-oriented mock tests.",
+      title: "AFCAT, Defence, Agniveer",
+      description: "Prepare for defence services with focused, exam-oriented mock tests.",
       link: "/take-test/afcat-defense-agniveer",
       aos: "fade-up",
     },
