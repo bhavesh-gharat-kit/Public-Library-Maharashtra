@@ -55,7 +55,7 @@ export default function ManuscriptCategoriesPage() {
           className="text-4xl font-bold text-gray-800 mb-4 flex justify-center items-center gap-2"
         >
           <FaPenFancy className="text-purple-700" />
-          Manuscript Collection
+          Manuscripts
         </h1>
         <p data-aos="fade-up" className="text-gray-600 max-w-2xl mx-auto mb-10">
           Explore India’s timeless heritage through preserved manuscripts — each
