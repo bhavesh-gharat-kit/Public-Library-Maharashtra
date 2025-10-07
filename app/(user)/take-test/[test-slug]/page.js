@@ -9,6 +9,7 @@ import {
   formatMonthYear,
   scrollToTop,
 } from "@/lib/helperFunctions";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { axios } from "@/utils";
 import toast from "react-hot-toast";
@@ -120,13 +121,13 @@ export default function Page() {
                       <span>{e.date}</span>
                     </div>
 
-                    <button
+                    <Link
                       href={`/take-test/${testSlug}/play/${e.id}`}
                       className="mx-auto flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all"
                     >
                       <FaBrain />
                       Take Quiz
-                    </button>
+                    </Link>
                   </div>
                 ))}
               </div>
