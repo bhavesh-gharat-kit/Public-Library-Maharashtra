@@ -25,7 +25,7 @@ const HelpCenter = () => {
     <>
       <Header />
       <section className="max-w-5xl mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-10">Help Center</h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Help Centre</h2>
         <div className="space-y-10 ">
           {helpVideos.map((video, index) => (
             <div className="" key={index}>

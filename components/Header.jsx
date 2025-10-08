@@ -29,7 +29,7 @@ export default function Header() {
     },
     {
       href: "/help-center",
-      label: "Help Center",
+      label: "Help Centre",
       icon: <FaQuestionCircle />,
       color: "text-green-600",
     },

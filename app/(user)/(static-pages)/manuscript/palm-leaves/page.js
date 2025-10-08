@@ -55,7 +55,7 @@ export default function ManuscriptPage() {
             <FaPenFancy className="text-amber-700" />
             <div>
               <h1 className="font-bold text-center text-amber-800">
-                Digitized Manuscripts
+                Digitised Manuscripts
               </h1>
               <h2 className="text-2xl font-bold text-center text-amber-800 ">
                 (Disclaimer)
