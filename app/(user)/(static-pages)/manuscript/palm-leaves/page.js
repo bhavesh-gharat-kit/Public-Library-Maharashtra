@@ -10,11 +10,47 @@ import { base64UrlEncode } from "@/lib/helperFunctions";
 // ---------- 🧾 Static Manuscript Data (Palm Leaf Category) ----------
 const manuscriptsData = [
   {
+    id: 2,
+    title: "Caturdasalaksani(चतुरदसालकशनी)",
+    author: "-",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/257.pdf",
+  },
+  {
+    id: 3,
+    title: "Amarakosh(अमरकोश)",
+    author: "-",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/292.pdf",
+  },
+  {
+    id: 4,
+    title: "Sribhasyam(श्रीभाष्यम्)",
+    author: "Ramanuja",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/254.pdf",
+  },
+  {
     id: 1,
     title: "Mimamsakaustubhah(मिमांसाकोस्तुभ:)",
     author: "Khandadeva",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/251.pdf",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/251.pdf",
   },
+  {
+    id: 5,
+    title: "Mahabharatam Harivamsah(महाभारतम् हरिवंश:)",
+    author: "Ramanuja",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/229.pdf",
+  },
+  {
+    id: 6,
+    title: "Taittiriyaranyakam(तैत्रियारण्यकम्)",
+    author: "-",
+    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/272.pdf",
+  },
+  // {
+  //   id: 7,
+  //   title: "Mahabharatam - Santiparvan(महाभारतम् शांतिपर्वन्)",
+  //   author: "Vyasa",
+  //   pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/007.pdf",
+  // },
 ];
 
 const DISCLAIMER_TEXT = `
