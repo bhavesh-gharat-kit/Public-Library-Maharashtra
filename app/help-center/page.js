@@ -4,79 +4,79 @@ import React from "react";
 const helpVideos = [
   {
     title: "How to use EBooks ?",
-    youtubeId: "sssQKX7yx9c", 
+    youtubeId: "4S2neTgTOOY", 
   },
   {
     title: "How to use test series ?",
-    youtubeId: "Wacsz7GzR7Y",
+    youtubeId: "yWvd2ldKXPU",
   },
   {
     title: "How to use current affairs ?",
-    youtubeId: "0FCfZ3c9cQ0",
+    youtubeId: "Mrm2DPRCTaY",
   },
   {
     title: "How to use manuscript ?",
-    youtubeId: "h7ga9d8kOmw",
+    youtubeId: "gvyD7n_9mVA",
   },
   {
     title: "How to use skills and career development ?",
-    youtubeId: "Czwk7pfYfjQ",
+    youtubeId: "ZVPoPKNzBfQ",
   }, 
   {
     title: "How to use hobbies and interests ?",
-    youtubeId: "Qs_IMfmYuzw",
+    youtubeId: "TKOiWcDHR7A",
   },
   {
     title: "How to use childrens section ?",
-    youtubeId: "CcXyl3s3C4g",
+    youtubeId: "VNrHTB6w2Q4",
   },
   {
     title: "How to use science and technology ?",
-    youtubeId: "nXqOha0YKB4",
+    youtubeId: "THhvF5PftgA",
   },
   {
     title: "How to use literature and novels ?",
-    youtubeId: "eybSutbQuZk",
+    youtubeId: "mDwqZywVYAo",
   },
   {
     title: "How to use history and culture ?",
-    youtubeId: "S47NWOQCg2k",
+    youtubeId: "Dy41OFmDyD8",
   },
   {
     title: "How to use how to use news and media ?",
-    youtubeId: "9OohGa2-ny0",
+    youtubeId: "bpEaWi1DRWw",
   },
   {
     title: "How to use additional resources ?",
-    youtubeId: "Cb1LRRj1OWg",
+    youtubeId: "gCvoDUt73Rk",
   },
   {
     title: "How to use job training videos ?",
-    youtubeId: "XcP5YvV05D8",
+    youtubeId: "NGsfOJeMrQg",
   },
   {
     title: "How to use primary section ?",
-    youtubeId: "GKfd69n-tY4",
+    youtubeId: "3EjAeJP2HMU",
   },
   {
     title: "How to use secondary section ?",
-    youtubeId: "h4PuOU_G2Ac",
+    youtubeId: "9caEuzm7JKg",
   },
   {
     title: "How to use education section ?",
-    youtubeId: "VUK0tkICM9g",
+    youtubeId: "RkZqrWZhURM",
   },
   {
     title: "How to use entrance exams ?",
-    youtubeId: "YQfV9swF2IE",
+    youtubeId: "aLSQSHnDCoM",
   },
   {
     title: "How to use health and wellness ?",
-    youtubeId: "koe2jn5NNhU",
+    youtubeId: "tDViI78_94g",
   },
   {
     title: "How to use high school section ?",
-    youtubeId: "ma5cNfwf-uc",
+    youtubeId: "GTj2F1kNTx8",
   },
 ];
 
