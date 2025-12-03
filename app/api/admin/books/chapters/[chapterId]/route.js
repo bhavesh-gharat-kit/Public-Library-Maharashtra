@@ -82,7 +82,6 @@ export async function PUT(request, { params }) {
       const duplicate = await prisma.bookChapter.findFirst({
         where: {
           bookId: existingChapter.bookId,
-          chapterNumber: parseInt(body.chapterNumber),
           id: { not: id },
         },
       });
@@ -98,7 +97,7 @@ export async function PUT(request, { params }) {
     // Create update data object
     const updateData = {};
     
-    if (body.chapterNumber !== undefined) updateData.chapterNumber = parseInt(body.chapterNumber);
+    if (body.chapterNumber !== undefined) updateData.chapterNumber = String(body.chapterNumber);
     if (body.title !== undefined) updateData.title = body.title?.trim() || null;
     if (body.summary !== undefined) updateData.summary = body.summary?.trim() || null;
     if (body.chapterOverview !== undefined) updateData.chapterOverview = body.chapterOverview?.trim() || null;
