@@ -132,9 +132,9 @@ model BookChapter {
   mcqPracticeBank     String? @db.MediumText
 
   thumbnailLink String?
-  pdfLink String?
-  videoLink String?
-  audioLink String?
+  pdfLink       String?
+  videoLink     String?
+  audioLink     String?
 
   createdAt DateTime @default(now())
 

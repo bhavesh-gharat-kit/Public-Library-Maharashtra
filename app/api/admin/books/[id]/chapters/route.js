@@ -6,9 +6,9 @@ import prisma from "@/lib/prisma";
 export async function GET(request, context) {
   try {
 
-    const {id} = await context.params;
+    const { id } = await context.params;
     const bookId = parseInt(id);
-    
+
     if (isNaN(bookId)) {
       return NextResponse.json(
         { success: false, message: "Invalid book ID" },
@@ -36,10 +36,10 @@ export async function GET(request, context) {
 }
 
 // POST /api/admin/books/[id]/chapters - Create new chapter
-export async function POST(request, context ) {
+export async function POST(request, context) {
   try {
 
-    const {id} = await context.params;
+    const { id } = await context.params;
     const bookId = parseInt(id);
 
     if (isNaN(bookId)) {
@@ -52,7 +52,7 @@ export async function POST(request, context ) {
     const body = await request.json();
 
     // Validate required fields
-    if (!body.chapterNumber || isNaN(parseInt(body.chapterNumber))) {
+    if (!body.chapterNumber) {
       return NextResponse.json(
         { success: false, message: "Valid chapter number is required" },
         { status: 400 }
@@ -75,7 +75,7 @@ export async function POST(request, context ) {
     const existingChapter = await prisma.bookChapter.findFirst({
       where: {
         bookId,
-        chapterNumber: parseInt(body.chapterNumber),
+        chapterNumber: String(body.chapterNumber),
       },
     });
 
@@ -89,7 +89,7 @@ export async function POST(request, context ) {
     // Create chapter
     const chapterData = {
       bookId,
-      chapterNumber: parseInt(body.chapterNumber),
+      chapterNumber: String(body.chapterNumber),
       title: body.title?.trim() || null,
       summary: body.summary?.trim() || null,
       chapterOverview: body.chapterOverview?.trim() || null,
