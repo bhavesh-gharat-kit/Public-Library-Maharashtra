@@ -13,13 +13,22 @@ const BookCard = ({ book, randomColor }) => {
         boxShadow: `0 4px 10px ${randomColor}`, // apply random color here
       }}
     >
-      {/* Dynamic Title Cover */}
+      {/* Thumbnail or Dynamic Title Cover */}
       <div
-        className={`relative h-48 m-4  flex items-center justify-center text-white text-center px-4 ${randomColor}`}
+        className={`relative h-52 m-4  flex items-center justify-center text-white text-center ${randomColor}`}
       >
-        <h2 className="text-xl font-semibold leading-snug">
-          {book.title.length > 50 ? book.title.slice(0, 50) + "…" : book.title}
-        </h2>
+        {
+          book.thumbnailLink ?
+            <img
+              src={book.thumbnailLink}
+              alt={book.title}
+              className="w-full h-full object-fill" />
+            :
+            <h2 className="text-xl font-semibold leading-snug px-4">
+              {book.title.length > 50 ? book.title.slice(0, 50) + "…" : book.title}
+            </h2>
+
+        }
 
         {/* eBook badge */}
         <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
@@ -66,9 +75,9 @@ const BookCard = ({ book, randomColor }) => {
         <Link
           href={
             book.pdfLink
-              ? book.bookType === "iBook"
-                ? `/e-books/read-i-book/${base64UrlEncode(book.pdfLink)}`
-                : `/e-books/read-book/${base64UrlEncode(book.pdfLink)}`
+              ? book.chapters?.length
+                ? `/e-books/read-i-book/${book.id}`
+                : `/e-books/read-book/${book.id}`
               : "#"
           }
           className={`block w-full px-8  text-center text-sm font-semibold text-white ${randomColor}  rounded-lg py-2 transition-all`}

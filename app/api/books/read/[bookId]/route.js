@@ -1,7 +1,9 @@
+import { bookCache } from "@/lib/pdf-cache";
+
 // app/api/pdf-proxy/[bookId]/route.js
 export async function GET(request, context) {
-  const { bookId } = await context.params;
-
+  let { bookId } = await context.params;
+  bookId = Number(bookId);
   function base64UrlDecode(str) {
     str = str.replace(/-/g, "+").replace(/_/g, "/");
     while (str.length % 4) str += "=";
@@ -15,17 +17,28 @@ export async function GET(request, context) {
 
   console.log("Book id is...", bookId);
 
-  // decode base64 -> original PDF URL
-  let pdfURL = "";
-  // pdfURL = "http://localhost:3000/book.pdf";
-  try {
-    pdfURL = base64UrlDecode(bookId);
+  let pdfURL = bookCache.get(bookId);
 
-  } catch (e) {
-    console.log("Book id is not valid ....", e);
-    return new Response("Invalid bookId", { status: 400 });
+  if (!pdfURL) {
+    console.log("CACHE MISS for book", bookId);
+
+    const book = await prisma.Book.findUnique({
+      where: { id: bookId },
+      select: { pdfLink: true }
+    });
+
+    pdfURL = book?.pdfLink;
+    bookCache.set(bookId, pdfURL); // save for next calls
+  } else {
+    console.log("CACHE HIT for book", bookId);
   }
+
   console.log("PDF Url is...", pdfURL);
+  if (!pdfURL) {
+    return new Response("PDF URL not found for the given bookId", {
+      status: 404,
+    });
+  }
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 30_000); // 30s timeout

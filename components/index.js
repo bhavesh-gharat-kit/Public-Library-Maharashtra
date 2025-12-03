@@ -15,6 +15,7 @@ export { default as BookCard } from "./BookCard";
 export { default as UserModal } from "./UserModal";
 export { default as IPModal } from "./IPModal";
 export { default as AdminSideBar } from "./AdminSideBar";
+export { default as SuperAdminSidebar } from "./SuperAdminSidebar";
 export { default as PasswordUpdateModal } from "./PasswordUpdateModal";
 export { default as MockTestSubCard } from "./MockTestSubCard";
 export { default as MDComponent } from "./MDComponent";

@@ -105,9 +105,40 @@ model Book {
   pdfLink       String?
   thumbnailLink String?
 
-  iBook IBook? @relation("BookToIBook")
+  iBook    IBook?        @relation("BookToIBook")
+  chapters BookChapter[]
 
   @@map("books") // Custom table name
+}
+
+model BookChapter {
+  id     Int  @id @default(autoincrement()) @db.UnsignedInt
+  bookId Int  @db.UnsignedInt
+  book   Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  chapterNumber String
+  title         String?
+  summary       String? @db.MediumText
+
+  // Chapter-wise detailed content
+  chapterOverview     String? @db.MediumText
+  keyConcepts         String? @db.MediumText
+  commonMistakes      String? @db.MediumText
+  detailedNotes       String? @db.MediumText
+  commonErrors        String? @db.MediumText
+  studyTips           String? @db.MediumText
+  practiceQuestions   String? @db.MediumText
+  sampleQuestionPaper String? @db.MediumText
+  mcqPracticeBank     String? @db.MediumText
+
+  thumbnailLink String?
+  pdfLink String?
+  videoLink String?
+  audioLink String?
+
+  createdAt DateTime @default(now())
+
+  @@map("book_chapters")
 }
 
 model IBook {
@@ -145,11 +176,13 @@ model AllowedIP {
 model SuggestedBooks {
   id Int @id @default(autoincrement()) @db.UnsignedInt
 
-  content       String? @db.Text
-  url           String?
+  examCategoryId Int          @db.UnsignedInt
+  examCategory   ExamCategory @relation(fields: [examCategoryId], references: [id], onDelete: Cascade)
+
   title         String?
-  description   String?
   thumbnailLink String?
+  url           String?
+  price         Int?
 
   createdAt DateTime @default(now())
 
@@ -157,12 +190,13 @@ model SuggestedBooks {
 }
 
 model ExamCategory {
-  id        Int                    @id @default(autoincrement()) @db.UnsignedInt
-  slug      String?                @unique
-  name      String
-  mockTests MockTest[] // Tests for this category
-  questions ExamCategoryQuestion[] // Pool of questions belonging to this category
-  createdAt DateTime               @default(now())
+  id             Int                    @id @default(autoincrement()) @db.UnsignedInt
+  slug           String?                @unique
+  name           String
+  mockTests      MockTest[] // Tests for this category
+  suggestedBooks SuggestedBooks[] // 'To Score More' Books for this category
+  questions      ExamCategoryQuestion[] // Pool of questions belonging to this category
+  createdAt      DateTime               @default(now())
 
   @@map("exam_categories")
 }

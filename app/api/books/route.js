@@ -62,6 +62,14 @@ export async function GET(req) {
 
     const books = await prisma.Book.findMany({
       where,
+      include: {
+        chapters: {
+          select: {
+            id: true
+          },
+          take: 1
+        }
+      },
       orderBy: { createdAt: "desc" },
       skip,
       take: limit,

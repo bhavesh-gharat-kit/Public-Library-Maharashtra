@@ -17,6 +17,8 @@ import {
   FaApper,
   FaQuestion,
   FaPage4,
+  FaHandPaper,
+  FaFileAudio,
 } from "react-icons/fa";
 import { MDComponent } from "..";
 
@@ -82,9 +84,8 @@ export function TypingLoader() {
 export function Message({ msg }) {
   return (
     <div
-      className={`flex items-start gap-2 break-words hyphens-auto ${
-        msg.type === "user" ? "justify-end" : ""
-      }`}
+      className={`flex items-start gap-2 break-words hyphens-auto ${msg.type === "user" ? "justify-end" : ""
+        }`}
     >
       {/* Avatar */}
       {msg.type === "ai" && (
@@ -100,11 +101,10 @@ export function Message({ msg }) {
 
       {/* Message Bubble */}
       <div
-        className={`p-3 rounded-lg max-w-[80%] text-sm ${
-          msg.type === "ai"
-            ? "bg-purple-100 text-gray-800"
-            : "bg-gray-100 text-gray-800"
-        }`}
+        className={`p-3 rounded-lg max-w-[80%] text-sm ${msg.type === "ai"
+          ? "bg-purple-100 text-gray-800"
+          : "bg-gray-100 text-gray-800"
+          }`}
       >
         <MDComponent markdownText={msg.text} />
         {/* {msg.text} */}
@@ -156,45 +156,28 @@ function UserInput({ input, setInput }) {
   );
 }
 
-export function StudyTools({ setSelectedTool }) {
-  const tools = [
-    { icon: <FaBook />, label: "Chapter Summary", name: "summary" },
+export function StudyTools({ setSelectedTool, studyTools }) {
 
-    { icon: <FaStickyNote />, label: "Revision Notes", name: "revisionNotes" },
+  const tools = [
+    { icon: <FaBook />, label: "Chapter Overview", name: "chapterOverview" },
+
+    { icon: <FaStickyNote />, label: "Key Concepts", name: "keyConcepts" },
+    { icon: <FaStickyNote />, label: "Detailed Notes", name: "detailedNotes" },
+    {
+      icon: <FaQuestion />,
+      label: "MCQ Practice Bank",
+      name: "mcq",
+    },
     {
       icon: <FaExclamationCircle />,
       label: "Common Mistakes",
       name: "commonMistakes",
     },
-
-    { icon: <FaVideo />, label: "Suggested Videos", name: "suggestedVideos" },
-    { icon: <FaMagic />, label: "Study Tricks", name: "studyTricks" },
-
-    {
-      icon: <FaPenNib />,
-      label: "Definitions / Concepts",
-      name: "definitions",
-    },
-    {
-      icon: <FaStickyNote />,
-      label: "Important Notes for Exams",
-      name: "notes",
-    },
-    {
-      icon: <FaQuestion />,
-      label: "Create MCQ",
-      name: "mcq",
-    },
-    {
-      icon: <FaPage4 />,
-      label: "Question Paper",
-      name: "questionPaper",
-    },
-    // {
-    //   icon: <FaQuestion />,
-    //   label: "Create Question & Answers",
-    //   name: "questionAnswer",
-    // },
+    { icon: <FaHandPaper />, label: "Practice Questions", name: "practiceQuestions" },
+    { icon: <FaMagic />, label: "Study Tips", name: "studyTips" },
+    { icon: <FaPage4 />, label: "Sample Question Paper", name: "sampleQuestionPaper" },
+    { icon: <FaFileAudio />, label: "Listen & Learn", name: "audioLink" },
+    { icon: <FaFileAudio />, label: "Visual Concept", name: "videoLink" },
   ];
   return (
     <div className="mb-6">
@@ -205,17 +188,17 @@ export function StudyTools({ setSelectedTool }) {
 
       <div className="flex flex-wrap gap-3">
         {tools.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedTool(item)}
-            className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm border border-gray-200 
+          ((studyTools[item.name]) &&
+            <button key={index}
+              onClick={() => setSelectedTool(item)}
+              className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm border border-gray-200 
                        bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 
                        transition duration-300 ease-in-out text-sm font-medium text-gray-800
                        hover:shadow-lg hover:scale-[1.01]"
-          >
-            <span className="">{item.icon}</span>
-            {item.label}
-          </button>
+            >
+              <span className="">{item.icon}</span>
+              {item.label}
+            </button>)
         ))}
       </div>
     </div>

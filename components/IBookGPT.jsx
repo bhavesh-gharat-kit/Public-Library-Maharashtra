@@ -4,15 +4,23 @@ import { useEffect, useRef, useState } from "react";
 import { Message, StudyTools, TypingLoader } from "./specific/IBookGPT";
 import toast from "react-hot-toast";
 import { axios } from "@/utils";
+import { FaArrowUp } from "react-icons/fa";
 
-export default function IBookGPT({ bookId }) {
+export default function IBookGPT({ bookId, chapterId = null, studyTools = {} }) {
   const [messages, setMessages] = useState([]);
   const [selectedTool, setSelectedTool] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [aiLoading, setAILoading] = useState(false);
-  const [bookData, setBookData] = useState([]);
 
   const containerRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,20 +35,18 @@ export default function IBookGPT({ bookId }) {
           });
         }
 
-        // let prompt = getIBookPrompt(bookData, selectedTool.name);
-
         const newMessages = [
           ...messages,
           { type: "user", text: selectedTool.label },
         ];
         setMessages(newMessages);
 
-        const { data } = await axios.post(`/api/books/${bookData.id}/i-book`, {
-          // prompt,
+        const { data } = await axios.post(chapterId ? `/api/books/${bookId}/${chapterId}` :
+          `/api/books/${bookId}`, {
           tool: selectedTool.name,
         });
 
-        setMessages([...newMessages, { type: "ai", text: data.reply }]);
+        setMessages([...newMessages, { type: "ai", text: data.reply, spl: selectedTool.name }]);
       } catch (error) {
         console.error(error);
         toast.error("Something went wrong...");
@@ -58,57 +64,39 @@ export default function IBookGPT({ bookId }) {
     fetchData();
   }, [selectedTool]);
 
-  useEffect(() => {
-    if (!bookId) return;
-
-    const fetchBookData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(`/api/books/${bookId}`);
-
-        if (response.data && response.data.data) {
-          setBookData(response.data.data);
-        } else {
-          toast.error("No book data found.");
-          setBookData(null);
-        }
-      } catch (error) {
-        console.error("Error fetching book data:", error);
-        toast.error("Failed to fetch book data.");
-        setBookData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBookData();
-  }, [bookId]);
-
   return (
-    <div className="w-full flex flex-col h-full lg:h-[80vh] max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg border border-gray-200">
+    <div className="w-full relative flex flex-col h-full lg:h-[80vh] max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg border border-gray-200">
       {/* Header */}
       <div className="text-center mb-4 backdrop-blur-md">
         <h1 className="text-xl font-bold text-gray-800">
-          <span className="text-black">iRead</span>
-          <span className="text-orange-500">GPT</span>
+          <span className="text-black">Neo</span>
+          <span className="text-orange-500">Learn</span>
         </h1>
       </div>
 
       {/* Message Display Area */}
       <div
-        className="flex-1 overflow-y-auto max-h-[550px] scrollbar-sm mb-4 space-y-4 min-h-[300px] pr-2"
+        className="flex-1 relative overflow-y-auto max-h-[550px] scrollbar-sm mb-4 space-y-4 min-h-[300px] pr-2"
         ref={containerRef}
       >
-        <StudyTools setSelectedTool={setSelectedTool} />
+        <StudyTools setSelectedTool={setSelectedTool} studyTools={studyTools} />
 
         {messages.length === 0 ? (
           <p className="text-center text-gray-400">No messages yet.</p>
         ) : (
-          messages.map((msg, index) => <Message msg={msg} key={index} />)
+          messages.map((msg, index) => (
+            msg.spl == "videoLink" ?
+              <p>Video Here</p> : msg.spl == "audioLink" ?
+                <p>Audio Here</p>
+                : <Message msg={msg} key={index} />))
         )}
 
         {aiLoading && <TypingLoader />}
       </div>
+
+      <button onClick={scrollToTop} className="absolute right-6 bottom-4 h-10 w-10 rounded-full bg-gray-400 flex justify-center items-center">
+        <FaArrowUp />
+      </button>
     </div>
   );
 }

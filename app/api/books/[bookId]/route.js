@@ -1,54 +1,45 @@
-// Fetching book data from database
-import prisma from "@/lib/prisma"; // adjust path to your prisma instance
+// app/api/books/[bookId]/i-book/[chapterId]/route.js
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 
-export async function GET(request, context) {
+
+export async function GET(req, context) {
   try {
-    const { bookId } = await context.params;
+    let { bookId } = await context.params;
+    bookId = Number(bookId);
 
-    const pdfLink = Buffer.from(bookId, "base64").toString("utf-8");
-
-    // Fetch book
-    const book = await prisma.book.findFirst({
-      where: { pdfLink },
-      include: { iBook: true },
-    });
-
-    if (!book) {
-      return new Response(JSON.stringify({ error: "Book not found" }), {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      });
+    if (!bookId) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
+    const book = await prisma.Book.findUnique({
+      where: {
+        id: bookId
+      },
 
-    // Check if bookType is iBook and iBook relation missing
-    if (book.bookType === "iBook" && !book.iBook) {
-      await prisma.iBook.create({
-        data: {
-          bookId: book.id,
-        },
-      });
+      select: {
+        title: true,
+        thumbnailLink: true,
+        chapters: {
+          select: {
+            id: true,
+            chapterNumber: true,
+            title: true
+          }
+        }
+      }
 
-      // Refetch book with iBook after creation
-      const updatedBook = await prisma.book.findFirst({
-        where: { id: book.id },
-        include: { iBook: true },
-      });
+    })
 
-      return new Response(JSON.stringify({ data: updatedBook }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+    return NextResponse.json({ book });
 
-    return new Response(JSON.stringify({ data: book }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
   } catch (error) {
-    console.error("Error fetching/creating iBook:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    console.error("Error fetching iBook data:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
