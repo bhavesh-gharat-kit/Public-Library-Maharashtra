@@ -31,7 +31,7 @@ export default function Home({ params }) {
   }
 
   // ✅ Use the proxy endpoint instead of direct external URL
-  const fileUrl = `/api/books/read-book/${bookId}`;
+  const fileUrl = `/api/books/read-abhishek/${bookId}`;
   
 
   return (

@@ -11,11 +11,13 @@
 /* Base Styles */
 .pdf-book-reader {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #d9d9d9 0%, #d9d9d9 100%);
   min-height: 100vh;
   padding: 20px;
   position: relative;
   overflow-x: hidden;
+  border-radius: 10px;
+  border: 1px solid #adadad;
 }
 
 .pdf-book-reader--fullscreen {
@@ -38,9 +40,9 @@
 .zoom-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   background: var(--glass-bg);
-  padding: 8px 12px;
+  padding: 5px 5px;
   border-radius: 25px;
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
@@ -48,7 +50,7 @@
 
 .zoom-display-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 4px;
 }
@@ -62,13 +64,13 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
-  padding: 4px 8px;
+  padding: 1px 5px;
   border-radius: 12px;
   font-size: 0.7rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 45px;
+  min-width: 30px;
 }
 
 .zoom-preset-btn:hover {
@@ -164,7 +166,7 @@
   align-items: center;
   width: 100%;
   position: relative;
-  padding: 20px 0;
+  padding: 0px 0;
 }
 
 .custom-flipbook {
@@ -189,7 +191,7 @@
   align-items: center;
   color: var(--text-primary);
   background: var(--glass-bg);
-  padding: 20px;
+  padding: 0px;
   border-radius: var(--border-radius);
   margin-bottom: 25px;
   box-shadow: var(--shadow-light);
@@ -219,16 +221,18 @@
 .pdf-book-reader__controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 0px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .control-btn {
   background: var(--glass-bg);
   color: var(--text-primary);
   border: 1px solid var(--glass-border);
-  width: 44px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -255,13 +259,13 @@
 
 .scale-display {
   background: var(--glass-bg);
-  padding: 10px 16px;
+  padding: 5px 5px;
   border-radius: 25px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
-  min-width: 70px;
+  min-width: 30px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
   cursor: pointer;
@@ -272,7 +276,7 @@
   background: var(--glass-bg);
   border-radius: var(--border-radius);
   padding: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,11 +292,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   padding: 0 10px;
-  gap: 15px;
-  width: 100%;
-  max-width: 600px;
+  gap: 5px;
+  /* width: 25%; */
+  /* max-width: 600px; */
   flex-wrap: wrap;
 }
 
@@ -300,19 +304,19 @@
   background: var(--secondary-gradient);
   color: white;
   border: none;
-  padding: 14px 28px;
+  padding: 5px 5px;
   border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   transition: all 0.3s ease;
   box-shadow: var(--shadow-light);
   font-size: clamp(0.9rem, 2vw, 1rem);
   flex: 1;
   justify-content: center;
-  min-width: 35px;
+  min-width: 10px;
 }
 
 .nav-btn:hover:not(:disabled) {
@@ -330,17 +334,17 @@
   align-items: center;
   gap: 12px;
   background: var(--glass-bg);
-  padding: 12px 20px;
+  padding: 5px 5px;
   border-radius: 30px;
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(10px);
-  min-width: 180px;
+  min-width: 18px;
   justify-content: center;
 }
 
 .page-input {
-  width: 60px;
-  padding: 10px 12px;
+  width: 30px;
+  padding: 1px 1px;
   border: 2px solid var(--glass-border);
   border-radius: 12px;
   text-align: center;
@@ -412,7 +416,7 @@
   }
   
   .pdf-book-reader__viewer-container {
-    padding: 15px;
+    padding: 10px;
   }
   
   .pdf-book-reader__header {

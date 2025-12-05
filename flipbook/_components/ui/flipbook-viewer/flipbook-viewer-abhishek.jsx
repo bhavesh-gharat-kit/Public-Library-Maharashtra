@@ -203,7 +203,7 @@ const FlipbookViewer = () => {
       let url;
       
       if (strategy === 'data-url') {
-        const rangeUrl = `${BaseUrl}/ibooks/${bookId}/range-json?startPage=${startPage}&endPage=${endPage}`;
+        const rangeUrl = `${BaseUrl}/books/read-abhishek/${bookId}/range-json?startPage=${startPage}&endPage=${endPage}`;
         const response = await fetch(rangeUrl);
         const data = await response.json();
         
@@ -225,7 +225,7 @@ const FlipbookViewer = () => {
           throw new Error(data.message || "Failed to load PDF range");
         }
       } else {
-        const rangeUrl = `${BaseUrl}/ibooks/${bookId}/range?startPage=${startPage}&endPage=${endPage}`;
+        const rangeUrl = `${BaseUrl}/books/read-abhishek/${bookId}/range?startPage=${startPage}&endPage=${endPage}`;
         const response = await fetch(rangeUrl);
         
         if (!response.ok) {
@@ -610,66 +610,7 @@ const FlipbookViewer = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <motion.header className="pdf-book-reader__header" initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
-        <div className="pdf-book-reader__book-info">
-          <h2>PDF Book Reader</h2>
-          <div className="view-mode-indicator">
-            {showSinglePage ? 'Single Page View' : 'Flipbook View'} • {Math.round(zoomLevel * 100)}%
-          </div>
-        </div>
-        <div className="pdf-book-reader__controls">
-          {/* Enhanced Zoom Controls */}
-          <div className="zoom-controls-group">
-            <div className="zoom-controls">
-              <button onClick={zoomOut} className="control-btn" title="Zoom Out" disabled={zoomLevel <= 0.5}>
-                <ZoomOut size={18} />
-              </button>
-              <div className="zoom-display-group">
-                <button onClick={resetZoom} className="scale-display" title="Reset Zoom">
-                  {Math.round(zoomLevel * 100)}%
-                </button>
-                <div className="zoom-presets">
-                  <button 
-                    onClick={setZoomToFit}
-                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1) < 0.1 ? 'active' : ''}`}
-                    title="Fit to Screen"
-                  >
-                    Fit
-                  </button>
-                  <button 
-                    onClick={setZoomToWidth}
-                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1.2) < 0.1 ? 'active' : ''}`}
-                    title="Fit to Width"
-                  >
-                    Width
-                  </button>
-                  <button 
-                    onClick={setZoomToActual}
-                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1.5) < 0.1 ? 'active' : ''}`}
-                    title="Actual Size"
-                  >
-                    100%
-                  </button>
-                  <button 
-                    onClick={toggleSinglePage}
-                    className={`zoom-preset-btn ${showSinglePage ? 'active' : ''}`}
-                    title="Single Page View"
-                  >
-                    Single
-                  </button>
-                </div>
-              </div>
-              <button onClick={zoomIn} className="control-btn" title="Zoom In" disabled={zoomLevel >= 3}>
-                <ZoomIn size={18} />
-              </button>
-            </div>
-          </div>
-          
-          <button onClick={toggleFullScreen} className="control-btn fullscreen-btn" title={isFullScreen ? "Exit Fullscreen" : "Enter Fullscreen"}>
-            {isFullScreen ? <Minimize size={20} /> : <Maximize size={20} />}
-          </button>
-        </div>
-      </motion.header>
+
 
       <main className="pdf-book-reader__viewer-container">
         {showSinglePage ? (
@@ -728,21 +669,86 @@ const FlipbookViewer = () => {
           </div>
         )}
 
-        <nav className="pdf-book-reader__navigation">
+
+      </main>
+
+      <motion.header className="pdf-book-reader__header" initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
+        {/* <div className="pdf-book-reader__book-info">
+          <h2>PDF Book Reader</h2>
+          <div className="view-mode-indicator">
+            {showSinglePage ? 'Single Page View' : 'Flipbook View'} • {Math.round(zoomLevel * 100)}%
+          </div>
+        </div> */}
+        <div className="pdf-book-reader__controls">
+          {/* Enhanced Zoom Controls */}
+          <div className="zoom-controls-group">
+            <div className="zoom-controls">
+              <button onClick={zoomOut} className="control-btn" title="Zoom Out" disabled={zoomLevel <= 0.5}>
+                <ZoomOut size={18} />
+              </button>
+              <button onClick={resetZoom} className="scale-display" title="Reset Zoom">
+                  {Math.round(zoomLevel * 100)}%
+              </button>
+              <button onClick={zoomIn} className="control-btn" title="Zoom In" disabled={zoomLevel >= 3}>
+                <ZoomIn size={18} />
+              </button>
+              <div className="zoom-display-group">
+                
+                <div className="zoom-presets">
+                  <button 
+                    onClick={setZoomToFit}
+                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1) < 0.1 ? 'active' : ''}`}
+                    title="Fit to Screen"
+                  >
+                    Fit
+                  </button>
+                  <button 
+                    onClick={setZoomToWidth}
+                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1.2) < 0.1 ? 'active' : ''}`}
+                    title="Fit to Width"
+                  >
+                    Width
+                  </button>
+                  <button 
+                    onClick={setZoomToActual}
+                    className={`zoom-preset-btn ${Math.abs(zoomLevel - 1.5) < 0.1 ? 'active' : ''}`}
+                    title="Actual Size"
+                  >
+                    100%
+                  </button>
+                  <button 
+                    onClick={toggleSinglePage}
+                    className={`zoom-preset-btn ${showSinglePage ? 'active' : ''}`}
+                    title="Single Page View"
+                  >
+                    Single
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+                  <nav className="pdf-book-reader__navigation">
           <button onClick={goToPreviousPage} disabled={currentPage <= 1} className="nav-btn prev-btn">
             <ChevronLeft size={20} />
-            {!isMobile && "Previous"}
+            {/* {!isMobile && "Previous"} */}
           </button>
           <div className="page-info">
             <input type="number" value={currentPage} onChange={handlePageInput} min="1" max={numPages || 1} className="page-input" aria-label="Current page" />
             <span className="page-count">of {numPages || "--"}</span>
           </div>
           <button onClick={goToNextPage} disabled={currentPage >= numPages} className="nav-btn next-btn">
-            {!isMobile && "Next"}
+            {/* {!isMobile && "Next"} */}
             <ChevronRight size={20} />
           </button>
         </nav>
-      </main>
+          
+          <button onClick={toggleFullScreen} className="control-btn fullscreen-btn" title={isFullScreen ? "Exit Fullscreen" : "Enter Fullscreen"}>
+            {isFullScreen ? <Minimize size={20} /> : <Maximize size={20} />}
+          </button>
+        </div>
+      </motion.header>
     </motion.div>
   );
 };
