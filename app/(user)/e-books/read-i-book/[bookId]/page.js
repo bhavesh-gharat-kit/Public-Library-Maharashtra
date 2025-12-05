@@ -113,7 +113,7 @@ export default function IBookChaptersPage({ params }) {
               </div>
 
               {/* Book Metadata Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+              <div className="flex justify-center items-center flex-wrap gap-4 mt-4">
                 {/* Chapters List */}
                 {!chapters || chapters.length === 0 ? (
                   <div className="text-center py-6 md:col-span-2">
@@ -121,18 +121,16 @@ export default function IBookChaptersPage({ params }) {
                     <p className="text-gray-500 text-lg">No chapters found for this book</p>
                   </div>
                 ) : (
-                  <div className="divide-y divide-gray-200">
-                    {chapters.map((chapter, index) => (
-                      <Link
-                        key={index}
-                        href={`/e-books/read-i-book/${bookId}/${chapter.id}`}
-                        className="flex items-center gap-2 px-4 py-2 rounded-full shadow-sm border border-gray-200 bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 transition duration-300 ease-in-out text-sm font-medium text-gray-800 hover:shadow-lg hover:scale-[1.01]"
-                      >
-                        <span className="">{chapter.chapterNumber}</span>
-                        {chapter.title}
-                      </Link>
-                    ))}
-                  </div>
+                  chapters.map((chapter, index) => (
+                    <Link
+                      key={index}
+                      href={`/e-books/read-i-book/${bookId}/${chapter.id}`}
+                      className="flex shrink-0 items-center gap-2 px-4 py-2 rounded-full shadow-sm border border-gray-200 bg-gradient-to-r from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 transition duration-300 ease-in-out text-sm font-medium text-gray-800 hover:shadow-lg hover:scale-[1.01]"
+                    >
+                      <span className="">{chapter.chapterNumber}</span>
+                      {chapter.title}
+                    </Link>
+                  ))
                 )}
 
               </div>
