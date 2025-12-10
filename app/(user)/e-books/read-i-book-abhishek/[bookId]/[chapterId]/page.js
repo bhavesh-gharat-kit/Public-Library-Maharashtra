@@ -7,13 +7,14 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { IBookGPT } from "@/components";
 import { axios } from "@/utils";
-
+ 
 const FlipbookViewer = dynamic(
-    () => import("@/flipbook/_components/ui/flipbook-viewer/flipbook-viewer"),
-    {
-        ssr: false,
-    }
+  () => import("@/flipbook/_components/ui/flipbook-viewer/flipbook-viewer-abhishek"),
+  {
+    ssr: false,
+  }
 );
+
 
 export default function Home({ params }) {
     const router = useRouter();
@@ -54,7 +55,7 @@ export default function Home({ params }) {
     return (
         <div className="py-6 px-4 flex flex-col md:flex-row items-center gap-4">
             <div className="w-full md:w-2/3">
-                {/* show chapters here */}
+                {/* show chapters here */} 
                 <FlipbookViewer
                     pdfUrl={fileUrl}
                     className=""

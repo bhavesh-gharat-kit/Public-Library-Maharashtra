@@ -1,6 +1,5 @@
 import { handleCopy } from "@/lib/helperFunctions";
 import {
-  FaCircle,
   FaPrint,
   FaRobot,
   FaThumbsDown,
@@ -11,16 +10,14 @@ import {
   FaStickyNote,
   FaExclamationCircle,
   FaMagic,
-  FaPenNib,
-  FaVideo,
   FaPaperPlane,
-  FaApper,
   FaQuestion,
   FaPage4,
   FaHandPaper,
   FaFileAudio,
 } from "react-icons/fa";
 import { MDComponent } from "..";
+import { AudioPlayer, VideoPlayer, YouTubePlayer } from "../MediaComponents";
 
 export function FeedbackButtons({ handleCopy }) {
   return (
@@ -100,18 +97,25 @@ export function Message({ msg }) {
       )}
 
       {/* Message Bubble */}
-      <div
-        className={`p-3 rounded-lg max-w-[80%] text-sm ${msg.type === "ai"
-          ? "bg-purple-100 text-gray-800"
-          : "bg-gray-100 text-gray-800"
-          }`}
-      >
-        <MDComponent markdownText={msg.text} />
-        {/* {msg.text} */}
-        {msg.type === "ai" && (
-          <FeedbackButtons handleCopy={() => handleCopy(msg.text)} />
-        )}
-      </div>
+      {msg.spl == "videoLink" ?
+        (
+          <YouTubePlayer embedUrl={msg.text} title="Visual Concept" />
+        ) : msg.spl === "audioLink" ? (
+          <AudioPlayer url={msg.text} title="Listen & Learn" />
+        ) :
+          <div
+            className={`p-3 rounded-lg max-w-[80%] text-sm ${msg.type === "ai"
+              ? "bg-purple-100 text-gray-800"
+              : "bg-gray-100 text-gray-800"
+              }`}
+          >
+            <MDComponent markdownText={msg.text} />
+            {msg.type === "ai" && (
+              <FeedbackButtons handleCopy={() => handleCopy(msg.text)} />
+            )}
+          </div>
+      }
+
     </div>
   );
 }

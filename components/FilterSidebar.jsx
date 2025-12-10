@@ -5,9 +5,6 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaBook,
-  FaCalendar,
-  FaBookOpen,
-  FaLanguage,
   FaSchool,
 } from "react-icons/fa";
 import { FiCheckSquare, FiXCircle } from "react-icons/fi";

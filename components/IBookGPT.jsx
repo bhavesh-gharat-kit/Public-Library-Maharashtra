@@ -85,10 +85,7 @@ export default function IBookGPT({ bookId, chapterId = null, studyTools = {} }) 
           <p className="text-center text-gray-400">No messages yet.</p>
         ) : (
           messages.map((msg, index) => (
-            msg.spl == "videoLink" ?
-              <p>Video Here</p> : msg.spl == "audioLink" ?
-                <p>Audio Here</p>
-                : <Message msg={msg} key={index} />))
+            <Message msg={msg} key={index} />))
         )}
 
         {aiLoading && <TypingLoader />}
