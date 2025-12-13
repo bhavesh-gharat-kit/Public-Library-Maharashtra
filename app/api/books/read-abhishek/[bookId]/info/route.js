@@ -4,28 +4,27 @@ import { downloadPdfBytes, getTotalPages } from "@/lib/pdf-utils";
 
 export async function GET(req, ctx) {
   try {
-    const { bookId } = await ctx.params;
-
-    const pdfUrl = decodeBase64UrlSafe(bookId);
-    console.log("PDF URL decoded:", pdfUrl);
-
+    const params = await ctx.params;
+    const bookId = Number(params.bookId)
+    if(!bookId)  {   
+      return new Response(
+      JSON.stringify({ success: false, message:"Book ID not found" }),
+      { status: 404, headers: { "Content-Type": "application/json" } }
+    );}
+    
     // 1. Find existing book by pdfLink
     let book = await prisma.book.findFirst({
-      where: { pdfLink: pdfUrl }
+      where: { id: bookId }
     });
+    
+    if(!book)  {   
+      return new Response(
+      JSON.stringify({ success: false, message:"Book not found" }),
+      { status: 404, headers: { "Content-Type": "application/json" } }
+    );}
 
-    // 2. If not found → create
-    if (!book) {
-      book = await prisma.book.create({
-        data: {
-          pdfLink: pdfUrl,
-          title: "Imported",
-          author: "Unknown",
-          description: "Processing..."
-        }
-      });
-    }
-
+    const pdfUrl = book.pdfLink;
+    
     // 3. Download PDF
     const pdfBytes = await downloadPdfBytes(pdfUrl);
     const totalPages = await getTotalPages(pdfBytes);
