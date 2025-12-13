@@ -65,11 +65,12 @@
     "screenfull": "^6.0.2",
     "sweetalert2": "^11.22.2",
     "tailwind-merge": "^3.3.1",
+    "tailwindcss": "^4.1.11",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.22",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.13"
+    "@tailwindcss/postcss": "^4",  
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.20"
   }
 }
