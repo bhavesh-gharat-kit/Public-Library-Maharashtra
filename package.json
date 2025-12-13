@@ -69,8 +69,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",  
-    "postcss": "^8.4.38",
-    "autoprefixer": "^10.4.20"
+    "@tailwindcss/postcss": "^4"
   }
 }
