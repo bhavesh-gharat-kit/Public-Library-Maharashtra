@@ -5,13 +5,6 @@ import { rangeCache, RANGE_CACHE_DURATION } from '@/lib/pdf-cache';
 
 const MAX_DATA_URL_SIZE = 5 * 1024 * 1024; // 5MB
 
-function safeToString(v) {
-  if (v == null) return "";
-  if (Buffer.isBuffer(v)) return v.toString("utf8");
-  if (Array.isArray(v)) return v.join("");
-  return String(v);
-}
-
 export async function GET(req, ctx) {
   try {
     const urlObj = new URL(req.url);
@@ -20,11 +13,14 @@ export async function GET(req, ctx) {
 
     // ✅ FIX: extract bookId correctly
     const { bookId } = await ctx.params;
+    const { chapterId } = await ctx.params;
 
     console.log(bookId)
+    console.log(chapterId)
 
     // 🔥 Database sync
-    let book = await prisma.book.findFirst({ where: { id: Number(bookId) } }).catch(() => null);
+    // let book = await prisma.book.findFirst({ where: { id: Number(bookId) } }).catch(() => null);
+    let book = await prisma.BookChapter.findFirst({ where: { id: Number(chapterId) } }).catch(() => null);
     if (!book) {
       return new Response(
         JSON.stringify({

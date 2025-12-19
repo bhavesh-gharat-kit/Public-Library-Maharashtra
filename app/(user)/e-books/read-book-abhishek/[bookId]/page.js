@@ -28,7 +28,7 @@ export default function Home({ params }) {
   }
 
   // ✅ Use the proxy endpoint instead of direct external URL
-  const fileUrl = `/api/books/read/${bookId}`;
+  const fileUrl = `/api/books/read-abhishek/${bookId}`;
 
   return (
     <div className="py-6">
@@ -36,6 +36,7 @@ export default function Home({ params }) {
 
       <FlipbookViewer
         baseUrl="/api"
+        fileUrl={fileUrl}
         bookId={bookId}
         initialPagesToLoad={5}
         pagesPerChunk={5}

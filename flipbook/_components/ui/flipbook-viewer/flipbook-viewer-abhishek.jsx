@@ -32,6 +32,7 @@ import { useParams } from "next/navigation";
 const FlipbookViewer = (
   {
     baseUrl,
+    fileUrl,
     bookId,
     initialPagesToLoad,
     pagesPerChunk,
@@ -209,7 +210,8 @@ const FlipbookViewer = (
       let url;
 
       if (strategy === 'data-url') {
-        const rangeUrl = `${baseUrl}/books/read-abhishek/${bookId}/range-json?startPage=${startPage}&endPage=${endPage}`;
+        // const rangeUrl = `${baseUrl}/books/read-abhishek/${bookId}/range-json?startPage=${startPage}&endPage=${endPage}`;
+        const rangeUrl = `${fileUrl}/range-json?startPage=${startPage}&endPage=${endPage}`;
         const response = await fetch(rangeUrl);
         const data = await response.json();
 
@@ -262,7 +264,7 @@ const FlipbookViewer = (
         setError(null);
 
         const initialStartPage = 1;
-        const initialEndPage = 5;
+        const initialEndPage = 2;
 
         console.log('Fetching initial book pages...');
 
