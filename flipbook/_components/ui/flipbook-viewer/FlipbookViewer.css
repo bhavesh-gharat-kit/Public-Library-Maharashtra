@@ -1,17 +1,169 @@
-:root {
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --text-primary: #000000;
-  --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --border-radius: 20px;
+/**
+ * FlipbookViewer.css
+ * 
+ * Minimal CSS for FlipbookViewer component.
+ * Contains only styles that cannot be achieved with Tailwind:
+ * - React-PDF library overrides
+ * - HTMLFlipBook library overrides
+ * - Custom scrollbar styling
+ */
+
+/* ============================================
+   REACT-PDF LIBRARY OVERRIDES
+   These are necessary to ensure proper PDF
+   rendering within the viewer
+   ============================================ */
+
+.react-pdf__Document {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
 }
 
-/* Base Styles */
+.react-pdf__Page {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+}
+
+.react-pdf__Page__canvas {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  border-radius: 2px;
+}
+ 
+.pdf-page-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+}
+
+.flipbook-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.flipbook-instance {
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: visible !important;
+  background: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+
+.pdf-flip-page {
+  background-color: white !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+
+.pdf-single-page {
+  margin: 0 auto;
+}
+
+
+.stf__item {
+  background-color: white !important;
+}
+
+
+.stf__hardPageShadow {
+  display: none !important;
+}
+
+.pdf-single-page-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.pdf-single-page-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pdf-single-page-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.pdf-single-page-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+
+@media print {
+  header,
+  .loading-more-indicator,
+  button {
+    display: none !important;
+  }
+
+  .pdf-page-content {
+    page-break-inside: avoid;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .flipbook-instance {
+    transition: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+:fullscreen .flipbook-instance {
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-contrast: high) {
+  .flipbook-instance {
+    box-shadow: none;
+    border: 2px solid currentColor;
+  }
+
+  .pdf-flip-page,
+  .pdf-single-page {
+    border: 1px solid currentColor;
+  }
+}
+
+
+
 .pdf-book-reader {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #d9d9d9 0%, #d9d9d9 100%);
+  /* background: linear-gradient(135deg, #d9d9d9 0%, #d9d9d9 100%); */
   min-height: 100vh;
   padding: 20px;
   position: relative;
@@ -30,7 +182,7 @@
   overflow: auto;
 }
 
-/* Enhanced Zoom Controls */
+
 .zoom-controls-group {
   display: flex;
   flex-direction: column;
@@ -83,7 +235,7 @@
   border-color: transparent;
 }
 
-/* Single Page View */
+
 .pdf-single-page-container {
   display: flex;
   justify-content: center;
@@ -107,7 +259,7 @@
   border: 1px solid #e0e0e0;
 }
 
-/* Flipbook Pages */
+
 .pdf-flip-page {
   background: #ffffff !important;
   display: flex;
@@ -129,7 +281,7 @@
   background: white !important;
 }
 
-/* React-PDF Page and Canvas Styling */
+
 .react-pdf__Page {
   display: flex !important;
   justify-content: center !important;
@@ -159,7 +311,7 @@
   background: white !important;
 }
 
-/* FlipBook Container */
+
 .pdf-book-reader__flip-book-container {
   display: flex;
   justify-content: center;
@@ -178,13 +330,12 @@
   transition: all 0.3s ease;
 }
 
-/* Page shadow and styling for flipbook */
+
 .page-flip-book .page {
   background-color: white !important;
   border: 1px solid #e0e0e0 !important;
 }
 
-/* Header */
 .pdf-book-reader__header {
   display: flex;
   justify-content: space-between;
@@ -271,7 +422,7 @@
   cursor: pointer;
 }
 
-/* Main Viewer */
+
 .pdf-book-reader__viewer-container {
   background: var(--glass-bg);
   border-radius: var(--border-radius);
@@ -287,7 +438,7 @@
   justify-content: center;
 }
 
-/* Navigation */
+
 .pdf-book-reader__navigation {
   display: flex;
   justify-content: space-between;
@@ -295,8 +446,6 @@
   margin-bottom: 5px;
   padding: 0 10px;
   gap: 5px;
-  /* width: 25%; */
-  /* max-width: 600px; */
   flex-wrap: wrap;
 }
 
@@ -360,7 +509,7 @@
   font-size: 0.9rem;
 }
 
-/* Loading States */
+
 .pdf-page-loading {
   display: flex;
   flex-direction: column;
@@ -409,7 +558,6 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .pdf-book-reader {
     padding: 10px;
@@ -436,4 +584,4 @@
   .view-mode-indicator {
     display: none;
   }
-}
+} 

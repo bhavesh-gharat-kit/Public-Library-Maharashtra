@@ -74,7 +74,7 @@ const BookCard = ({ book, randomColor }) => {
       <div className="px-4 pb-4 mt-auto">
         <Link
           href={
-            book.pdfLink
+            book.id
               ? book.chapters?.length
                 ? `/e-books/read-i-book/${book.id}`
                 : `/e-books/read-book/${book.id}`

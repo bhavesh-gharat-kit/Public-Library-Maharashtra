@@ -42,40 +42,6 @@ export async function POST(request, context) {
     const endOfToday = new Date();
     endOfToday.setHours(23, 59, 59, 999);
 
-    // const questions0 = await prisma.ExamCategoryQuestion.findMany({
-    //   where: {
-    //     examCategoryId: examCategory.id,
-    //     ...(isCurrentAffair && {
-    //       currentAffairsDate: {
-    //         gte: startOfToday,
-    //         lte: endOfToday,
-    //       },
-    //     }),
-    //   },
-    //   include: {
-    //     options: true,
-    //     answer: true,
-    //   },
-    //   orderBy: { id: "asc" },
-    //   limit: 15,
-    // });
-
-    // console.log(questions0);
-
-    // if (!questions || questions.length === 0) {
-    //   return NextResponse.json(
-    //     { message: "No questions found for this test", success: false },
-    //     { status: 404 }
-    //   );
-    // }
-
-    // 3️⃣ Shuffle questions and select subset
-    // let shuffledQuestions = getRandomItems(questions, 15);
-
-    // if (questionMode === "limited" && questionCount) {
-    //   shuffledQuestions = shuffledQuestions.slice(0, questionCount);
-    // }
-
     let whereClause = Prisma.sql`WHERE q.examCategoryId = ${examCategory.id}`;
     if (isCurrentAffair) {
       whereClause = Prisma.sql`${whereClause} AND q.currentAffairsDate > ${startOfToday}`;
@@ -114,11 +80,11 @@ LIMIT 15;
         options: [], // will be filled later
         answer: r.answerId
           ? {
-              id: r.answerId,
-              questionId: r.answerQuestionId,
-              optionId: r.correctOptionId,
-              explanation: r.explanation,
-            }
+            id: r.answerId,
+            questionId: r.answerQuestionId,
+            optionId: r.correctOptionId,
+            explanation: r.explanation,
+          }
           : null,
       };
     });
@@ -161,11 +127,21 @@ LIMIT 15;
       );
     }
 
+    const toScoreMoreBooks = await prisma.$queryRaw`
+    SELECT 
+      *
+    FROM suggested_books
+    WHERE examCategoryId = ${examCategory?.id}
+    ORDER BY RAND()
+    LIMIT 4;
+    `;
+
     return NextResponse.json({
       testSlug,
       language,
       timer,
       gameSound,
+      toScoreMoreBooks: convertBigIntToString(toScoreMoreBooks),
       questions: convertBigIntToString(questions),
       testData: {
         id: testId,

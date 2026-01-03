@@ -7,6 +7,9 @@ import {
   ClockIcon,
   Pencil,
   XCircleIcon,
+  BookOpen,
+  ExternalLink,
+  IndianRupee,
 } from "lucide-react";
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
@@ -24,6 +27,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
       [idx]: !prev[idx],
     }));
   };
+
+  const toScoreMoreBooks = testData?.toScoreMoreBooks || [];
   const totalQuestions = testData.questions.length;
   const attempted = answers.filter((a) => a !== null).length;
   const correct = testData.questions.reduce((acc, q, idx) => {
@@ -85,6 +90,7 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
       icon: <ClockIcon className="w-8 h-8 text-indigo-600 mx-auto" />,
     },
   ];
+
   return (
     <div className="min-h-screen bg-gray-100 p-4 flex justify-center">
       <div className="w-full max-w-4xl bg-white rounded-xl shadow-xl p-3 md:p-6 space-y-6">
@@ -147,9 +153,80 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
           </PieChart>
         </div>
 
+        {/* Recommended Books Section */}
+        {toScoreMoreBooks && toScoreMoreBooks.length > 0 && (
+          <div className="mt-8 border-t pt-6">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <BookOpen className="w-6 h-6 text-indigo-600" />
+              <h3 className="text-2xl font-bold text-gray-800">
+                Recommended Books to Score More
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {toScoreMoreBooks.map((book) => (
+                <div
+                  key={book.id}
+                  className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col"
+                >
+                  {/* Book Thumbnail */}
+                  <div className="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
+                    {book.thumbnailLink ? (
+                      <img
+                        src={book.thumbnailLink}
+                        alt={book.title}
+                        className="h-full object-contain"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.nextSibling.style.display = "flex";
+                        }}
+                      />
+                    ) : 
+                    null}
+                    <div
+                      className="w-full h-full items-center justify-center"
+                      style={{ display: book.thumbnailLink ? "none" : "flex" }}
+                    >
+                      <BookOpen className="w-16 h-16 text-gray-400" />
+                    </div>
+                  </div>
+
+                  {/* Book Details */}
+                  <div className="p-4 flex flex-col flex-grow">
+                    <h4 className="text-sm font-semibold text-gray-800 mb-3 line-clamp-3 min-h-[3rem]">
+                      {book.title}
+                    </h4>
+
+                    <div className="mt-auto space-y-3">
+                      {/* Price */}
+                      <div className="flex items-center gap-1 text-lg font-bold text-green-600">
+                        <IndianRupee className="w-5 h-5" />
+                        <span>{book.price}</span>
+                      </div>
+
+                      {/* View Button */}
+                      <a
+                        href={book.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors duration-200"
+                      >
+                        View
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="text-center">
           <button
-            onClick={() => setShowAnswers((prev) => !prev)}
+            onClick={() => {
+              setShowAnswers((prev) => !prev);
+            }}
             className="inline-flex items-center px-5 py-2 border border-indigo-600 text-indigo-600 font-semibold rounded-md hover:bg-indigo-600 hover:text-white transition"
           >
             {showAnswers ? "Hide Question Answers" : "View Question Answers"}

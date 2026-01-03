@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Message, StudyTools, TypingLoader } from "./specific/IBookGPT";
+import { Message, StudyTools, TypingLoader } from "./specific/NeoLearn";
 import toast from "react-hot-toast";
 import { axios } from "@/utils";
 import { FaArrowUp } from "react-icons/fa";
+import Image from "next/image";
 
-export default function IBookGPT({ bookId, chapterId = null, studyTools = {} }) {
+export default function NeoLearn({ bookId, chapterId = null, studyTools = {} }) {
   const [messages, setMessages] = useState([]);
   const [selectedTool, setSelectedTool] = useState(null);
   const [aiLoading, setAILoading] = useState(false);
@@ -69,8 +70,9 @@ export default function IBookGPT({ bookId, chapterId = null, studyTools = {} }) 
       {/* Header */}
       <div className="text-center mb-4 backdrop-blur-md">
         <h1 className="text-xl font-bold text-gray-800">
-          <span className="text-black">Neo</span>
-          <span className="text-orange-500">Learn</span>
+          <Image src={"/logo-neolearn.jpg"} alt="neolearn" width={256} height={128} className="h-18 w-auto block mx-auto" />
+          {/* <span className="text-black">Neo</span>
+          <span className="text-orange-500">Learn</span> */}
         </h1>
       </div>
 
