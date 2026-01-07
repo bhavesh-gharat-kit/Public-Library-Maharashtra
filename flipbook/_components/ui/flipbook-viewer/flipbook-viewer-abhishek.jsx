@@ -799,12 +799,6 @@ const FlipbookViewer = (
       </main>
 
       <motion.header className="pdf-book-reader__header" initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }}>
-        {/* <div className="pdf-book-reader__book-info">
-          <h2>PDF Book Reader</h2>
-          <div className="view-mode-indicator">
-            {showSinglePage ? 'Single Page View' : 'Flipbook View'} • {Math.round(zoomLevel * 100)}%
-          </div>
-        </div> */}
         <div className="w-full flex flex-wrap items-center justify-between gap-3 rounded-xl bg-white/90 backdrop-blur shadow-md px-3 py-2 sm:px-4">
 
           {/* ---------------- ZOOM CONTROLS ---------------- */}

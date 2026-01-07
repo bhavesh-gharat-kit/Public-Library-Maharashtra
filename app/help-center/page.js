@@ -1,6 +1,5 @@
 import { Footer, Header } from "@/components";
 import React from "react";
-// https://youtu.be/cdpsGBOMlLA overview
 
 const helpVideos = [
   {
@@ -53,7 +52,7 @@ const helpVideos = [
   },
   {
     title: "How to use job training videos ?",
-    youtubeId: "",
+    youtubeId: "XIhoMLl9pfA",
   },
   {
     title: "How to use primary section ?",
@@ -109,7 +108,26 @@ const HelpCenter = () => {
               <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/cdpsGBOMlLA"
+                  src="https://www.youtube.com/embed/KXgnp5kc4OQ"
+                  title="Overview"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+          {/* Video Card */}
+          <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="p-5">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Overview (Marathi)
+              </h3>
+
+              {/* Responsive Video */}
+              <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/7ZoLMBkm_fk"
                   title="Overview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
