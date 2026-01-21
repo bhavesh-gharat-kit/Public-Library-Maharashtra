@@ -7,7 +7,7 @@ import { axios } from "@/utils";
 import { FaArrowUp } from "react-icons/fa";
 import Image from "next/image";
 
-export default function NeoLearn({ bookId, chapterId = null, studyTools = {} }) {
+export default function NeoLearn({ bookId, language, chapterId = null, studyTools = {} }) {
   const [messages, setMessages] = useState([]);
   const [selectedTool, setSelectedTool] = useState(null);
   const [aiLoading, setAILoading] = useState(false);
@@ -37,8 +37,8 @@ export default function NeoLearn({ bookId, chapterId = null, studyTools = {} }) 
         }
 
         const newMessages = [
-          ...messages,
           { type: "user", text: selectedTool.label },
+          ...messages,
         ];
         setMessages(newMessages);
 
@@ -81,7 +81,7 @@ export default function NeoLearn({ bookId, chapterId = null, studyTools = {} }) 
         className="flex-1 relative overflow-y-auto max-h-[550px] scrollbar-sm mb-4 space-y-4 min-h-[300px] pr-2"
         ref={containerRef}
       >
-        <StudyTools setSelectedTool={setSelectedTool} studyTools={studyTools} />
+        <StudyTools setSelectedTool={setSelectedTool} language={language} studyTools={studyTools} />
 
         {messages.length === 0 ? (
           <p className="text-center text-gray-400">No messages yet.</p>

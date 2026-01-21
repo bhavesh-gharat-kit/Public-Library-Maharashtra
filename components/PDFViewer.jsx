@@ -15,8 +15,14 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 //
 
-import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+// import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+// pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
+
 
 export default function PDFViewer({ pdfUrl, className = "" }) {
   const [fileExists, setFileExists] = useState(false);
@@ -65,9 +71,8 @@ export default function PDFViewer({ pdfUrl, className = "" }) {
   return (
     <div
       onContextMenu={(e) => e.preventDefault()}
-      className={`${
-        className.trim() ? className : " w-full max-w-3xl mx-auto"
-      } p-4 overflow-hidden bg-white rounded-xl shadow-lg flex flex-col gap-4 border border-gray-200`}
+      className={`${className.trim() ? className : " w-full max-w-3xl mx-auto"
+        } p-4 overflow-hidden bg-white rounded-xl shadow-lg flex flex-col gap-4 border border-gray-200`}
     >
       {/* Header Toolbar */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-3">

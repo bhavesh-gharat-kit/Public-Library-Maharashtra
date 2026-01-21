@@ -108,7 +108,7 @@ const HelpCenter = () => {
               <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/KXgnp5kc4OQ"
+                  src="https://www.youtube.com/embed/mfM2I6pke7w"
                   title="Overview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -127,7 +127,7 @@ const HelpCenter = () => {
               <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/7ZoLMBkm_fk"
+                  src="https://www.youtube.com/embed/EEAUz6CcZjQ"
                   title="Overview"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

@@ -160,34 +160,75 @@ function UserInput({ input, setInput }) {
   );
 }
 
-export function StudyTools({ setSelectedTool, studyTools }) {
+export function StudyTools({ setSelectedTool, language, studyTools }) {
 
   const tools = [
-    { icon: <FaBook />, label: "Chapter Overview", name: "chapterOverview" },
-
-    { icon: <FaStickyNote />, label: "Key Concepts", name: "keyConcepts" },
-    { icon: <FaStickyNote />, label: "Detailed Notes", name: "detailedNotes" },
+    {
+      icon: <FaBook />,
+      labelEnglish: "Chapter Overview",
+      labelMarathi: "दृष्टिक्षेप",
+      name: "chapterOverview"
+    },
+    {
+      icon: <FaStickyNote />,
+      labelEnglish: "Key Concepts",
+      labelMarathi: "मुख्य संकल्पना",
+      name: "keyConcepts"
+    },
+    {
+      icon: <FaStickyNote />,
+      labelEnglish: "Detailed Notes",
+      labelMarathi: "सविस्तर टिपणे",
+      name: "detailedNotes"
+    },
     {
       icon: <FaQuestion />,
-      label: "MCQ Practice Bank",
+      labelEnglish: "MCQ Practice Bank",
+      labelMarathi: "बहुपर्यायी प्रश्नसंच",
       name: "mcq",
     },
     {
       icon: <FaExclamationCircle />,
-      label: "Common Mistakes",
+      labelEnglish: "Common Mistakes",
+      labelMarathi: "सामान्य चुका",
       name: "commonMistakes",
     },
-    { icon: <FaHandPaper />, label: "Practice Questions", name: "practiceQuestions" },
-    { icon: <FaMagic />, label: "Study Tips", name: "studyTips" },
-    { icon: <FaPage4 />, label: "Sample Question Paper", name: "sampleQuestionPaper" },
-    { icon: <FaFileAudio />, label: "Listen & Learn", name: "audioLink" },
-    { icon: <FaFileAudio />, label: "Visual Concept", name: "videoLink" },
+    {
+      icon: <FaHandPaper />,
+      labelEnglish: "Practice Questions",
+      labelMarathi: "सराव प्रश्न",
+      name: "practiceQuestions"
+    },
+    {
+      icon: <FaMagic />,
+      labelEnglish: "Study Tips",
+      labelMarathi: "अभ्यासासाठी उपयुक्त टिप्स",
+      name: "studyTips"
+    },
+    {
+      icon: <FaPage4 />,
+      labelEnglish: "Sample Question Paper",
+      labelMarathi: "नमुना प्रश्नपत्रिका",
+      name: "sampleQuestionPaper"
+    },
+    {
+      icon: <FaFileAudio />,
+      labelEnglish: "Enriching Dialogue",
+      labelMarathi: "मूल्यवर्धित संवाद",
+      name: "audioLink"
+    },
+    {
+      icon: <FaFileAudio />,
+      labelEnglish: "Conceptual Illustration",
+      labelMarathi: "संकल्पना चित्रातून",
+      name: "videoLink"
+    },
   ];
   return (
     <div className="mb-6">
       <h2 className="flex items-center gap-2 text-lg font-bold mb-4">
         <FaLightbulb className="text-yellow-500 text-xl" />
-        Study Tools
+        In-depth Learning
       </h2>
 
       <div className="flex flex-wrap gap-3">
@@ -201,7 +242,7 @@ export function StudyTools({ setSelectedTool, studyTools }) {
                        hover:shadow-lg hover:scale-[1.01]"
             >
               <span className="">{item.icon}</span>
-              {item.label}
+              {language == "english" ? item.labelEnglish : (item.labelMarathi || item.labelEnglish)}
             </button>)
         ))}
       </div>

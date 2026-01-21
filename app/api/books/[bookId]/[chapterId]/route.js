@@ -30,6 +30,11 @@ export async function GET(req, context) {
     const chapter = await prisma.bookChapter.findUnique({
       where: { id: chapterId },
       select: {
+        book: {
+          select: {
+            medium: true,
+          }
+        },
         summary: true,
         chapterOverview: true,
         keyConcepts: true,
@@ -43,9 +48,11 @@ export async function GET(req, context) {
         thumbnailLink: true,
         pdfLink: true,
         videoLink: true,
-        audioLink: true
+        audioLink: true,
       }
     })
+    const medium = chapter.book.medium;
+    chapter.book = undefined;
 
     const availableStudyTools = Object.fromEntries(
       Object.entries(chapter).map(([key, value]) => [
@@ -53,7 +60,7 @@ export async function GET(req, context) {
         Boolean(value && value.trim() !== "")
       ])
     )
-    return NextResponse.json({ chapters: availableChapters, studyTools: availableStudyTools });
+    return NextResponse.json({ language: medium.toLowerCase(), chapters: availableChapters, studyTools: availableStudyTools });
 
   } catch (error) {
     console.error("Error fetching iBook data:", error);
