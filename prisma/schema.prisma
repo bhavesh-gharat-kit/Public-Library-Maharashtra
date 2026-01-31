@@ -111,6 +111,23 @@ model Book {
   @@map("books") // Custom table name
 }
 
+model Manuscript {
+  id Int @id @default(autoincrement()) @db.UnsignedInt
+
+  category String?
+  title    String?
+  author   String?
+
+  medium String?
+
+  createdAt DateTime @default(now())
+
+  pdfLink       String?
+  thumbnailLink String?
+
+  @@map("manuscripts") // Custom table name
+}
+
 model BookChapter {
   id     Int  @id @default(autoincrement()) @db.UnsignedInt
   bookId Int  @db.UnsignedInt

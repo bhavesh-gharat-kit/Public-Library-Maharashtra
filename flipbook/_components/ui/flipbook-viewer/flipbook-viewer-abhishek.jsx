@@ -3,15 +3,17 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from "react"
 import { Document, Page, pdfjs } from "react-pdf";
 
 // Configure PDF.js worker
-try {
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
-} catch (error) {
-  console.warn('PDF.js worker initialization warning:', error);
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-}
+// try {
+//   pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//     'pdfjs-dist/build/pdf.worker.min.mjs',
+//     import.meta.url
+//   ).toString();
+// } catch (error) {
+//   console.warn('PDF.js worker initialization warning:', error);
+//   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// }
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
+
 
 import HTMLFlipBook from "react-pageflip";
 import { motion, AnimatePresence } from "framer-motion";
@@ -29,6 +31,12 @@ import "react-pdf/dist/Page/TextLayer.css";
 
 import "./FlipbookViewer.css";
 import { useParams } from "next/navigation";
+
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
+
+pdfjs.GlobalWorkerOptions.openJPEGWasmUrl = "/pdfjs/openjpeg.wasm";
+pdfjs.GlobalWorkerOptions.openJPEGJSUrl =
+  "/pdfjs/openjpeg_nowasm_fallback.js";
 
 const FlipbookViewer = (
   {
@@ -118,14 +126,16 @@ const FlipbookViewer = (
 
   // PDF options
   const pdfOptions = useMemo(() => ({
-    cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+    // cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+    cMapUrl: "/pdfjs/cmaps",
     cMapPacked: true,
-    standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+    // standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+    standardFontDataUrl: "/pdfjs/standard_fonts/",
+    enableXfa: false,
     disableFontFace: false,
     useSystemFonts: false,
     isEvalSupported: true,
     maxImageSize: 2048 * 2048,
-    enableXfa: true,
   }), []);
 
   // Clean up blob URLs on unmount
