@@ -101,7 +101,7 @@ const HelpCenter = () => {
           <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="p-5">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Overview (English)
+                Overview
               </h3>
 
               {/* Responsive Video */}
@@ -120,7 +120,7 @@ const HelpCenter = () => {
           <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="p-5">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Overview (Marathi)
+              दृष्टिक्षेप
               </h3>
 
               {/* Responsive Video */}

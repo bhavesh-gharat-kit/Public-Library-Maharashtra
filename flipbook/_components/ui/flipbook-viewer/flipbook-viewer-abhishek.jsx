@@ -127,7 +127,7 @@ const FlipbookViewer = (
   // PDF options
   const pdfOptions = useMemo(() => ({
     // cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
-    cMapUrl: "/pdfjs/cmaps",
+    cMapUrl: "/pdfjs/cmaps/",
     cMapPacked: true,
     // standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
     standardFontDataUrl: "/pdfjs/standard_fonts/",
