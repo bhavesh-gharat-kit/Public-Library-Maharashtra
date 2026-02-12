@@ -96,15 +96,14 @@ const HelpCenter = () => {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 gap-8 justify-items-center">
           {/* Video Card */}
-          <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          {/* <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="p-5">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
                 Overview
               </h3>
 
-              {/* Responsive Video */}
               <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
                 <iframe
                   className="absolute inset-0 w-full h-full"
@@ -115,15 +114,14 @@ const HelpCenter = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
           {/* Video Card */}
-          <div className="w-full max-w-xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+          <div className="w-full max-w-2xl bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <div className="p-5">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
               दृष्टिक्षेप
               </h3>
 
-              {/* Responsive Video */}
               <div className="relative w-full overflow-hidden rounded-xl bg-gray-100 aspect-video">
                 <iframe
                   className="absolute inset-0 w-full h-full"
