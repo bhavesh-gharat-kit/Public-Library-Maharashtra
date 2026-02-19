@@ -113,9 +113,11 @@ model Book {
 
 model Manuscript {
   id Int @id @default(autoincrement()) @db.UnsignedInt
+  order Int @db.UnsignedInt
 
   category String?
-  title    String?
+  titleMarathi    String?
+  titleEnglish    String?
   author   String?
 
   medium String?
@@ -236,6 +238,7 @@ model ExamCategoryQuestion {
   id             Int    @id @default(autoincrement()) @db.UnsignedInt
   examCategoryId Int    @db.UnsignedInt
   question       String @db.Text
+  source QuestionSource @default(AIGENERATED)
 
   currentAffairsDate DateTime? @default(now()) // For Current Affairs only (null for other categories)
 
@@ -274,4 +277,9 @@ enum TestType {
   WEEKLY
   MONTHLY
   YEARLY
+}
+
+enum QuestionSource {
+  SCRAPED
+  AIGENERATED
 }

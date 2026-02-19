@@ -60,7 +60,7 @@ export async function GET(req, context) {
         Boolean(value && value.trim() !== "")
       ])
     )
-    return NextResponse.json({ language: medium.toLowerCase(), chapters: availableChapters, studyTools: availableStudyTools });
+    return NextResponse.json({ language: medium?.toLowerCase(), chapters: availableChapters, studyTools: availableStudyTools });
 
   } catch (error) {
     console.error("Error fetching iBook data:", error);

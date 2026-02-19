@@ -41,6 +41,13 @@ const tests = [
     aos: "slide-up",
   },
   {
+    title: "UGC NET",
+    desc: "UGC NET, SLET, and JRF exam practice.",
+    logo: "/assets/img/mocktest-logos/ugc-net.jpg",
+    link: "/mock-tests/ugc-net",
+    aos: "slide-up",
+  },
+  {
     title: "NEET",
     desc: "Medical entrance mock tests.",
     logo: "/assets/img/mocktest-logos/neet.jpeg",
