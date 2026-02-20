@@ -30,6 +30,22 @@ export async function GET(request, { params }) {
       );
     }
 
+    book.chapters.sort((a, b) => {
+      const parse = (v) =>
+        v.split('.').map(Number)
+
+      const pa = parse(a.chapterNumber)
+      const pb = parse(b.chapterNumber)
+
+      const len = Math.max(pa.length, pb.length)
+
+      for (let i = 0; i < len; i++) {
+        const diff = (pa[i] ?? 0) - (pb[i] ?? 0)
+        if (diff !== 0) return diff
+      }
+      return 0
+    })
+
     return NextResponse.json({
       success: true,
       data: book,
@@ -91,7 +107,7 @@ export async function PUT(request, { params }) {
 
     // Create update data object
     const updateData = {};
-    
+
     if (body.title !== undefined) updateData.title = body.title.trim();
     if (body.author !== undefined) updateData.author = body.author?.trim() || null;
     if (body.publisher !== undefined) updateData.publisher = body.publisher?.trim() || null;

@@ -25,14 +25,30 @@ export async function GET(request) {
 
     // Search in multiple fields
     if (search) {
-      where.OR = [
-        { title: { contains: search } },
-        { author: { contains: search } },
-        { publisher: { contains: search } },
-        { issn: { contains: search } },
-        { subject: { contains: search } },
-      ];
+      const parsedId = parseInt(search, 10);
+
+      // If search is a valid number → search by ID
+      if (!isNaN(parsedId)) {
+        where.OR = [
+          { id: parsedId }, // Exact match for ID
+          { title: { contains: search } },
+          { author: { contains: search } },
+          { publisher: { contains: search } },
+          { issn: { contains: search } },
+          { subject: { contains: search } },
+        ];
+      } else {
+        // Otherwise search text fields only
+        where.OR = [
+          { title: { contains: search } },
+          { author: { contains: search } },
+          { publisher: { contains: search } },
+          { issn: { contains: search } },
+          { subject: { contains: search } },
+        ];
+      }
     }
+
 
     // Apply filters
     if (bookType) where.bookType = bookType;
