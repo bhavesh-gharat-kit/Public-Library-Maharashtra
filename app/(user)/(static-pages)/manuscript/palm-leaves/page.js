@@ -1,49 +1,50 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { FaPenFancy, FaSearch, FaFilePdf } from "react-icons/fa";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect, useRef, useState } from "react";
+import { FaPenFancy, FaSearch, FaFilePdf, FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
 import { base64UrlEncode } from "@/lib/helperFunctions";
-
+import { axios } from "@/utils";
+import QueryString from "qs";
+import { Loader } from "@/components";
+// CATEGORY FILTER PENDING - PALM LEAVES
 // ---------- 🧾 Static Manuscript Data (Palm Leaf Category) ----------
 const manuscriptsData = [
   {
     id: 2,
     title: "Caturdasalaksani(चतुरदसालकशनी)",
     author: "-",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/257.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/257.pdf",
   },
   {
     id: 3,
     title: "Amarakosh(अमरकोश)",
     author: "-",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/292.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/292.pdf",
   },
   {
     id: 4,
     title: "Sribhasyam(श्रीभाष्यम्)",
     author: "Ramanuja",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/254.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/254.pdf",
   },
   {
     id: 1,
     title: "Mimamsakaustubhah(मिमांसाकोस्तुभ:)",
     author: "Khandadeva",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/251.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/251.pdf",
   },
   {
     id: 5,
     title: "Mahabharatam Harivamsah(महाभारतम् हरिवंश:)",
     author: "Ramanuja",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/229.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/229.pdf",
   },
   {
     id: 6,
     title: "Taittiriyaranyakam(तैत्रियारण्यकम्)",
     author: "-",
-    pdf: "https://lrsgm.lalbaugcharaja.com/files/MANUSCRIPTS/palm-leaves/MS-1/272.pdf",
+    pdf: "https://dkc-storage.s3.us-east-1.amazonaws.com/Manuscript/MS-1/272.pdf",
   },
   // {
   //   id: 7,
@@ -67,24 +68,85 @@ This exhibition, therefore, is more than the presentation of an artifact—it is
 
 export default function ManuscriptPage() {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(false);
+
+  // Pagination
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+
+  // Search and filters
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
 
+  const controllerRef = useRef(null);
+
+  // Debounce search
   useEffect(() => {
-    AOS.init({ duration: 300, once: true });
-  }, []);
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query.trim());
+      setPage(1);
+    }, 400);
+    return () => clearTimeout(handler);
+  }, [query]);
 
-  const filtered = manuscriptsData.filter(
-    (m) =>
-      m.title.toLowerCase().includes(query.toLowerCase()) ||
-      m.author.toLowerCase().includes(query.toLowerCase())
-  );
+  // Fetch books
+  useEffect(() => {
+    fetchData();
+
+    return () => {
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
+    };
+  }, [page, limit, debouncedQuery]);
+
+  const fetchData = async () => {
+    try {
+      if (controllerRef.current) {
+        controllerRef.current.abort();
+      }
+
+      const controller = new AbortController();
+      controllerRef.current = controller;
+
+      setDataLoading(true);
+
+      const params = { page, limit };
+
+      if (debouncedQuery) params.search = debouncedQuery;
+
+      const res = await axios.get("/api/manuscript", {
+        params,
+        paramsSerializer: (params) =>
+          QueryString.stringify(params, { arrayFormat: "comma" }),
+        signal: controller.signal,
+      });
+
+      setData(res.data?.data || []);
+      setTotalPages(res.data?.totalPages || 1);
+      setTotalItems(res.data?.totalItems || 0);
+
+      if (loading) setLoading(false);
+    } catch (err) {
+      if (err?.name !== "CanceledError") {
+        console.error("Error fetching manuscripts:", err);
+        toast.error("Failed to fetch manuscripts");
+      }
+    } finally {
+      setDataLoading(false);
+    }
+  };
 
   // ---------- 📜 Disclaimer Page ----------
   if (showDisclaimer) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-amber-50 to-orange-100 p-6">
         <div
-          data-aos="fade-up"
           className="bg-white max-w-3xl p-8 rounded-2xl shadow-xl border border-amber-200 overflow-y-auto scrollbar-sm max-h-[90vh]"
         >
           <div className="flex gap-2 text-3xl justify-center items-center">
@@ -139,57 +201,97 @@ export default function ManuscriptPage() {
           </div>
         </div>
 
-        {/* Responsive Table */}
-        <div className="overflow-x-auto bg-white rounded-xl shadow-md border border-gray-200">
-          <table className="min-w-full text-sm text-gray-700">
-            <thead className="bg-purple-100 text-gray-800 uppercase text-xs font-semibold">
-              <tr>
-                <th className="px-6 py-3 text-left">Sr</th>
-                <th className="px-6 py-3 text-left">Title</th>
-                <th className="px-6 py-3 text-left">Author</th>
-                <th className="px-6 py-3 text-center">PDF</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.length > 0 ? (
-                filtered.map((m, i) => (
-                  <tr
-                    key={m.id}
-                    data-aos="fade-up"
-                    className="border-b hover:bg-gray-50 transition"
-                  >
-                    <td className="px-6 py-4">{i + 1}</td>
-                    <td className="px-6 py-4 font-medium">{m.title}</td>
-                    <td className="px-6 py-4">{m.author}</td>
-                    <td className="px-6 py-4 text-center">
-                      <Link
-                        href={
-                          m.pdf
-                            ? `/e-books/read-book/${base64UrlEncode(m.pdf)}`
-                            : "#"
-                        }
-                        className="inline-flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium"
-                      >
-                        <FaFilePdf className="text-red-600" />
-                        Read
-                      </Link>
-                    </td>
+        {
+          dataLoading ?
+            <div className="h-[60vh] flex items-center justify-center">
+              <Loader />
+            </div>
+            :
+            <div className="overflow-x-auto bg-white rounded-xl shadow-md border border-gray-200">
+              <table className="min-w-full text-sm text-gray-700">
+                <thead className="bg-purple-100 text-gray-800 uppercase text-xs font-semibold">
+                  <tr>
+                    <th className="px-6 py-3 text-left">Sr</th>
+                    <th className="px-6 py-3 text-left">Title</th>
+                    <th className="px-6 py-3 text-left">Author</th>
+                    <th className="px-6 py-3 text-center">PDF</th>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td
-                    colSpan="4"
-                    className="text-center py-8 text-gray-500 text-base"
-                  >
-                    No manuscripts found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {data.length > 0 ? (
+                    data.map((m, i) => (
+                      <tr
+                        key={m.id}
+                        className="border-b hover:bg-gray-50 transition"
+                      >
+                        <td className="px-6 py-4">{i + 1}</td>
+                        <td className="px-6 py-4 font-medium">{m.titleEnglish}{m.titleMarathi ? (` (${m.titleMarathi})`) : ""}</td>
+                        <td className="px-6 py-4">{m.author || "--"}</td>
+                        <td className="px-6 py-4 text-center">
+                          <Link
+                            href={
+                              m.pdfLink
+                                ? `/manuscript/read/${m.id}`
+                                : "#"
+                            }
+                            className="inline-flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium"
+                          >
+                            <FaFilePdf className="text-red-600" />
+                            Read
+                          </Link>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan="4"
+                        className="text-center py-8 text-gray-500 text-base"
+                      >
+                        No manuscripts found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+        }
       </div>
+
+      {/* Pagination */}
+      {totalPages > page && (
+        <div className="flex justify-center items-center mt-6 gap-3">
+          {/* Previous Button */}
+          <button
+            disabled={page === 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
+                     hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
+                     flex items-center justify-center"
+          >
+            <FaChevronLeft className="text-gray-600" size={16} />
+          </button>
+
+          {/* Page Info */}
+          <span className="px-3 py-1 text-gray-700 font-medium bg-gray-100 rounded-lg">
+            Page {Number(page).toLocaleString()} of{" "}
+            {Number(totalPages).toLocaleString()}
+          </span>
+
+          {/* Next Button */}
+          <button
+            disabled={page === totalPages}
+            onClick={() =>
+              setPage((p) => Math.min(totalPages, p + 1))
+            }
+            className="p-2 bg-white border border-gray-300 rounded-lg shadow-sm 
+                     hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed
+                     flex items-center justify-center"
+          >
+            <FaChevronRight className="text-gray-600" size={16} />
+          </button>
+        </div>
+      )}
     </main>
   );
 }

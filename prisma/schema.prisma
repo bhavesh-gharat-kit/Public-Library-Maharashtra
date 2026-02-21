@@ -116,6 +116,7 @@ model Manuscript {
   order Int @db.UnsignedInt
 
   category String?
+  description String?
   titleMarathi    String?
   titleEnglish    String?
   author   String?

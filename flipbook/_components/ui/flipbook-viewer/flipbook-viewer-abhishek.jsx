@@ -310,7 +310,7 @@ const FlipbookViewer = (
           throw new Error(data.message || "Failed to load PDF range");
         }
       } else {
-        const rangeUrl = `${baseUrl}/books/read-book/${bookId}/range?startPage=${startPage}&endPage=${endPage}`;
+        const rangeUrl = `${baseUrl}/range?startPage=${startPage}&endPage=${endPage}`;
         const response = await fetch(rangeUrl);
 
         if (!response.ok) {
