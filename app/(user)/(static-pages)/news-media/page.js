@@ -774,6 +774,13 @@ const data = [
     title: "Online Newspapers (English, Hindi, Regional Languages)",
     items: [
       {
+        id: 165,
+        name: "Maharashtra Times",
+        url: "https://maharashtratimes.com",
+        icon: FaNewspaper,
+        color: "#007bff",
+      },
+      {
         id: 166,
         name: "Employment News",
         url: "https://employmentnews.gov.in/NewEmp/Home.aspx",
