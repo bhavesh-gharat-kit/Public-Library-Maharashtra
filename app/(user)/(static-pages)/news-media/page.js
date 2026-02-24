@@ -776,7 +776,7 @@ const data = [
       {
         id: 166,
         name: "Employment News",
-        url: "https://employmentnews.gov.in/",
+        url: "https://employmentnews.gov.in/NewEmp/Home.aspx",
         icon: FaNewspaper,
         color: "#007bff",
       },
