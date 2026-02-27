@@ -37,10 +37,16 @@ export default function NeoLearn({ bookId, language, chapterId = null, studyTool
         }
 
         const newMessages = [
-          { type: "user", text: selectedTool.label },
           ...messages,
+          { type: "user", text: language==="marathi"?selectedTool.labelMarathi:selectedTool.labelEnglish },
         ];
         setMessages(newMessages);
+        if (containerRef.current) {
+          containerRef.current.scrollTo({
+            top: containerRef.current.scrollHeight,
+            behavior: "smooth",
+          });
+        }
 
         const { data } = await axios.post(chapterId ? `/api/books/${bookId}/${chapterId}` :
           `/api/books/${bookId}`, {
@@ -48,6 +54,12 @@ export default function NeoLearn({ bookId, language, chapterId = null, studyTool
         });
 
         setMessages([...newMessages, { type: "ai", text: data.reply, spl: selectedTool.name }]);
+        if (containerRef.current) {
+          containerRef.current.scrollTo({
+            top: containerRef.current.scrollHeight + 100,
+            behavior: "smooth",
+          });
+        }
       } catch (error) {
         console.error(error);
         toast.error("Something went wrong...");

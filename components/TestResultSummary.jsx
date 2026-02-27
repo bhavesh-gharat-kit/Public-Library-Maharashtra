@@ -113,9 +113,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
             >
               {icon}
               <p
-                className={`mt-3 text-xl md:text-3xl font-extrabold ${
-                  valueColor || "text-gray-900"
-                }`}
+                className={`mt-3 text-xl md:text-3xl font-extrabold ${valueColor || "text-gray-900"
+                  }`}
               >
                 {value}
               </p>
@@ -181,8 +180,8 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                           e.target.nextSibling.style.display = "flex";
                         }}
                       />
-                    ) : 
-                    null}
+                    ) :
+                      null}
                     <div
                       className="w-full h-full items-center justify-center"
                       style={{ display: book.thumbnailLink ? "none" : "flex" }}
@@ -199,13 +198,13 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
 
                     <div className="mt-auto space-y-3">
                       {/* Price */}
-                      <div className="flex items-center gap-1 text-lg font-bold text-green-600">
+                      {/* <div className="flex items-center gap-1 text-lg font-bold text-green-600">
                         <IndianRupee className="w-5 h-5" />
                         <span>{book.price}</span>
-                      </div>
+                      </div> */}
 
                       {/* View Button */}
-                      <a
+                      {book.url && <a
                         href={book.url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -213,7 +212,7 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                       >
                         View
                         <ExternalLink className="w-4 h-4" />
-                      </a>
+                      </a>}
                     </div>
                   </div>
                 </div>
@@ -253,19 +252,18 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                       <LatexRenderer text={q.question} />
                     </p>
                     <span
-                      className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                        isUnanswered
+                      className={`text-xs font-semibold px-2 py-1 rounded-full ${isUnanswered
                           ? "bg-yellow-100 text-yellow-800"
                           : isCorrect
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-600"
-                      }`}
+                            ? "bg-green-100 text-green-700"
+                            : "bg-red-100 text-red-600"
+                        }`}
                     >
                       {isUnanswered
                         ? "Unanswered"
                         : isCorrect
-                        ? "Correct"
-                        : "Incorrect"}
+                          ? "Correct"
+                          : "Incorrect"}
                     </span>
                   </div>
 
@@ -278,13 +276,12 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                       return (
                         <div
                           key={optIdx}
-                          className={`border px-3 py-2 rounded-md ${
-                            isRight
+                          className={`border px-3 py-2 rounded-md ${isRight
                               ? "border-green-500 bg-green-50"
                               : isSelected
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-200"
-                          }`}
+                                ? "border-red-500 bg-red-50"
+                                : "border-gray-200"
+                            }`}
                         >
                           <LatexRenderer text={opt.text} />
                           {isRight && (
