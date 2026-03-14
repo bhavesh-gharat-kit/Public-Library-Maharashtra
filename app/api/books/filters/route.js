@@ -68,7 +68,7 @@ export async function GET() {
       syllabuses: syllabuses.map((item) => item.syllabus),
       languages: mediums.map((item) => item.medium),
       // standards: standards.map((item) => item.standard),
-      standards: [ 7, 8, 9, 10, 11, 12],
+      standards: [ 10, 11, 12 ],
       subjects: subjects.map((item) => item.subject),
       publishers: publishers.map((item) => item.publisher),
       authors: authors.map((item) => item.author),

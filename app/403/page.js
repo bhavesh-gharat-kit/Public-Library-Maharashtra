@@ -18,12 +18,11 @@ export default function ForbiddenPage() {
         {/* Title */}
         <h1 className="text-6xl font-bold text-red-500 mb-3">403</h1>
         <h2 className="text-2xl font-semibold mb-2">Access Forbidden</h2>
-        <h2 className="text-3xl font-semibold mb-2 text-red-600">LALBAUGCHA RAJA AI DIGITAL LIBRARY</h2>
+        <h2 className="text-3xl font-semibold mb-2 text-red-600">लालबागचा राजा AI अंकीय ग्रंथालय </h2>
 
         {/* Message */}
         <p className="text-gray-600 mb-6 leading-relaxed">
-          We’re sorry, but your IP address is not on the allowed list for LALBAUGCHA RAJA AI DIGITAL LIBRARY.  
-          Please contact the administrator if you believe this is a mistake.
+        लालबागचा राजा AI अंकीय ग्रंथालयाचा लाभ घेण्यासाठी ग्रंथालयाला भेट द्यावी. 
         </p>
 
         {/* Decorative library icon row */}
