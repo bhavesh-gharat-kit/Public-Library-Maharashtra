@@ -8,6 +8,7 @@ import {
   FaSchool,
 } from "react-icons/fa";
 import { FiCheckSquare, FiXCircle } from "react-icons/fi";
+import { BackButton } from ".";
 
 export default function FilterSidebar({
   filters = {},
@@ -60,12 +61,11 @@ export default function FilterSidebar({
 
       {/* Filter Panel */}
       <div
-        className={`${
-          isOpen ? "block" : "hidden"
-        } md:block transition-all duration-300 ease-in-out`}
+        className={`${isOpen ? "block" : "hidden"
+          } md:block transition-all duration-300 ease-in-out`}
       >
         <aside className="bg-white border border-gray-200 shadow-lg rounded-lg p-5 space-y-6">
-          <div className="pb-3 border-b border-gray-200">
+          <div className="pb-3 border-b border-gray-200 flex justify-between flex-wrap">
             <h2 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
               <span>
                 <FaBook />

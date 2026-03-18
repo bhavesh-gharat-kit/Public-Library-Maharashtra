@@ -110,9 +110,6 @@ export default function IBookChaptersPage({ params }) {
     router.push(`/e-books/read-i-book/${bookId}/${chapter.id}`);
   };
 
-  const handleBackClick = () => {
-    router.back();
-  };
 
   if (isLoading) return <FullScreenLoader />;
 
@@ -129,16 +126,6 @@ export default function IBookChaptersPage({ params }) {
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="max-w-[1400px] mx-auto">
-        {/* Back Button */}
-        <div className="mb-6">
-          <button
-            onClick={handleBackClick}
-            className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg shadow-sm flex items-center gap-2 transition-colors"
-          >
-            <FaChevronLeft /> Back
-          </button>
-        </div>
-
         {/* Book Header */}
         <div className="bg-white max-w-4xl mx-auto rounded-lg shadow-sm p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-6">

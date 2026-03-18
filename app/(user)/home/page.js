@@ -18,7 +18,7 @@ import {
   FaUniversity,
   FaPenFancy,
 } from "react-icons/fa";
-import Link from "next/link";
+import Link from "next/link"; 
 
 // Reusable Card Component
 function ResourceCard({ resource, delay = 0 }) {

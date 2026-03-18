@@ -21,3 +21,4 @@ export { default as MockTestSubCard } from "./MockTestSubCard";
 export { default as MDComponent } from "./MDComponent";
 export { default as TestResultSummary } from "./TestResultSummary";
 export { default as LatexRenderer } from "./LatexRenderer";
+export { default as BackButton } from "./BackButton";

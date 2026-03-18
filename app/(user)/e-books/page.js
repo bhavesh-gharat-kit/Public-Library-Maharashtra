@@ -3,12 +3,11 @@ import React, { useEffect, useRef, useState } from "react";
 import AOS from "aos";
 import qs from "qs";
 
-import {
+import { 
   BookCard,
   FilterSidebar,
   FullScreenLoader,
-  Loader,
-  Tooltip,
+  Loader, 
 } from "@/components";
 import { axios } from "@/utils";
 import {
@@ -150,7 +149,7 @@ export default function Page() {
   return (
     <>
       <main className="bg-gray-50 ">
-        <div className="max-w-[1440px] mx-auto px-4 flex flex-col md:flex-row">
+        <div className="max-w-[1440px] mx-auto p-4 flex flex-col md:flex-row">
           <div className="w-full md:w-64 md:sticky md:top-20 h-fit">
             <FilterSidebar
               filters={filtersData}
