@@ -21,12 +21,14 @@ export default function Page() {
       title: "Banking",
       description: "Practice IBPS, SBI, RBI-level questions curated by top mentors.",
       link: "/take-test/banking",
+      advanceLink: "/take-test/advance/banking",
       aos: "fade-down",
     },
     {
       title: "MPSC & State Commission",
       description: "MCQ-based mock tests for State PSC, UPSC prep and more.",
       link: "/take-test/mpsc-state-commission",
+      advanceLink: "/take-test/advance/mpsc-state-commission",
       aos: "flip-up",
     },
     {

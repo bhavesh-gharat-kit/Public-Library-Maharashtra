@@ -49,7 +49,7 @@ export default function Header() {
 
   return (
     <nav className="bg-white shadow-md shadow-orange-200 sticky top-0 z-50">
-      <BackButton className="absolute top-18 left-8" />
+      <BackButton className="absolute top-18 left-2 md:left-8" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
