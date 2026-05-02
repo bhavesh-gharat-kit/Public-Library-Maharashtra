@@ -116,9 +116,8 @@ function FlipCard({ test, delay }) {
       onClick={() => setFlipped(!flipped)}
     >
       <div
-        className={`relative w-full h-full duration-700 transform-style-preserve-3d transition-transform ${
-          flipped ? "rotate-y-180" : ""
-        }`}
+        className={`relative w-full h-full duration-700 transform-style-preserve-3d transition-transform ${flipped ? "rotate-y-180" : ""
+          }`}
       >
         {/* Front Side */}
         <div className="absolute w-full h-full bg-white rounded-xl shadow-lg hover:shadow-purple-300 transition-shadow duration-500 flex flex-col justify-center items-center p-4 gap-4 backface-hidden border border-gray-200">
@@ -160,7 +159,7 @@ export default function MockTests() {
 
   return (
     <>
-      <section className="py-4 md:py-8 bg-gradient-to-b from-white to-gray-100 min-h-screen">
+      <section className="py-4 bg-gradient-to-b from-white to-gray-100 min-h-screen">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           {/* Heading */}
           <div
@@ -173,6 +172,15 @@ export default function MockTests() {
             <p className="text-lg md:text-xl font-medium">
               Get Access to Free Mock Tests
             </p>
+          </div>
+
+          <div className="py-2 ml-auto w-fit">
+            <Link
+              href="/mock-tests/advance"
+              className="px-4 w-fit py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-sm flex items-center gap-2 transition-colors"
+            >
+              Advance Level
+            </Link>
           </div>
 
           {/* Cards */}

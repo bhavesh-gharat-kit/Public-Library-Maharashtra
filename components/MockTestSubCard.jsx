@@ -23,13 +23,6 @@ export default function TestCard({ card, idx }) {
         Explore Tests
         <FaArrowRight />
       </Link>
-      {card.advanceLink && <Link
-        href={card.advanceLink}
-        className="mt-2 inline-flex items-center justify-center gap-2 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-800 border border-orange-800 rounded-md py-2 px-4 transition-all duration-300"
-      >
-        Advance Level
-        <FaArrowRight />
-      </Link>}
     </div>
   );
 }
