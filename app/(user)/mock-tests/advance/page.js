@@ -115,6 +115,30 @@ export default function Page() {
       description: "Highly useful mock tests for banking and TCS-based exams like IBPS.",
       link: "/take-test/advance/adv-tcs-ibps",
       aos: "fade-up",
+    },
+    {
+      title: "The Trade Unions",
+      description: "Practice questions covering trade unions, workers' rights, collective bargaining, registration, functions, and key provisions of labour laws.",
+      link: "/take-test/advance/adv-llm-the-trade-unions",
+      aos: "fade-up",
+    },
+    {
+      title: "Industrial Disputes",
+      description: "Test your knowledge of industrial disputes, strikes, lockouts, settlements, retrenchment, and dispute resolution mechanisms under labour laws.",
+      link: "/take-test/advance/adv-llm-industrial-disputes",
+      aos: "fade-up",
+    },
+    {
+      title: "The Law of Contracts",
+      description: "Master essential contract law concepts including agreements, consideration, consent, breach of contract, remedies, and legal obligations.",
+      link: "/take-test/advance/adv-llm-the-law-of-contracts",
+      aos: "fade-up",
+    },
+    {
+      title: "The Law and Medicine",
+      description: "Explore legal principles in healthcare, medical negligence, patient rights, informed consent, ethics, and medico-legal responsibilities.",
+      link: "/take-test/advance/adv-llm-law-medicine",
+      aos: "fade-up",
     }
   ];
 
