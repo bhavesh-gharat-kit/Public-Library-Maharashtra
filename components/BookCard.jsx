@@ -20,19 +20,34 @@ const BookCard = ({ book, randomColor }) => {
         {
           book.thumbnailLink ?
             <img
-              src={book.thumbnailLink}
+              src={book.thumbnailLink.replace(/^http:\/\//i, "https://")}
               alt={book.title}
-              className="w-full h-full object-fill" />
+              className="w-full h-full object-fill"
+              onError={(e) => {
+                const src = e.target.src;
+                // If HTTPS failed, try HTTP as last resort
+                if (src.startsWith("https://")) {
+                  e.target.src = src.replace("https://", "http://");
+                } else {
+                  // Both failed — hide image and show title fallback
+                  e.target.style.display = "none";
+                  if (e.target.nextSibling) e.target.nextSibling.style.display = "flex";
+                }
+              }}
+            />
             :
-            <h2 className="text-xl font-semibold leading-snug px-4">
-              {book.title.length > 50 ? book.title.slice(0, 50) + "…" : book.title}
-            </h2>
-
+            null
         }
+        <h2
+          className="text-xl font-semibold leading-snug px-4"
+          style={{ display: book.thumbnailLink ? "none" : "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}
+        >
+          {book.title.length > 50 ? book.title.slice(0, 50) + "…" : book.title}
+        </h2>
 
         {/* eBook badge */}
         <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
-          {book.bookType}
+          {book.bookType == "iBook"?"neoBook":book.bookType}
         </span>
       </div>
 

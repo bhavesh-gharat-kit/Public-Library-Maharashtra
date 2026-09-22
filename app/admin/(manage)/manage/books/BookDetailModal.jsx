@@ -45,11 +45,16 @@ export default function BookDetailModal({ isOpen, onClose, book }) {
           {book.thumbnailLink && (
             <div className="mb-6 flex justify-center">
               <img
-                src={book.thumbnailLink}
+                src={book.thumbnailLink.replace(/^http:\/\//i, "https://")}
                 alt={book.title}
                 className="max-w-xs max-h-64 rounded-lg shadow-lg object-cover"
                 onError={(e) => {
-                  e.target.style.display = "none";
+                  const src = e.target.src;
+                  if (src.startsWith("https://")) {
+                    e.target.src = src.replace("https://", "http://");
+                  } else {
+                    e.target.style.display = "none";
+                  }
                 }}
               />
             </div>

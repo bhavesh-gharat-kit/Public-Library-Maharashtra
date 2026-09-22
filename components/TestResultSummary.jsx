@@ -172,12 +172,17 @@ const TestResultSummary = ({ testData, answers, remainingTime }) => {
                   <div className="w-full h-48 bg-gray-100 flex items-center justify-center overflow-hidden">
                     {book.thumbnailLink ? (
                       <img
-                        src={book.thumbnailLink}
+                        src={book.thumbnailLink.replace(/^http:\/\//i, "https://")}
                         alt={book.title}
                         className="h-full object-contain"
                         onError={(e) => {
-                          e.target.style.display = "none";
-                          e.target.nextSibling.style.display = "flex";
+                          const src = e.target.src;
+                          if (src.startsWith("https://")) {
+                            e.target.src = src.replace("https://", "http://");
+                          } else {
+                            e.target.style.display = "none";
+                            if (e.target.nextSibling) e.target.nextSibling.style.display = "flex";
+                          }
                         }}
                       />
                     ) :

@@ -227,7 +227,7 @@ export default function BookFormModal({ isOpen, onClose, book, mode, onSuccess }
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="eBook">eBook</option>
-                  <option value="iBook">iBook</option>
+                  <option value="iBook">neoBook</option>
                 </select>
               </div>
 

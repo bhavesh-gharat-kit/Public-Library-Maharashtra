@@ -133,9 +133,17 @@ export default function IBookChaptersPage({ params }) {
             {book.thumbnailLink && (
               <div className="flex-shrink-0">
                 <img
-                  src={book.thumbnailLink}
+                  src={book.thumbnailLink.replace(/^http:\/\//i, "https://")}
                   alt={book.title}
                   className="w-full md:w-48 h-64 object-cover rounded-lg shadow-md"
+                  onError={(e) => {
+                    const src = e.target.src;
+                    if (src.startsWith("https://")) {
+                      e.target.src = src.replace("https://", "http://");
+                    } else {
+                      e.target.style.display = "none";
+                    }
+                  }}
                 />
               </div>
             )}
